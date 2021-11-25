@@ -1,0 +1,86 @@
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 3280px;
+}
+
+h1,
+h2 {
+  font-family: "Roboto Slab", serif;
+}
+
+header {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  margin: 0 -1rem;
+  padding: 0 2rem;
+  height: 100px;
+  position: fixed;
+  z-index: 10;
+}
+
+.infovideo {
+  display: inline-flex;
+  flex-wrap: wrap;
+  z-index: 2;
+}
+
+article {
+  /*   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; */
+  width: 80%;
+  margin-bottom: 500px;
+}
+
+#map {
+  height: 640px;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 2;
+}
+
+#nimi,
+#navigoi {
+  width: 50%;
+}
+
+#navigoi {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#navigoi a,
+.leaflet-popup-content a {
+  display: block;
+  line-height: 3rem;
+  text-align: center;
+  color: #fff;
+  background-color: #3fb4f4;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  text-decoration: none;
+}
+
+/* leaflet ikonit */
+.punainen-ikoni {
+  background: #ff6324;
+  border: 5px solid rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  text-align: center;
+  border-radius: 50%;
+  line-height: 30px;
+}
+
+.vihrea-ikoni {
+  background: #27ba35;
+  border: 5px solid rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  text-align: center;
+  border-radius: 50%;
+  line-height: 30px;
+}

@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"path": "..\\tehtavat_rasmushyyppa"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "ryhmaproju"
+  }
+}

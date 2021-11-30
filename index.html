@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" href="data:," />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&amp;subset=latin-ext" rel="stylesheet" />
@@ -14,24 +15,24 @@
       <h1>Pizza Aikataulut</h1>
       <nav></nav>
     </header>
-    <main>
-      <div id="map">
-        <article><h2>Kartta</h2></article>
-      </div>
-      <article class="infovideo">
-        <h2>FAQ</h2>
-        <figure>
-          <video width="640" height="480" controls>
-            <source src="" type="video/mp4" />
-            <source src="" type="video/ogg" />
-            Your browser does not support the video tag.
-          </video>
-          <figcaption>Video ok?</figcaption>
-        </figure>
+    <div class="content">
+      <div id="map"></div>
+      <main>
+        <article class="kartta"></article>
+        <article class="infovideo">
+          <h2>FAQ</h2>
+          <figure>
+            <video width="640" height="480" controls>
+              <source src="" type="video/mp4" />
+              <source src="" type="video/ogg" />
+              Your browser does not support the video tag.
+            </video>
+            <figcaption>Video ok?</figcaption>
+          </figure>
+        </article>
         <aside><p>Info text liirum laarum tikka on takka myös ehkä tota joo ok nii mitä ihmettä joo okei nii emt lol xddddd</p></aside>
-      </article>
-    </main>
-    <!--     <script src="https://open-api.myhelsinki.fi/swagger.json"></script> -->
+      </main>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <script src="js.js"></script>
   </body>

@@ -1,8 +1,11 @@
 "use strict";
 const tanaan = new Date(); // aika jolla katotaan pizza paikat.
+const curAika = tanaan.getHours();
 let vkPaiva = tanaan.getDay();
-let curAika = tanaan.getHours() + ":" + tanaan.getMinutes() + ":" + tanaan.getSeconds();
-
+if (vkPaiva === 0) {
+  vkPaiva == 7;
+}
+let arr = [];
 const proxy = "https://cors-anywhere.herokuapp.com/";
 const distance = 10;
 const distanceunit = "km";
@@ -10,11 +13,10 @@ const map = L.map("map").setView([60.21, 24.95], 11.5);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
-const maparticle = document.querySelector("#map article");
+
+const maparticle = document.querySelector(".kartta");
 const nimi = document.querySelector("#nimi");
-const osoite = document.querySelector("#osoite");
-const aukioloaika = document.querySelector("#aukioloaika");
-const lisatiedot = document.querySelector("#lisatiedot");
+/* const moreInfo = document.querySelector("#summary"); */
 
 // Asetukset paikkatiedon hakua varten (valinnainen)
 const options = {
@@ -23,9 +25,9 @@ const options = {
   maximumAge: 0,
 };
 
-// kustom markkerit
+/* // kustom markkerit
 const vihreaikoni = L.divIcon({className: "vihrea-ikoni"});
-const punainenikoni = L.divIcon({className: "punainen-ikoni"});
+const punainenikoni = L.divIcon({className: "punainen-ikoni"}); */
 
 function success(pos) {
   const crd = pos.coords;
@@ -34,7 +36,7 @@ function success(pos) {
     console.log(e);
   });
   map.setView([crd.latitude, crd.longitude], 12);
-  /*   lisaaMarker(crd.latitude, crd.longitude, "Olen tässä", punainenikoni); // lisätään markkeri omaan lokaatioon */
+  L.marker(crd.latitude, crd.longitude, "Olen tässä"); // lisätään markkeri omaan lokaatioon
 }
 
 // Funktio, joka ajetaan, jos paikkatietojen hakemisessa tapahtuu virhe
@@ -50,36 +52,42 @@ async function getPizza() {
   const response = await fetch(`${proxy}${pizzaUrl}`);
   const jsonData = await response.json();
   console.log(jsonData.data);
-  hakuResults(jsonData);
+  hakuResults(jsonData.data);
 }
 
 /// for in loopilla monen objectin sisältä otetaan datat :3333
 
 function hakuResults(results) {
-  maparticle.innerHTML = ""; // refreshaa sivun ku haetaan uudestaan.
+  arr = results;
+  /* maparticle.innerHTML = ""; // refreshaa sivun ku haetaan uudestaan. */ /* id="summary" */
   maparticle.innerHTML += `
+  <details>
+  <summary>Lisätiedot</summary> 
   <h3 id="nimi"></h3>
   <h4 id="osoite"></h4>
   <p id="aukioloaika"></p>
-  <p id="lisatiedot"></p>`;
-  results.forEach(function (objData) {
+  <p id="lisatiedot"></p>
+  </details>`;
+  arr.forEach(function (objData) {
     // jokasen objectin osalta seuraava forloop ->
     const info = {
       nimi: objData.name.fi,
-      osoite: objData.location.address.street.address,
+      osoite: objData.location.address.street_address,
       Latitude: objData.location.lat,
       Longitude: objData.location.lon,
-      aukioloaika: objData.opening_hours.hours,
+      aukioloaika: objData.opening_hours.hours[vkPaiva].closes,
+      aukeeoloaika: objData.opening_hours.hours[vkPaiva].opens,
       lisatiedot: objData.description.body,
     };
-    L.marker([info.Latitude, info.Longitude], {icon: vihreaikoni})
+    L.marker([info.Latitude, info.Longitude])
       .addTo(map)
       .bindPopup(info.nimi)
       .on("click", () => {
-        nimi.innerHTML = info?.nimi || "";
-        osoite.innerHTML = info?.osoite || "";
-        aukioloaika.innerHTML = info?.aukioloaika || "";
-        lisatiedot.innerHTML = info?.lisatiedot || "";
+        document.querySelector("#nimi").innerHTML = info?.nimi || "Damn son?";
+        document.querySelector("#osoite").innerHTML = info?.osoite || "";
+        document.querySelector("#aukioloaika").innerHTML = info?.aukeeoloaika || "";
+        document.querySelector("#aukioloaika").innerHTML += "-" + info?.aukioloaika || "";
+        document.querySelector("#lisatiedot").innerHTML = info?.lisatiedot || "";
       });
   });
 }

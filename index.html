@@ -13,13 +13,19 @@
   <body>
     <header class="ylaotsikko">
       <h1>Pizza Aikataulut</h1>
-      <nav></nav>
+      <nav class="navbar">
+        <ul>
+          <li class="navbar__map"><a href="#map">Kartta</a></li>
+          <li class="navbar__faq"><a href="#infovideo">FAQ</a></li>
+          <li class="navbar__secret"><a href="javascript:void(0)">Secret link</a></li>
+        </ul>
+      </nav>
     </header>
     <div class="content">
       <div id="map"></div>
       <main>
         <article class="kartta"></article>
-        <article class="infovideo">
+        <article id="infovideo">
           <h2>FAQ</h2>
           <figure>
             <video width="640" height="480" controls>

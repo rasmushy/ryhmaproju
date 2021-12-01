@@ -9,25 +9,81 @@ body {
 
 h1,
 h2 {
+  font-weight: 700;
   font-family: "Roboto Slab", serif;
+  margin-top: 10px;
+  margin-left: 15px;
+  z-index: 5;
 }
 
 header {
   width: 100%;
   background-color: #000;
   color: #fff;
-  margin: 0 -1rem;
-  padding: 0 2rem;
-  height: 100px;
+  height: 60px;
   position: fixed;
   z-index: 10;
 }
 
-.content {
-  width: 75%;
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  text-align: center;
+  z-index: 1;
 }
 
-.infovideo {
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: inline-flex;
+  justify-content: right;
+  margin-top: 20px;
+  margin-left: -5%;
+  font-size: 20px;
+  z-index: 1;
+}
+
+.navbar li {
+  width: 120px;
+  display: inline-block;
+  margin-right: -30px;
+}
+
+.navbar a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 10px 12px;
+  margin-top: -10px;
+  text-decoration: none;
+}
+
+.navbar li a:hover {
+  background-color: white;
+  border-radius: 2px;
+  color: red;
+}
+
+.navbar li a:active {
+  background-color: #333;
+}
+
+.content {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content summary {
+  display: list-item;
+}
+
+#infovideo {
   display: inline-flex;
   flex-wrap: wrap;
   z-index: 2;
@@ -41,6 +97,7 @@ article {
   width: 100%;
   margin-bottom: 500px;
   border: 5px solid;
+  margin-left: -5px;
 }
 
 #map {
@@ -53,6 +110,72 @@ article {
   display: flex;
   flex-wrap: wrap;
   z-index: 2;
+  margin-left: -5px;
+}
+#map .leaflet-popup-content-wrapper {
+  background: #b61f1f;
+  color: white;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.4);
+  text-shadow: 1px 1px 14px black;
+  margin-left: -5px;
+  border: inset 5px solid red;
+  max-height: 240px;
+  margin: 0;
+  overflow: hidden;
+  width: 165px;
+  display: inline-block;
+}
+
+#map .leaflet-popup-content-wrapper a {
+  line-height: 1.5rem;
+  text-align: center;
+  color: #fff;
+  background-color: #333;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  text-decoration: none;
+  border-top-left-radius: 1px;
+  border-bottom-left-radius: 1px;
+  border-bottom-right-radius: 20px;
+  margin-left: 15px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  font-family: 700;
+  font-size: 15px;
+  transition: 1s;
+}
+
+#map .leaflet-popup-content {
+  margin: auto;
+  line-height: 1em;
+}
+
+#map .leaflet-popup-content-wrapper a:hover {
+  background-color: red;
+  color: white;
+  box-shadow: 2px 2px 10px black;
+  transition: 1s;
+}
+
+#map .leaflet-popup-content-wrapper h4,
+h3,
+p,
+summary {
+  text-decoration: black;
+  margin-left: auto;
+  margin-top: 0px;
+  line-height: 1.5em;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+#map .leaflet-popup-content-wrapper #aukioloaika {
+  margin-left: -5px;
+  margin-top: 0px;
+  line-height: 1.5em;
+  width: 100%;
+  text-align: left;
 }
 
 .kartta {
@@ -68,6 +191,14 @@ article {
   width: 100%;
   font-size: 16px;
   margin-left: -10px;
+}
+
+.kartta details p {
+  margin: center;
+  text-align: center;
+  width: 100%;
+  overflow: auto;
+  margin-left: 8px;
 }
 
 #nimi,

@@ -1,14 +1,9 @@
 "use strict";
 const tanaan = new Date(); // aika jolla katotaan pizza paikat.
 const curAika = tanaan.getHours();
-let vkPaiva = tanaan.getDay();
-if (vkPaiva === 0) {
-  vkPaiva == 7;
-}
+let vkPaiva = tanaan.getDay() - 1 || 6;
 let arr = [];
 const proxy = "https://cors-anywhere.herokuapp.com/";
-const distance = 10;
-const distanceunit = "km";
 const map = L.map("map").setView([60.21, 24.95], 11.5);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -59,13 +54,18 @@ async function getPizza() {
 
 function hakuResults(results) {
   arr = results;
+  const summaryText = `
+  <h3 id="nimi"></h3>
+  <details>
+  <summary>Lisätiedot</summary>
+  <h4 id="osoite"></h4>
+  <p id="aukioloaika"></p>
+  <a id="urli" href="">Kotisivu</a>
+  </details>`;
   /* maparticle.innerHTML = ""; // refreshaa sivun ku haetaan uudestaan. */ /* id="summary" */
   maparticle.innerHTML += `
   <details>
   <summary>Lisätiedot</summary> 
-  <h3 id="nimi"></h3>
-  <h4 id="osoite"></h4>
-  <p id="aukioloaika"></p>
   <p id="lisatiedot"></p>
   </details>`;
   arr.forEach(function (objData) {
@@ -78,15 +78,18 @@ function hakuResults(results) {
       aukioloaika: objData.opening_hours.hours[vkPaiva].closes,
       aukeeoloaika: objData.opening_hours.hours[vkPaiva].opens,
       lisatiedot: objData.description.body,
+      urli: objData.info_url,
     };
     L.marker([info.Latitude, info.Longitude])
       .addTo(map)
-      .bindPopup(info.nimi)
+      .bindPopup(summaryText)
       .on("click", () => {
         document.querySelector("#nimi").innerHTML = info?.nimi || "Damn son?";
         document.querySelector("#osoite").innerHTML = info?.osoite || "";
         document.querySelector("#aukioloaika").innerHTML = info?.aukeeoloaika || "";
-        document.querySelector("#aukioloaika").innerHTML += "-" + info?.aukioloaika || "";
+        document.querySelector("#aukioloaika").innerHTML += "-";
+        document.querySelector("#aukioloaika").innerHTML += info?.aukioloaika || "";
+        document.querySelector("#urli").href = objData?.info_url || "javascript:void(0)";
         document.querySelector("#lisatiedot").innerHTML = info?.lisatiedot || "";
       });
   });

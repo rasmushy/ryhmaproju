@@ -81,6 +81,7 @@ header {
 
 .content summary {
   display: list-item;
+  margin-bottom: 0px;
 }
 
 #infovideo {
@@ -117,13 +118,19 @@ article {
   color: white;
   box-shadow: 0 5px 14px rgba(0, 0, 0, 0.4);
   text-shadow: 1px 1px 14px black;
-  margin-left: -5px;
-  border: inset 5px solid red;
   max-height: 240px;
   margin: 0;
   overflow: hidden;
-  width: 165px;
+  width: 166px;
   display: inline-block;
+}
+
+#map .leaflet-popup-content details[open] {
+  transition: all 0.4s ease-in-out;
+  max-height: 100px;
+  overflow: hidden;
+  padding-bottom: 20px;
+  padding-top: 10px;
 }
 
 #map .leaflet-popup-content-wrapper a {
@@ -137,17 +144,18 @@ article {
   border-top-left-radius: 1px;
   border-bottom-left-radius: 1px;
   border-bottom-right-radius: 20px;
-  margin-left: 15px;
+  margin-left: auto;
   margin-bottom: 0px;
   margin-top: 0px;
-  font-family: 700;
   font-size: 15px;
   transition: 1s;
 }
 
 #map .leaflet-popup-content {
-  margin: auto;
   line-height: 1em;
+  text-align: center;
+  margin: auto;
+  padding-bottom: 10px;
 }
 
 #map .leaflet-popup-content-wrapper a:hover {
@@ -166,7 +174,6 @@ summary {
   margin-top: 0px;
   line-height: 1.5em;
   display: inline-block;
-  width: 100%;
   text-align: center;
 }
 
@@ -175,55 +182,17 @@ summary {
   margin-top: 0px;
   line-height: 1.5em;
   width: 100%;
-  text-align: left;
-}
-
-.kartta {
-  position: relative;
-  width: 100%;
   text-align: center;
-  margin-bottom: 300px;
+  margin-bottom: 15px;
 }
 
-.kartta details {
-  display: flex;
-  justify-content: flex-end;
+#nimi {
   width: 100%;
-  font-size: 16px;
-  margin-left: -10px;
+  margin-bottom: 5px;
 }
 
-.kartta details p {
-  margin: center;
-  text-align: center;
-  width: 100%;
-  overflow: auto;
-  margin-left: 8px;
-}
+/* leaflet ikonit  */
 
-#nimi,
-#navigoi {
-  width: 100%;
-}
-
-/* #navigoi {
-  display: flex;
-  justify-content: flex-end;
-}
-
-#navigoi a,
-.leaflet-popup-content a {
-  display: block;
-  line-height: 3rem;
-  text-align: center;
-  color: #fff;
-  background-color: #3fb4f4;
-  box-sizing: border-box;
-  padding: 0.5rem;
-  text-decoration: none;
-}
- */
-/* leaflet ikonit */ /* 
 .punainen-ikoni {
   background: #ff6324;
   border: 5px solid rgba(255, 255, 255, 0.5);
@@ -241,4 +210,3 @@ summary {
   border-radius: 50%;
   line-height: 30px;
 }
- */

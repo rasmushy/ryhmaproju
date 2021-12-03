@@ -140,7 +140,7 @@ article {
   margin-bottom: 0px;
   margin-top: 0px;
   font-size: 15px;
-  transition: 1s;
+  transition: 1s ease-in-out;
 }
 
 #map .leaflet-popup-content {
@@ -156,6 +156,7 @@ article {
   color: white;
   box-shadow: 2px 2px 10px black;
   transition: 1s;
+  /*! margin-bottom: ; */
 }
 
 #map .leaflet-popup-content details[closed] {
@@ -186,6 +187,11 @@ summary {
   /*   display: inline-block; */
   text-align: center;
 }
+
+#map .leaflet-popup-content-wrapper summary {
+  margin-top: 10px;
+  margin-left: -0.4em;
+}
 #map .leaflet-popup-content-wrapper #Saukioloaika {
   margin-left: -5px;
   margin-top: 0px;
@@ -195,18 +201,10 @@ summary {
   margin-bottom: 15px;
 }
 
-/* #map .leaflet-popup-content-wrapper h4,
-h3 {
-  text-decoration: black;
-  margin-left: auto;
-  margin-top: 0px;
-  line-height: 1.5em;
-  text-align: center;
-}
- */
-#Snimi {
-  width: 100%;
+#Snimi,
+#Surli {
   margin-bottom: 5px;
+  padding-bottom: 5px;
 }
 
 /* leaflet ikonit  */

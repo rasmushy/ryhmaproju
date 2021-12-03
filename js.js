@@ -1,15 +1,15 @@
 "use strict";
 const tanaan = new Date(); // aika jolla katotaan pizza paikat.
-const curAika = tanaan.getHours();
+const curAika = tanaan.getHours() + ":" + tanaan.getMinutes() + ":" + tanaan.getSeconds();
 const vkPaiva = tanaan.getDay() - 1 || 6;
 const proxy = "https://cors-anywhere.herokuapp.com/";
 const map = L.map("map").setView([60.21, 24.95], 9);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
+const hakuPainike = document.querySelector(".haku__nappi");
+const hakuTxt = document.querySelector(".haku__teksti");
 
-const maparticle = document.querySelector(".kartta");
-const nimi = document.querySelector("#nimi");
 /* const moreInfo = document.querySelector("#summary"); */
 // kustom markkerit
 const vIcon = L.divIcon({className: "vihrea-ikoni"});
@@ -23,40 +23,26 @@ const options = {
 };
 
 // funktio markerien tekoon
-function lisaaMarker(info) {
-  const summaryText = `
-  <h3 id="nimi"></h3>
-  <details>
-  <summary>Lisätiedot</summary>
-  <h4 id="osoite"></h4>
-  <p id="aukioloaika"></p>
-  <a id="urli" href="">Kotisivu</a>
-  </details>`;
-  if (curAika >= info.aukeeoloaika && curAika < info.aukioloaika) {
+function lisaaMarker(open, closed, teksti, info) {
+  if (curAika >= open != false || (curAika < "23:00:00" && curAika < closed != true)) {
     L.marker([info.Latitude, info.Longitude], {icon: pIcon})
       .addTo(map)
-      .bindPopup(summaryText)
+      .bindPopup(teksti)
       .on("click", () => {
-        document.querySelector("#nimi").innerHTML = info?.nimi || "";
-        document.querySelector("#osoite").innerHTML = info?.osoite || "";
-        document.querySelector("#aukioloaika").innerHTML = info?.aukeeoloaika || "";
-        document.querySelector("#aukioloaika").innerHTML += "-";
-        document.querySelector("#aukioloaika").innerHTML += info?.aukioloaika || "";
-        document.querySelector("#urli").href = info.urli || "javascript:void(0)";
-        document.querySelector("#lisatiedot").innerHTML = info?.lisatiedot || "";
+        /*         document.querySelector("#map .hidden").style.visibility = "visible"; */
+        document.querySelector("#Snimi").innerHTML = info?.nimi || "";
+        document.querySelector("#Sosoite").innerHTML = info?.osoite || "";
+        document.querySelector("#Surli").href = info?.urli || "javascript:void(0)";
       });
   } else {
-    L.marker([info.Latitude, info.Longitude], {icon: vIcon})
+    L.marker([info.Latitude, info.Longitude], {icon: vIcon}) /// tän hetkinen ongelma -> kun painaa blobia suoraan kun yksi avattu niin se ei lataa uudestaan tietoja.
       .addTo(map)
-      .bindPopup(summaryText)
+      .bindPopup(teksti)
       .on("click", () => {
-        document.querySelector("#nimi").innerHTML = info?.nimi || "Damn son?";
-        document.querySelector("#osoite").innerHTML = info?.osoite || "";
-        document.querySelector("#aukioloaika").innerHTML = info?.aukeeoloaika || "";
-        document.querySelector("#aukioloaika").innerHTML += "-";
-        document.querySelector("#aukioloaika").innerHTML += info?.aukioloaika || "";
-        document.querySelector("#urli").href = info.urli || "javascript:void(0)";
-        document.querySelector("#lisatiedot").innerHTML = info?.lisatiedot || "";
+        /*         document.querySelector("#map .hidden").style.visibility = "visible"; */
+        document.querySelector("#Snimi").innerHTML = info?.nimi || "";
+        document.querySelector("#Sosoite").innerHTML = info?.osoite || "";
+        document.querySelector("#Surli").href = info?.urli || "javascript:void(0)";
       });
   }
 }
@@ -83,24 +69,52 @@ async function getPizza() {
   const pizzaUrl = "http://open-api.myhelsinki.fi/v1/places/?tags_filter=Pizza";
   const response = await fetch(`${proxy}${pizzaUrl}`);
   const jsonData = await response.json();
-  /*   maparticle.innerHTML += `
-  <details>
-  <summary>Lisätiedot</summary> 
-  <p id="lisatiedot"></p>
-  </details>`; */
   Array.from(jsonData.data).forEach(function (objData) {
     // jokasen objectin osalta seuraava forloop ->
+    const open = objData.opening_hours.hours[vkPaiva].opens; // tällä varmistetaan kumpi markkeri tulee mapille
+    const closed = objData.opening_hours.hours[vkPaiva].closes; // verrattuna tämän hetkiseen aikaan
     const info = {
+      id: objData.id,
       nimi: objData.name.fi,
       osoite: objData.location.address.street_address,
       Latitude: objData.location.lat,
       Longitude: objData.location.lon,
-      aukioloaika: objData.opening_hours.hours[vkPaiva].closes,
-      aukeeoloaika: objData.opening_hours.hours[vkPaiva].opens,
-      lisatiedot: objData.description.body,
       urli: objData.info_url,
+      /*       lisatiedot: objData.description.body, */
     };
-    lisaaMarker(info);
+    const teksti = `<h3 id="Snimi">${info.nimi}</h3>
+    <details>
+    <summary>Lisätiedot</summary>
+    <h4 id="Sosoite">${info.osoite}</h4>
+    <p id="Saukioloaika">${open}-${closed}</p>
+    <a id="Surli" href="${info.urli}">Kotisivu</a>
+    </details>`;
+    lisaaMarker(open, closed, teksti, info);
   });
   console.log(jsonData.data);
 }
+
+// kun painat nappia -> tsegee onko inputboxissa mitään ja tästä syystä lähettää search toiminnon eteenpäin ja näyttää main contentin.
+let toiminto;
+hakuPainike.addEventListener("click", () => {
+  toiminto = hakuTxt.value;
+  if ((toiminto === "") != false) {
+    return console.log("inputbox is empty");
+  } else {
+    console.log("searchaan");
+  }
+});
+
+// kun painat entteriä -> sama juttu kuin ylempi.
+hakuTxt.addEventListener("keyup", (e) => {
+  if (e.keyCode === 13) {
+    e.preventDefault();
+    hakuPainike.click();
+    toiminto = hakuTxt.value;
+    if ((toiminto === "") != false) {
+      return;
+    } else {
+      console.log("searchaan");
+    }
+  }
+});

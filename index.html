@@ -1,57 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="icon" href="data:," />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&amp;subset=latin-ext" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="src/leaflet-search.css" />
-    <link href="style.css" rel="stylesheet" />
-    <!--     <link href="hakustyle.css" rel="stylesheet" /> -->
-    <title>Ryhmäproju</title>
-  </head>
-  <body>
-    <header class="ylaotsikko">
-      <h1>Pizza Aikataulut</h1>
-      <nav class="navbar">
-        <ul>
-          <li class="navbar__map"><a href="#map">Kartta</a></li>
-          <li class="navbar__faq"><a href="#infovideo">FAQ</a></li>
-          <li class="navbar__secret"><a href="javascript:void(0)">Secret link</a></li>
-        </ul>
-      </nav>
-    </header>
-    <div class="content">
-      <main>
-        <article id="kartta">
-          <div id="map">
-            <div class="haku">
-              <input class="haku__teksti" aria-label="search input" placeholder="etsi..." />
-              <button class="haku__nappi" aria-label="search button">
-                <span><i class="fa fa-search"></i></span>
-              </button>
-            </div>
-          </div>
-        </article>
-        <article id="infovideo">
-          <h2>FAQ</h2>
-          <figure>
-            <video width="640" height="480" controls>
-              <source src="" type="video/mp4" />
-              <source src="" type="video/ogg" />
-              Your browser does not support the video tag.
-            </video>
-            <figcaption>Video ok?</figcaption>
-          </figure>
-        </article>
-        <aside><p>Info text liirum laarum tikka on takka myös ehkä tota joo ok nii mitä ihmettä joo okei nii emt lol xddddd</p></aside>
-      </main>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&amp;subset=latin-ext" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="src/leaflet-search.css" />
+  <link href="style.css" rel="stylesheet" />
+  <!--     <link href="hakustyle.css" rel="stylesheet" /> -->
+  <title>Ryhmäproju</title>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <div class="brand-title">Pizza Aikataulu</div>
+    <div>
+      <a id="togglenappi" href="#" class="togglenappi">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </a>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-    <script src="src/leaflet-search.js"></script>
-    <script src="js.js"></script>
-  </body>
+    <div id="navbar-linkit" class="navbar-linkit">
+      <ul>
+        <li class="navbar__map"><a href="#map">Kartta</a></li>
+        <li class="navbar__faq"><a href="#infovideo">FAQ</a></li>
+        <li class="navbar__secret"><a href="javascript:void(0)">Secret link</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<div class="content">
+  <main>
+    <article id="kartta">
+      <div id="map">
+        <div class="haku">
+          <input class="haku__teksti" aria-label="search input" placeholder="etsi..." />
+          <button class="haku__nappi" aria-label="search button">
+            <span><i class="fa fa-search"></i></span>
+          </button>
+        </div>
+      </div>
+    </article>
+    <article id="infovideo">
+      <h2>FAQ</h2>
+      <figure>
+        <video width="640" height="480" controls>
+          <source src="" type="video/mp4" />
+          <source src="" type="video/ogg" />
+          Your browser does not support the video tag.
+        </video>
+        <figcaption>Video ok?</figcaption>
+      </figure>
+    </article>
+    <aside><p>Info text liirum laarum tikka on takka myös ehkä tota joo ok nii mitä ihmettä joo okei nii emt lol xddddd</p></aside>
+  </main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+<script src="src/leaflet-search.js"></script>
+<script src="js.js"></script>
+</body>
 </html>

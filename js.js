@@ -1,4 +1,8 @@
 "use strict";
+
+
+const togglenappi = document.getElementById('togglenappi');
+const navbarLinkit = document.getElementById("navbar-linkit");
 const tanaan = new Date(); // aika jolla katotaan pizza paikat.
 const curAika = tanaan.getHours() + ":" + tanaan.getMinutes() + ":" + tanaan.getSeconds();
 const vkPaiva = tanaan.getDay() - 1 || 6;
@@ -81,5 +85,15 @@ async function getPizza() {
       marker = L.marker(new L.latLng(info.Latitude, info.Longitude), {icon: vIcon, title: info.nimi}).addTo(pizzaLayer).bindPopup(teksti);
     }
   });
+
+
   /*   console.log(jsonData.data); */
 }
+
+
+  //otsikon responsive bari
+  togglenappi.addEventListener('click', () => {
+  navbarLinkit.classList.toggle('active')
+
+
+});

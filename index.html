@@ -8,8 +8,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&amp;subset=latin-ext" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="src/leaflet-search.css" />
     <link href="style.css" rel="stylesheet" />
-    <link href="hakustyle.css" rel="stylesheet" />
+    <!--     <link href="hakustyle.css" rel="stylesheet" /> -->
     <title>Ryhmäproju</title>
   </head>
   <body>
@@ -25,14 +26,16 @@
     </header>
     <div class="content">
       <main>
-        <div id="map">
-          <div class="haku">
-            <input class="haku__teksti" aria-label="search input" placeholder="etsi..." />
-            <button class="haku__nappi" aria-label="search button">
-              <span><i class="fa fa-search"></i></span>
-            </button>
+        <article id="kartta">
+          <div id="map">
+            <div class="haku">
+              <input class="haku__teksti" aria-label="search input" placeholder="etsi..." />
+              <button class="haku__nappi" aria-label="search button">
+                <span><i class="fa fa-search"></i></span>
+              </button>
+            </div>
           </div>
-        </div>
+        </article>
         <article id="infovideo">
           <h2>FAQ</h2>
           <figure>
@@ -48,6 +51,7 @@
       </main>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="src/leaflet-search.js"></script>
     <script src="js.js"></script>
   </body>
 </html>

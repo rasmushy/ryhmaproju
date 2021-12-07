@@ -112,20 +112,32 @@ function haeReitti(lahto, kohde) {
             kulkumode = "Kävely";
             break;
           case "BUS":
-            color = "red";
+            color = "blue";
             kulkumode = "Linja-auto";
             break;
           case "RAIL":
-            color = "cyan";
+            color = "red";
             kulkumode = "Juna";
             break;
           case "TRAM":
             color = "magenta";
+            kulkumode = "Raitsikka";
+            break;
+          case "SUBWAY":
+            color = "orange";
             kulkumode = "Metro";
             break;
+          case "BICYCLE":
+            color = "green";
+            kulkumode = "Fillari";
+            break;
+          case "FERRY":
+            color = "pink";
+            kulkumode = "Lautta";
+            break;
           default:
-            color = "blue";
-            kulkumode = "Raitsikka";
+            color = "black";
+            kulkumode = "Muu";
             break;
         }
         const startAika = new Date(googleKoodattuReitti[i].startTime);

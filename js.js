@@ -2,8 +2,10 @@
 const togglenappi = document.getElementById("togglenappi");
 const navbarLinkit = document.getElementById("navbar-linkit");
 const tanaan = new Date(); // aika jolla katotaan pizza paikat.
+const curDate = tanaan.getFullYear() + "-" + (tanaan.getMonth() + 1) + "-" + tanaan.getDate();
 const curAika = tanaan.getHours() + ":" + tanaan.getMinutes() + ":" + tanaan.getSeconds();
 const vkPaiva = tanaan.getDay() - 1 || 6;
+
 const apiOsoite = "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql";
 const proxy = "https://cors-anywhere.herokuapp.com/";
 const map = L.map("map").setView([60.21, 24.95], 9);
@@ -57,15 +59,16 @@ function error(err) {
 
 // Käynnistetään paikkatietojen haku
 navigator.geolocation.getCurrentPosition(success, error, options);
-
+// {lat: ${lahto.latitude}, lon: ${lahto.longitude}}
+//  {lat: ${kohde.latitude}, lon: ${kohde.longitude}
 // haetaan reitti lähtöpisteen ja kohteen avulla
 function haeReitti(lahto, kohde) {
   // GraphQL haku
   const haku = `{
     plan(
-      from: {lat: ${lahto.latitude}, lon: ${lahto.longitude}}
-      to: {lat: ${kohde.latitude}, lon: ${kohde.longitude}}
-      numItineraries: 2)
+      fromPlace: "Lokaatiosi::${lahto.latitude},${lahto.longitude}",
+      toPlace: "Pizzeriasi::${kohde.latitude},${kohde.longitude}",
+      numItineraries: 1, date: "${curDate}", time: "${curAika}")
       {
         itineraries {
           legs {
@@ -76,6 +79,7 @@ function haeReitti(lahto, kohde) {
             distance
             legGeometry {
               points
+              length
             }
           }
         }
@@ -98,43 +102,47 @@ function haeReitti(lahto, kohde) {
     .then(function (tulos) {
       console.log(tulos.data.plan.itineraries[0].legs);
       const googleKoodattuReitti = tulos.data.plan.itineraries[0].legs;
+
       for (let i = 0; i < googleKoodattuReitti.length; i++) {
+        let kulkumode = "";
         let color = "";
         switch (googleKoodattuReitti[i].mode) {
           case "WALK":
             color = "green";
+            kulkumode = "Kävely";
             break;
           case "BUS":
             color = "red";
+            kulkumode = "Linja-auto";
             break;
           case "RAIL":
             color = "cyan";
+            kulkumode = "Juna";
             break;
           case "TRAM":
             color = "magenta";
+            kulkumode = "Metro";
             break;
           default:
             color = "blue";
+            kulkumode = "Raitsikka";
             break;
         }
+        const startAika = new Date(googleKoodattuReitti[i].startTime);
+        const endAika = new Date(googleKoodattuReitti[i].endTime);
         const reitti = googleKoodattuReitti[i].legGeometry.points;
+        const reittiData = `<p>Lähtöaika: ${startAika.getHours() + ":" + startAika.getMinutes()}<br/>Päätösaika: ${
+          endAika.getHours() + ":" + endAika.getMinutes()
+        }</p><p>Kulkuväline: ${kulkumode} 
+        <br/>Kesto (min): ${(googleKoodattuReitti[i].duration / 60).toFixed(1)} 
+        <br/>Matkan pituus (km): ${(googleKoodattuReitti[i].distance / 1000).toFixed(2)}</p>`;
         const pisteObjektit = L.Polyline.fromEncoded(reitti).getLatLngs(); // fromEncoded: muutetaan Googlekoodaus Leafletin Polylineksi
         L.polyline(pisteObjektit)
           .setStyle({
             color,
           })
           .addTo(map)
-          .bindPopup(
-            "<h4>Lähtöaika: " +
-              googleKoodattuReitti[i].startTime +
-              "</h4><br/><h4>Kulkuväline: " +
-              googleKoodattuReitti[i].mode +
-              "</h4><br/><h4>Kesto: " +
-              googleKoodattuReitti[i].duration +
-              "</h4><br/><h4>Matkan pituus:" +
-              googleKoodattuReitti[i].distance +
-              "</h4>"
-          );
+          .bindPopup(reittiData);
       }
       map.fitBounds([
         [lahto.latitude, lahto.longitude],
@@ -146,12 +154,11 @@ function haeReitti(lahto, kohde) {
     });
 }
 
-/* 
-forlooppi iconin muodostamiseen (puutteelinen)
+/* forlooppi iconin muodostamiseen (puutteelinen)
   for(let i; i < 7; i++){
     let openPizza = document.createElement("div");
     openPizza[i].className = "pizza"+[i];
-  } */
+  }  */
 
 async function getPizza(originlat, originlong) {
   const pizzaUrl = "http://open-api.myhelsinki.fi/v1/places/?tags_filter=Pizza";

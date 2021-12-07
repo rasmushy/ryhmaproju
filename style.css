@@ -21,16 +21,14 @@ header {
   width: 100%;
   z-index: 10;
 }
-.brand-title{
+.brand-title {
   color: white;
   font-size: 2rem;
   margin: 0.5rem;
   font-family: "Roboto Slab", serif;
-
 }
 
 .navbar {
-
   display: flex;
   position: relative;
   justify-content: space-between;
@@ -51,7 +49,7 @@ header {
   list-style: none;
   margin-right: 10px;
 }
-.navbar-linkit li a{
+.navbar-linkit li a {
   display: block;
   text-decoration: none;
   color: white;
@@ -110,13 +108,12 @@ header {
     text-align: center;
   }
   .navbar-linkit li a {
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
   }
   .navbar-linkit.active {
     display: flex;
   }
 }
-
 
 .content {
   width: 75%;
@@ -136,7 +133,7 @@ header {
   width: 100%;
 }
 
-article {
+article #infovideo {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -253,7 +250,7 @@ summary {
 }
 
 /* leaflet ikonit  */
-
+/* 
 .punainen-ikoni {
   background: #ff6324;
   border: 5px solid rgba(255, 255, 255, 0.5);
@@ -261,6 +258,19 @@ summary {
   text-align: center;
   border-radius: 50%;
   line-height: 30px;
+} */
+
+.punainen-ikoni {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 75px;
+  height: 75px;
+  background: linear-gradient(to bottom, #ff0000 0%, #ff4d4d 80%);
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .vihrea-ikoni {
@@ -271,3 +281,60 @@ summary {
   border-radius: 50%;
   line-height: 30px;
 }
+
+/* iconi juttua väsäilin hetken aikaa ei tarvi välittää..
+.punainen-ikoni .pizza0 {
+  position: absolute;
+  left: calc(40% + 8px);
+  top: 18px;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background: #cc9900;
+  radius: 3em;
+  border-top-left-radius: 3em;
+  border-top-right-radius: 3em;
+  width: 52px;
+  height: 7px;
+}
+
+.punainen-ikoni .pizza1 {
+  position: absolute;
+  left: calc(40% + 8px);
+  top: 45px;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 25px 0 25px;
+  border-color: #ffff00 transparent transparent transparent;
+}
+
+.punainen-ikoni .pizza2 {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  left: 25px;
+  bottom: 40px;
+}
+
+.punainen-ikoni .pizza3 {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  left: 40px;
+  bottom: 35px;
+}
+
+.punainen-ikoni .pizza4 {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  left: 30px;
+  bottom: 22px;
+}
+
+.punainen-ikoni .pizza5 {
+  background: linear-gradient(to bottom, #cc0000 0%, #ff0000 80%);
+  border-radius: 100%;
+} */

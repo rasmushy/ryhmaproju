@@ -14,8 +14,18 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(map);
 
 // kustom markkerit
-const vIcon = L.divIcon({className: "vihrea-ikoni"});
-const pIcon = L.divIcon({className: "punainen-ikoni"});
+const vIcon = L.divIcon({
+  className: "open-ikoni",
+  html: "<div class='marker-open'></div><i class='material-icons'>open</i>",
+  iconSize: [30, 42],
+  iconAnchor: [15, 42],
+});
+const pIcon = L.divIcon({
+  className: "closed-ikoni",
+  html: "<div class='marker-closed'></div><i class='material-icons'>closed</i>",
+  iconSize: [30, 42],
+  iconAnchor: [15, 42],
+});
 
 // Kartan search bar **************************************
 const pizzaLayer = new L.LayerGroup(); // layeri searchbarilla löytyville elementeille
@@ -40,6 +50,7 @@ const options = {
   timeout: 5000,
   maximumAge: 0,
 };
+
 // Kartan search bar *******************************************
 
 function success(pos) {
@@ -59,8 +70,7 @@ function error(err) {
 
 // Käynnistetään paikkatietojen haku
 navigator.geolocation.getCurrentPosition(success, error, options);
-// {lat: ${lahto.latitude}, lon: ${lahto.longitude}}
-//  {lat: ${kohde.latitude}, lon: ${kohde.longitude}
+
 // haetaan reitti lähtöpisteen ja kohteen avulla
 function haeReitti(lahto, kohde) {
   // GraphQL haku
@@ -102,7 +112,7 @@ function haeReitti(lahto, kohde) {
     .then(function (tulos) {
       console.log(tulos.data.plan.itineraries[0].legs);
       const googleKoodattuReitti = tulos.data.plan.itineraries[0].legs;
-
+      // valitaan värit reitille ja kulkuvälineet tiedoksi käyttäjälle
       for (let i = 0; i < googleKoodattuReitti.length; i++) {
         let kulkumode = "";
         let color = "";
@@ -140,14 +150,15 @@ function haeReitti(lahto, kohde) {
             kulkumode = "Muu";
             break;
         }
-        const startAika = new Date(googleKoodattuReitti[i].startTime);
-        const endAika = new Date(googleKoodattuReitti[i].endTime);
-        const reitti = googleKoodattuReitti[i].legGeometry.points;
+        const startAika = new Date(googleKoodattuReitti[i].startTime); // aika on epoch muodossa niin muutetaan se
+        const endAika = new Date(googleKoodattuReitti[i].endTime); // aika on epoch muodossa niin muutetaan se
+        // tiedot reitin popuppiin
         const reittiData = `<p>Lähtöaika: ${startAika.getHours() + ":" + startAika.getMinutes()}<br/>Päätösaika: ${
           endAika.getHours() + ":" + endAika.getMinutes()
         }</p><p>Kulkuväline: ${kulkumode} 
         <br/>Kesto (min): ${(googleKoodattuReitti[i].duration / 60).toFixed(1)} 
         <br/>Matkan pituus (km): ${(googleKoodattuReitti[i].distance / 1000).toFixed(2)}</p>`;
+        const reitti = googleKoodattuReitti[i].legGeometry.points;
         const pisteObjektit = L.Polyline.fromEncoded(reitti).getLatLngs(); // fromEncoded: muutetaan Googlekoodaus Leafletin Polylineksi
         L.polyline(pisteObjektit)
           .setStyle({
@@ -166,12 +177,6 @@ function haeReitti(lahto, kohde) {
     });
 }
 
-/* forlooppi iconin muodostamiseen (puutteelinen)
-  for(let i; i < 7; i++){
-    let openPizza = document.createElement("div");
-    openPizza[i].className = "pizza"+[i];
-  }  */
-
 async function getPizza(originlat, originlong) {
   const pizzaUrl = "http://open-api.myhelsinki.fi/v1/places/?tags_filter=Pizza";
   const origin = {latitude: originlat, longitude: originlong};
@@ -180,10 +185,19 @@ async function getPizza(originlat, originlong) {
     console.log(e);
   });
   const jsonData = await response.json();
+  console.log(jsonData.data);
   Array.from(jsonData.data).forEach(function (objData) {
     // jokasen objectin osalta seuraava forloop ->
-    const open = objData.opening_hours.hours[vkPaiva].opens; // tällä varmistetaan kumpi markkeri tulee mapille
-    const closed = objData.opening_hours.hours[vkPaiva].closes; // verrattuna tämän hetkiseen aikaan
+    /*    let aukiolo = new Date(); */
+    /* let [hours, minutes, seconds] =  */
+    /* let [tunti, minuutti, sekuntti] =  */
+    /*   aukiolo.getHours(hours);
+    aukiolo.getMinutes(minutes);
+    aukiolo.getSeconds(seconds); */
+    // tällä varmistetaan kumpi markkeri tulee mapille     /*  objData.opening_hours.hours[vkPaiva].opens */
+    const open = objData.opening_hours.hours[vkPaiva].opens;
+    // verrattuna tämän hetkiseen aikaan     /* objData.opening_hours.hours[vkPaiva].closes */
+    const closed = objData.opening_hours.hours[vkPaiva].closes;
     const info = {
       nimi: objData.name.fi,
       osoite: objData.location.address.street_address,
@@ -201,14 +215,12 @@ async function getPizza(originlat, originlong) {
       origin.longitude
     }},{latitude: ${info.Latitude}, longitude: ${info.Longitude}});return false;">Navigoi</a>
     </details>`;
-    let marker;
     if (curAika >= open != false && curAika >= closed != true) {
-      marker = L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaLayer).bindPopup(teksti);
+      L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaLayer).bindPopup(teksti);
     } else {
-      marker = L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaLayer).bindPopup(teksti);
+      L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaLayer).bindPopup(teksti);
     }
   });
-  /*   console.log(jsonData.data); */
 }
 
 //otsikon responsive bari

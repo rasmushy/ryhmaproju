@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="icon" href="data:," />
@@ -10,54 +10,61 @@
     <link rel="stylesheet" href="src/leaflet-search.css" />
     <link href="style.css" rel="stylesheet" />
     <title>Ryhmäproju</title>
-  </head>
-  <body>
-    <header>
-      <nav class="navbar">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+
         <div class="brand-title">Pizzanyt?</div>
         <div>
-          <a id="togglenappi" href="#" class="togglenappi">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-          </a>
+            <a id="togglenappi" href="#" class="togglenappi">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </a>
         </div>
         <div id="navbar-linkit" class="navbar-linkit">
-          <ul>
-            <li class="navbar__map"><a href="#map">Kartta</a></li>
-            <li class="navbar__faq"><a href="#infovideo">FAQ</a></li>
-            <li class="navbar__secret"><a href="javascript:void(0)">Secret link</a></li>
-          </ul>
+            <ul>
+                <li class="navbar__map"><a href="#map">Kartta</a></li>
+                <li class="navbar__faq"><a href="#infovideo">FAQ</a></li>
+                <li class="navbar__secret"><a href="javascript:void(0)">Secret link</a></li>
+            </ul>
         </div>
-      </nav>
-    </header>
-    <div class="content">
-      <main>
+    </nav>
+</header>
+<style>
+    div {
+        background-image: url("https://images2.imgbox.com/fa/92/mTNWiYOi_o.png");
+
+    }
+</style>
+<div class="content">
+    <main>
         <div id="map"></div>
-      </main>
-      <section>
+    </main>
+    <section>
         <article id="infovideo">
-          <figure>
-            <video class="pizzavideo" controls>
-              <source src="" type="video/mp4" />
-              <source src="" type="video/ogg" />
-              Your browser does not support the video tag.
-            </video>
-            <figcaption>Video ok?</figcaption>
-          </figure>
+            <figure>
+                <video class="pizzavideo" controls>
+                    <source src="" type="video/mp4" />
+                    <source src="" type="video/ogg" />
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption>Video ok?</figcaption>
+            </figure>
         </article>
-      </section>
-      <aside class="turhamainos">
+    </section>
+    <aside class="turhamainos">
         <h2>FAQ</h2>
         <p>
-          Aikataulujen lisäksi voit myös navigoida itsesi paikalle mm. menemällä paikalle. Lue nämä ja 10 muuta vinkkiä pizzalle menemiseen vaikka
-          Seiskasta lmao.
+            Aikataulujen lisäksi voit myös navigoida itsesi paikalle mm. menemällä paikalle. Lue nämä ja 10 muuta vinkkiä pizzalle menemiseen vaikka
+            Seiskasta lmao.
         </p>
-      </aside>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-    <script src="src/leaflet-search.js"></script>
-    <script src="js/Polyline.encoded.js"></script>
-    <script src="js.js"></script>
-  </body>
+    </aside>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+<script src="src/leaflet-search.js"></script>
+<script src="js/Polyline.encoded.js"></script>
+<script src="js.js"></script>
+</body>
 </html>

@@ -16,13 +16,13 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 // kustom markkerit
 const vIcon = L.divIcon({
   className: "open-ikoni",
-  html: "<div class='marker-open'></div><i class='material-icons'>open</i>",
+  html: "<div class='marker-open'></div><i class='material-icons'></i>",
   iconSize: [30, 42],
   iconAnchor: [15, 42],
 });
 const pIcon = L.divIcon({
   className: "closed-ikoni",
-  html: "<div class='marker-closed'></div><i class='material-icons'>closed</i>",
+  html: "<div class='marker-closed'></div><i class='material-icons'></i>",
   iconSize: [30, 42],
   iconAnchor: [15, 42],
 });

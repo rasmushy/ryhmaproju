@@ -182,8 +182,7 @@ main summary {
   left: 50%;
   top: 50%;
   margin: 20px 0 0 -15px;
-  padding: 2px;
-  z-index: 1000;
+  padding: 1px;
 }
 
 .marker-open::after {
@@ -196,31 +195,19 @@ main summary {
   border-radius: 50%;
 }
 
-.open-ikoni i {
-  position: relative;
-  left: -2px;
-  top: 42px;
-  will-change: top, left;
-  background: transparent; /* rgba(0, 230, 64, 0.7); */
-  /*   border: 5px solid rgba(255, 255, 255, 0.5); */
-  font-weight: bold;
-  text-align: center;
-  border-radius: 50%;
-  line-height: 30px;
-}
-
+/* luultavasti ei käyttöä tälle eikä open-ikoni i {} elementille
 .closed-ikoni i {
   position: relative;
-  left: -2px;
-  top: 42px;
+  top: 40px;
   will-change: top, left;
-  background: transparent; /* rgba(0, 230, 64, 0.7); */
-  /*   border: 5px solid rgba(255, 255, 255, 0.5); */
   font-weight: bold;
   text-align: center;
   border-radius: 50%;
   line-height: 30px;
-}
+  background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+} */
 
 .marker-closed {
   width: 30px;
@@ -233,8 +220,7 @@ main summary {
   left: 50%;
   top: 50%;
   margin: 8px 0 0 -16.2px;
-  z-index: 999;
-  padding: 2px;
+  padding: 1px;
 }
 
 .marker-closed::after {
@@ -253,7 +239,6 @@ main summary {
   background: #b61f1f;
   color: white;
   box-shadow: 0 5px 14px rgba(0, 0, 0, 0.4);
-  text-shadow: 1px 1px 14px black;
   max-height: 240px;
   margin: 0;
   overflow: hidden;
@@ -261,7 +246,7 @@ main summary {
   display: inline-block;
 }
 
-#map .leaflet-popup-content-wrapper a {
+#map .leaflet-popup-content-wrapper #Surli {
   line-height: 1.5rem;
   text-align: center;
   color: #fff;
@@ -279,19 +264,41 @@ main summary {
   transition: 1s ease-in-out;
 }
 
+#map .leaflet-popup-content-wrapper #Sreitti {
+  line-height: 1.5rem;
+  text-align: center;
+  color: black;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  text-decoration: none;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 20px;
+  margin-left: auto;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  font-size: 15px;
+  transition: 1s ease-in-out;
+}
+
 #map .leaflet-popup-content {
   line-height: 1em;
   text-align: center;
   margin: auto;
   padding-bottom: 10px;
-  transition: 1s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 
-#map .leaflet-popup-content-wrapper a:hover {
+#map .leaflet-popup-content-wrapper #Surli:hover {
   background-color: red;
   color: white;
-  box-shadow: 2px 2px 10px black;
-  transition: 1s;
+  transition: 0.4s;
+}
+
+#map .leaflet-popup-content-wrapper #Sreitti:hover {
+  background-color: red;
+  color: white;
+  transition: 0.4s;
 }
 
 #map .leaflet-popup-content details[closed] {

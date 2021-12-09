@@ -1,6 +1,8 @@
 "use strict";
 const togglenappi = document.getElementById("togglenappi");
 const navbarLinkit = document.getElementById("navbar-linkit");
+const navbarMap = document.querySelector(".navbar__map");
+const navbarFaq = document.querySelector(".navbar__faq");
 const tanaan = new Date(); // aika jolla katotaan pizza paikat.
 const curDate = tanaan.getFullYear() + "-" + (tanaan.getMonth() + 1) + "-" + tanaan.getDate();
 const curAika = tanaan.getHours() + ":" + tanaan.getMinutes() + ":" + tanaan.getSeconds();
@@ -226,4 +228,12 @@ async function getPizza(originlat, originlong) {
 //otsikon responsive bari
 togglenappi.addEventListener("click", () => {
   navbarLinkit.classList.toggle("active");
+});
+
+navbarMap.addEventListener("click", () => {
+  document.querySelector("#map").scrollIntoView({behavior: "smooth"});
+});
+
+navbarFaq.addEventListener("click", () => {
+  document.querySelector("#infovideo").scrollIntoView({behavior: "smooth"});
 });

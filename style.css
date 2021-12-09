@@ -1,3 +1,32 @@
+/* ************COLORS************* */
+
+/* CSS HEX */
+/* --light-cornflower-blue: #8ecae6ff;
+--blue-green: #219ebcff;
+--prussian-blue: #023047ff;
+--honey-yellow: #ffb703ff;
+--orange: #fb8500ff; */
+
+/* CSS HSL */
+/* --light-cornflower-blue: hsla(199, 64%, 73%, 1);
+--blue-green: hsla(192, 70%, 43%, 1);
+--prussian-blue: hsla(200, 95%, 14%, 1);
+--honey-yellow: hsla(43, 100%, 51%, 1);
+--orange: hsla(32, 100%, 49%, 1); */
+
+/* SCSS Gradient */
+/* $gradient-top: linear-gradient(0deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+$gradient-right: linear-gradient(90deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+$gradient-bottom: linear-gradient(180deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+$gradient-left: linear-gradient(270deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+$gradient-top-right: linear-gradient(45deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+$gradient-bottom-right: linear-gradient(135deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+$gradient-top-left: linear-gradient(225deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+$gradient-bottom-left: linear-gradient(315deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+$gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff); */
+
+/* ************COLORS************* */
+
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;
@@ -28,8 +57,19 @@ header {
 
 .brand-title {
   color: white;
-  font-size: 2rem;
+  /*   font-size: 2rem; */
   margin: 0.5rem;
+  font-family: "Roboto Slab", serif;
+}
+
+.brand-title h1 {
+  font-size: 24px;
+  font-family: "Roboto Slab", serif;
+}
+
+.brand-title h1:focus,
+.brand-title h1:hover {
+  color: red;
   font-family: "Roboto Slab", serif;
 }
 
@@ -64,7 +104,6 @@ header {
 }
 
 .navbar-linkit li :hover {
-  border-radius: 3px;
   color: red;
 }
 
@@ -198,7 +237,7 @@ section h1 {
   width: 30px;
   height: 30px;
   border-radius: 50% 50% 50% 0;
-  background-color: red;
+  background-color: #fb8500;
   position: absolute;
   transform: rotate(-45deg);
   left: 50%;
@@ -209,12 +248,16 @@ section h1 {
 
 .marker-open::after {
   content: "";
-  width: 24px;
-  height: 24px;
-  margin: 3px 0 0 3px;
-  background: #fff;
+  width: 5px;
+  height: 12px;
+  margin: -8px 0px 0px -2px;
+  background: url("images/pizza-icon.png") no-repeat center 0px transparent;
   position: absolute;
   border-radius: 50%;
+  padding-left: 10px;
+  padding-top: 21px;
+  padding-right: 24px;
+  padding-bottom: 6px;
 }
 
 /* luultavasti ei käyttöä tälle eikä open-ikoni i {} elementille
@@ -235,7 +278,7 @@ section h1 {
   width: 30px;
   height: 30px;
   border-radius: 50% 50% 50% 0;
-  background: gray;
+  background: #8ecae6;
   border: 4px solid rgba(255, 255, 255, 0.5);
   position: absolute;
   transform: rotate(-45deg);
@@ -250,7 +293,7 @@ section h1 {
   width: 24px;
   height: 24px;
   margin: 3px 0 0 3px;
-  background: #fff;
+  background: #023047;
   position: absolute;
   border-radius: 50%;
 }
@@ -258,8 +301,8 @@ section h1 {
 /* Leaftlet popup kontentti */
 
 #map .leaflet-popup-content-wrapper {
-  background: #b61f1f;
-  color: white;
+  background: #8ecae6;
+  color: black;
   box-shadow: 0 5px 14px rgba(0, 0, 0, 0.4);
   max-height: 240px;
   margin: 0;
@@ -289,8 +332,8 @@ section h1 {
 #map .leaflet-popup-content-wrapper #Sreitti {
   line-height: 1.5rem;
   text-align: center;
-  color: black;
-  background-color: #fff;
+  color: white;
+  background-color: #ffb703;
   box-sizing: border-box;
   padding: 0.5rem;
   text-decoration: none;
@@ -312,13 +355,13 @@ section h1 {
 }
 
 #map .leaflet-popup-content-wrapper #Surli:hover {
-  background-color: red;
+  background-color: #219ebc;
   color: white;
   transition: 0.4s;
 }
 
 #map .leaflet-popup-content-wrapper #Sreitti:hover {
-  background-color: red;
+  background-color: #219ebc;
   color: white;
   transition: 0.4s;
 }
@@ -341,9 +384,9 @@ section h1 {
 }
 
 .leaflet-popup-content-wrapper h4,
-h3,
-p,
-summary {
+.leaflet-popup-content-wrapper h3,
+.leaflet-popup-content-wrapper p,
+.leaflet-popup-content-wrapper summary {
   text-decoration: black;
   margin-left: auto;
   margin-top: 0px;

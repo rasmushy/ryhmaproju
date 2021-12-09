@@ -315,36 +315,39 @@ section h1 {
 #map .leaflet-popup-content-wrapper #Surli {
   line-height: 1.5rem;
   text-align: center;
-  color: #fff;
-  background-color: #333;
+  color: white;
+  background-color: var(--prussian-blue);
   box-sizing: border-box;
   padding: 0.5rem;
+  padding-left: 0.5rem;
   text-decoration: none;
-  border-top-left-radius: 1px;
-  border-bottom-left-radius: 1px;
-  border-bottom-right-radius: 20px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
   margin-left: auto;
   margin-bottom: 0px;
   margin-top: 0px;
   font-size: 15px;
-  transition: 1s ease-in-out;
+  transition: 0.2s ease-in-out;
+  padding-left: 1rem;
 }
 
 #map .leaflet-popup-content-wrapper #Sreitti {
   line-height: 1.5rem;
   text-align: center;
   color: white;
-  background-color: #ffb703;
+  background-color: var(--prussian-blue);
   box-sizing: border-box;
   padding: 0.5rem;
+  padding-right: 0.5rem;
   text-decoration: none;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 20px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
   margin-left: auto;
   margin-bottom: 0px;
   margin-top: 0px;
   font-size: 15px;
-  transition: 1s ease-in-out;
+  transition: 0.2s ease-in-out;
+  padding-right: 1rem;
 }
 
 #map .leaflet-popup-content {
@@ -352,19 +355,18 @@ section h1 {
   text-align: center;
   margin: auto;
   padding-bottom: 10px;
-  transition: 0.2s ease-in-out;
 }
 
 #map .leaflet-popup-content-wrapper #Surli:hover {
-  background-color: #219ebc;
+  background-color: var(--orange);
   color: white;
-  transition: 0.4s;
+  transition: 0.1s ease-out;
 }
 
 #map .leaflet-popup-content-wrapper #Sreitti:hover {
-  background-color: #219ebc;
+  background-color: var(--orange);
   color: white;
-  transition: 0.4s;
+  transition: 0.1s ease-out;
 }
 
 #map .leaflet-popup-content details[closed] {

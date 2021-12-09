@@ -14,7 +14,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
-// kustom markkerit
+// kustom markkeritz
 const vIcon = L.divIcon({
   className: "open-ikoni",
   html: "<div class='marker-open'></div><i class='material-icons'></i>",
@@ -208,15 +208,12 @@ async function getPizza(originlat, originlong) {
       urli: objData.info_url,
     };
     const teksti = `<h3 id="Snimi">${info?.nimi || ""}</h3>
-    <a id="Surli" href="${info?.urli || "javascript:void(0)"}">Kotisivu</a>
-    <details>
-    <summary>Lisätiedot</summary>
     <h4 id="Sosoite">${info?.osoite || ""}</h4>
     <p id="Saukioloaika">${open ?? ""}-${closed ?? ""}</p>
+    <a id="Surli" href="${info?.urli || "javascript:void(0)"}">Kotisivu</a>
     <a id="Sreitti" title="Navigoi itsesi perille" href="#" onclick="haeReitti({latitude: ${origin.latitude}, longitude: ${
       origin.longitude
-    }},{latitude: ${info.Latitude}, longitude: ${info.Longitude}});return false;">Navigoi</a>
-    </details>`;
+    }},{latitude: ${info.Latitude}, longitude: ${info.Longitude}});return false;">Navigoi</a>`;
     if (curAika >= open != false && curAika >= closed != true) {
       L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaLayer).bindPopup(teksti);
     } else {
@@ -225,6 +222,10 @@ async function getPizza(originlat, originlong) {
   });
 }
 
+/* 
+<details>
+<summary>Lisätiedot</summary>
+</details> */
 //otsikon responsive bari
 togglenappi.addEventListener("click", () => {
   navbarLinkit.classList.toggle("active");

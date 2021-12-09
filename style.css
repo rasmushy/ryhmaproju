@@ -483,8 +483,8 @@ section h1 {
   .content article {
     text-align: center;
     margin-top: 50px;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-top: 1px solid var(--honey-yellowA);
+    border-bottom: 1px solid var(--honey-yellowA);
     line-height: 2em;
   }
 

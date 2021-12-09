@@ -5,7 +5,6 @@ const tanaan = new Date(); // aika jolla katotaan pizza paikat.
 const curDate = tanaan.getFullYear() + "-" + (tanaan.getMonth() + 1) + "-" + tanaan.getDate();
 const curAika = tanaan.getHours() + ":" + tanaan.getMinutes() + ":" + tanaan.getSeconds();
 const vkPaiva = tanaan.getDay() - 1 || 6;
-
 const apiOsoite = "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql";
 const proxy = "https://cors-anywhere.herokuapp.com/";
 const map = L.map("map").setView([60.21, 24.95], 9);

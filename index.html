@@ -13,49 +13,49 @@
   </head>
 
   <body>
+    <header>
+      <nav class="navbar">
+        <div class="brand-title">Pizzanyt?</div>
+        <div>
+          <a id="togglenappi" href="#" class="togglenappi">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </a>
+        </div>
+        <div id="navbar-linkit" class="navbar-linkit">
+          <ul>
+            <li class="navbar__map"><a href="#map">Kartta</a></li>
+            <li class="navbar__faq"><a href="#infovideo">FAQ</a></li>
+            <li class="navbar__secret"><a href="javascript:void(0)">Secret link</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
     <div class="bg-image">
-      <header>
-        <nav class="navbar">
-          <div class="brand-title">Pizzanyt?</div>
-          <div>
-            <a id="togglenappi" href="#" class="togglenappi">
-              <span class="bar"></span>
-              <span class="bar"></span>
-              <span class="bar"></span>
-            </a>
-          </div>
-          <div id="navbar-linkit" class="navbar-linkit">
-            <ul>
-              <li class="navbar__map"><a href="#map">Kartta</a></li>
-              <li class="navbar__faq"><a href="#infovideo">FAQ</a></li>
-              <li class="navbar__secret"><a href="javascript:void(0)">Secret link</a></li>
-            </ul>
-          </div>
-        </nav>
-      </header>
       <div class="content">
         <main>
+          <article></article>
           <div id="map"></div>
         </main>
         <section>
-          <article id="infovideo">
-            <figure>
-              <video class="pizzavideo" controls>
-                <source src="" type="video/mp4" />
-                <source src="" type="video/ogg" />
-                Your browser does not support the video tag.
-              </video>
-              <figcaption>Video ok?</figcaption>
-            </figure>
+          <header><h1>Pizza-aiheisia asioita</h1></header>
+          <figure id="infovideo">
+            <video class="pizzavideo" controls>
+              <source src="" type="video/mp4" />
+              <source src="" type="video/ogg" />
+              Your browser does not support the video tag.
+            </video>
+            <figcaption>Video ok?</figcaption>
+          </figure>
+          <article id="turhamainos">
+            <h2>FAQ</h2>
+            <p>
+              Aikataulujen lisäksi voit myös navigoida itsesi paikalle mm. menemällä paikalle. Lue nämä ja 10 muuta vinkkiä pizzalle menemiseen vaikka
+              Seiskasta lmao.
+            </p>
           </article>
         </section>
-        <aside class="turhamainos">
-          <h2>FAQ</h2>
-          <p>
-            Aikataulujen lisäksi voit myös navigoida itsesi paikalle mm. menemällä paikalle. Lue nämä ja 10 muuta vinkkiä pizzalle menemiseen vaikka
-            Seiskasta lmao.
-          </p>
-        </aside>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>

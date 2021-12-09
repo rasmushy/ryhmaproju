@@ -32,6 +32,7 @@ const pizzaLayer = new L.LayerGroup(); // layeri searchbarilla löytyville eleme
 map.addLayer(pizzaLayer);
 
 const pizzaSearch = new L.Control.Search({
+  textPlaceholder: "Etsi Pizzerian nimellä...",
   position: "topright",
   layer: pizzaLayer,
   initial: false,

@@ -202,7 +202,15 @@ async function getPizza(originlat, originlong) {
     open.setHours(objData.opening_hours?.hours?.[vkPaiva].opens?.split(":")[0] || "");
     open.setMinutes(objData.opening_hours?.hours?.[vkPaiva].opens?.split(":")[1] || "");
     open.setSeconds(objData.opening_hours?.hours?.[vkPaiva].opens?.split(":")[2] || "");
-    closed.setHours(objData.opening_hours?.hours?.[vkPaiva].closes?.split(":")[0] || "");
+    // katsotaan onko sulkeutumisaika pienempi kuin alkamisaika (keskiyö)
+    if ((objData.opening_hours?.hours?.[vkPaiva].closes?.split(":")[0] || "") < open.getHours()) {
+      closed.setDate(tanaan.getDate() + 1); //mikäli on niin lisätään closed dayhin yksi päivä lisää.
+      closed.setHours(objData.opening_hours?.hours?.[vkPaiva].closes?.split(":")[0] || "");
+    } else {
+      closed.setHours(objData.opening_hours?.hours?.[vkPaiva].closes?.split(":")[0] || "");
+    }
+    // lisätään loput aukioloajat open & closed consteihin
+
     closed.setMinutes(objData.opening_hours?.hours?.[vkPaiva].closes?.split(":")[1] || "");
     closed.setSeconds(objData.opening_hours?.hours?.[vkPaiva].closes?.split(":")[2] || "");
     // luodaan lista muuttujia jolla saadaan aika muotoon hh:mm.
@@ -225,7 +233,8 @@ async function getPizza(originlat, originlong) {
     <a id="Sreitti" title="Katso miten julkiset menevät paikalle.." href="#" onclick="haeReitti({latitude: ${origin.latitude}, longitude: ${
       origin.longitude
     }},{latitude: ${info.Latitude}, longitude: ${info.Longitude}});return false;">Reittihaku</a>`;
-
+    console.log(open + "<------- ohessa aika open constilla");
+    console.log(closed + "<------- ohessa aika closed constilla");
     if ((tanaan >= open != false && tanaan < closed != false) /* || curAika < "4:00:00"  */ || open.getHours() == 0) {
       L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaLayer).bindPopup(teksti);
     } else {

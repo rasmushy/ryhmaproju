@@ -18,14 +18,14 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 // kustom markkeritz
 const pIcon = L.divIcon({
   className: "open-ikoni",
-  html: "<div class='marker-open'></div><i class='material-icons'></i>",
-  iconSize: [30, 40],
+  html: "<div class='marker-open'></div>",
+  iconSize: [30, 30],
   iconAnchor: [15, 40],
 });
 const vIcon = L.divIcon({
   className: "closed-ikoni",
-  html: "<div class='marker-closed'></div><i class='material-icons'></i>",
-  iconSize: [30, 40],
+  html: "<div class='marker-closed'></div>",
+  iconSize: [30, 30],
   iconAnchor: [15, 40],
 });
 
@@ -63,7 +63,7 @@ function success(pos) {
     console.log(e);
   });
   map.setView([crd.latitude, crd.longitude], 15);
-  L.marker([crd.latitude, crd.longitude]).addTo(map).bindPopup("Olen Tässä"); // lisätään markkeri omaan lokaatioon
+  L.marker([crd.latitude, crd.longitude], {title: "Olet tässä"}).addTo(map).bindPopup(`<p title="Lokaatiosi">Olet Tässä</p>`); // lisätään markkeri omaan lokaatioon
 }
 
 // Funktio, joka ajetaan, jos paikkatietojen hakemisessa tapahtuu virhe
@@ -227,14 +227,14 @@ async function getPizza(originlat, originlong) {
       aukioloCheck = `<p id="Saukioloaika">Aukioloaika ei saatavilla</p>`;
     }
     // popup tekstin sisältö, tässä luodaan myös navigoi linkki sekä kotisivu linkki.
-    const teksti = `<h3 id="Snimi">${info?.nimi || ""}</h3><h4 id="Sosoite">${info?.osoite || ""}</h4>
+    const teksti = `<h3 id="Snimi">${info?.nimi || ""}</h3><h4 id="Sosoite" title="Siirry pizzerian kotisivuille">${info?.osoite || ""}</h4>
     ${aukioloCheck}
-    <a id="Surli" href="${info?.urli || "javascript:void(0)"}">Kotisivulle</a>
+    <a id="Surli" href="${info?.urli || "javascript:void(0)"}">Kotisivulle</a><br/>
     <a id="Sreitti" title="Katso miten julkiset menevät paikalle.." href="#" onclick="haeReitti({latitude: ${origin.latitude}, longitude: ${
       origin.longitude
     }},{latitude: ${info.Latitude}, longitude: ${info.Longitude}});return false;">Reittihaku</a>`;
-    console.log(open + "<------- ohessa aika open constilla");
-    console.log(closed + "<------- ohessa aika closed constilla");
+    /*     console.log(open + "<------- ohessa aika open constilla");
+    console.log(closed + "<------- ohessa aika closed constilla"); */
     if ((tanaan >= open != false && tanaan < closed != false) /* || curAika < "4:00:00"  */ || open.getHours() == 0) {
       L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaLayer).bindPopup(teksti);
     } else {

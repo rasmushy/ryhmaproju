@@ -36,8 +36,8 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   height: 2160px;
-  background-color: white;
-  color: white;
+  background-color: var(--prussian-blue);
+  color: var(--honey-yellow);
 }
 
 .bg-image {
@@ -168,7 +168,7 @@ main {
   display: flex;
   flex-direction: column;
   margin-bottom: 20%;
-  background: var(--light-cornflower-blueA);
+  background: var(--prussian-blueA);
 }
 
 section {
@@ -196,7 +196,7 @@ section h1 {
   margin-top: 25px;
   padding-bottom: 50px;
   padding-top: 25px;
-  background-color: var(--light-cornflower-blueA);
+  background-color: var(--prussian-blueA);
 }
 
 .infoheader {
@@ -210,7 +210,7 @@ section h1 {
   /*! border-bottom: 5px dotted; */
   padding-bottom: 20%;
   border-bottom: 1px solid var(--honey-yellowA);
-  background-color: var(--light-cornflower-blueA);
+  background-color: var(--prussian-blueA);
 }
 
 .pizzavideo {
@@ -246,7 +246,7 @@ section h1 {
   line-height: 1.8em;
   margin: 15px;
   border: 1px dotted var(--light-cornflower-blue);
-  background-color: var(--light-cornflower-blueA);
+  background-color: var(--prussian-blueA);
   border-radius: 5px;
 }
 
@@ -336,17 +336,18 @@ section h1 {
 /* Leaftlet popup kontentti */
 
 #map .leaflet-popup-content-wrapper {
-  background: #8ecae6;
+  background: var(--prussian-blue);
   box-shadow: 0 5px 14px rgba(0, 0, 0, 0.4);
   max-height: 240px;
   min-width: 100px;
   display: inline-block;
+  color: var(--honey-yellow);
 }
 
 #map .leaflet-popup-content-wrapper #Surli {
   line-height: 2.5rem;
   text-align: center;
-  color: white;
+  color: var(--honey-yellow);
   background-color: transparent;
   transition: 0.2s ease-in-out;
   box-sizing: border-box;
@@ -362,7 +363,7 @@ section h1 {
 #map .leaflet-popup-content-wrapper #Sreitti {
   line-height: 1.7rem;
   text-align: center;
-  color: white;
+  color: var(--honey-yellow);
   background-color: transparent;
   transition: 0.2s ease-in-out;
   box-sizing: border-box;
@@ -377,14 +378,14 @@ section h1 {
 
 #map .leaflet-popup-content-wrapper #Surli:hover {
   /*   background-color: var(--orange); */
-  color: var(--orange);
-  transition: 0.1s ease-in-out;
+  color: white;
+  transition: 0.2s ease-in-out;
 }
 
 #map .leaflet-popup-content-wrapper #Sreitti:hover {
   /*   background-color: var(--orange); */
-  color: var(--orange);
-  transition: 0.1s ease-in-out;
+  color: white;
+  transition: 0.2s ease-in-out;
 }
 
 /* #map .leaflet-popup-content details[closed] {
@@ -411,7 +412,7 @@ section h1 {
   line-height: 1.5em;
   text-align: center;
   width: 100%;
-  color: white;
+  color: var(--honey-yellow);
   padding-bottom: 10px;
 }
 
@@ -428,16 +429,16 @@ section h1 {
   line-height: 1.5em;
   width: fit-content;
   text-align: center;
-  border: 2px solid var(--blue-green);
+  border: 1px solid var(--honey-yellowA);
   border-radius: 3px;
-  color: black;
-  background: rgba(255, 255, 255, 0.8);
+  color: var(--honey-yellow);
+  background: var(--prussian-blueA);
   font-size: 14px;
   padding: 2px;
 }
 
 #map .leaflet-popup-content-wrapper #Saukioloaika:hover {
-  background-color: var(--orange);
+  background-color: black;
 }
 
 .leaflet-container a.leaflet-popup-close-button {

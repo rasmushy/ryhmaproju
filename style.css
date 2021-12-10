@@ -47,8 +47,8 @@ body {
   background-size: cover;
   width: 100%;
   height: 100%;
-  padding-bottom: 30%;
-  padding-top: 20%;
+  padding-bottom: 50%;
+  padding-top: 0%;
 }
 
 header {
@@ -63,13 +63,13 @@ header {
   font-family: "Roboto Slab", serif;
 }
 
-.brand-title h1 {
+.brand-title {
   font-size: 24px;
   font-family: "Roboto Slab", serif;
 }
 
-.brand-title h1:focus,
-.brand-title h1:hover {
+.brand-title:focus,
+.brand-title:hover {
   color: var(--orange);
   font-family: "Roboto Slab", serif;
 }
@@ -162,7 +162,7 @@ header {
 }
 
 main {
-  padding-top: 5%;
+  padding-top: 7%;
   padding-bottom: 5%;
   width: 100%;
   display: flex;
@@ -194,22 +194,27 @@ section {
 section h1 {
   text-align: center;
   border-bottom: 5px dotted var(--prussian-blue);
-  margin: 0;
+  margin: auto;
   margin-bottom: 20px;
   margin-top: 10px;
   padding-bottom: 20px;
+  width: 100%;
+  /*! display: block; */
+  /*! justify-content: center; */
 }
 
 .content #infovideo {
-  width: 50%;
-  margin: 0;
+  width: 100%;
+  margin: auto;
   text-align: center;
+  border-bottom: 5px dotted;
+  padding-bottom: 10%;
 }
 
 .pizzavideo {
   width: 90%;
   height: 100%;
-  border: 2px solid var(--honey-yellowA);
+  /*   border: 2px solid var(--honey-yellowA); */
   border-radius: 5px;
 }
 
@@ -217,19 +222,30 @@ section h1 {
   width: fit-content;
   position: relative;
   margin: auto;
+  padding-bottom: 50px;
+  margin-top: 15px;
 }
 
 .content #turhamainos {
-  width: 50%;
+  width: 100%;
+  display: flex;
+  /*! flex-grow: 100; */
+  margin-top: 10%;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 .content article {
-  width: 90%;
-  border: 2px solid var(--honey-yellowA);
+  width: 35%;
+  /*   border: 2px solid var(--honey-yellowA); */
   height: 100%;
   text-align: center;
-  line-height: 2em;
-  margin: auto;
+  line-height: 1.8em;
+  margin: 15px;
+  border: 1px dotted var(--light-cornflower-blue);
+  /*! margin: auto; */
+  /*! margin: ; */
 }
 
 /* leaflet ikonit  */
@@ -468,38 +484,65 @@ section h1 {
   }
 
   .content #infovideo figcaption {
-    margin-bottom: 50px;
-    margin-top: 12px;
+    /*! margin-bottom: 10%; */
+    margin-top: 15px;
   }
 
   .content #turhamainos {
-    width: 90%;
+    /*! width: 90%%; */
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    /*! justify-content: center; */
+    /*! align-items: center; */
     margin: auto;
   }
 
-  .content article {
+  .content .vasenpuoli {
+    border: 0;
+    width: 75%;
     text-align: center;
-    margin-top: 50px;
-    border-top: 1px solid var(--honey-yellowA);
+    margin-top: 5%;
+    /*! border-top: 1px solid var(--honey-yellowA); */
     border-bottom: 1px solid var(--honey-yellowA);
     line-height: 2em;
+    padding-bottom: 5%;
   }
 
-  .content article p {
+  .content .vasenpuoli p {
     margin: auto;
     line-height: 2em;
   }
 
-  .content article h2 {
+  .content .vasenpuoli h2 {
     margin-top: 12px;
   }
 
-  .content article h3 {
+  .content .vasenpuoli h3 {
+    margin: auto;
+  }
+
+  .content .oikeapuoli {
+    border: 0;
+    width: 75%;
+    text-align: center;
+    margin-top: 5%;
+    border-top: 1px solid var(--honey-yellowA);
+    border-bottom: 1px solid var(--honey-yellowA);
+    line-height: 2em;
+    padding-bottom: 5%;
+  }
+
+  .content .oikeapuoli p {
+    margin: auto;
+    line-height: 2em;
+  }
+
+  .content .oikeapuoli h2 {
+    margin-top: 12px;
+  }
+
+  .content .oikeapuoli h3 {
     margin: auto;
   }
 }

@@ -3,6 +3,7 @@ const togglenappi = document.getElementById("togglenappi");
 const navbarLinkit = document.getElementById("navbar-linkit");
 const navbarMap = document.querySelector(".navbar__map");
 const navbarFaq = document.querySelector(".navbar__faq");
+const navTitleHtml = document.querySelector(".brand-title");
 const tanaan = new Date(); // aika jolla katotaan pizza paikat.
 const curDate = tanaan.getFullYear() + "-" + (tanaan.getMonth() + 1) + "-" + tanaan.getDate();
 const curAika = tanaan.getHours() + ":" + tanaan.getMinutes() + ":" + tanaan.getSeconds();
@@ -15,17 +16,17 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(map);
 
 // kustom markkeritz
-const vIcon = L.divIcon({
+const pIcon = L.divIcon({
   className: "open-ikoni",
   html: "<div class='marker-open'></div><i class='material-icons'></i>",
-  iconSize: [30, 42],
-  iconAnchor: [15, 42],
+  iconSize: [30, 40],
+  iconAnchor: [15, 40],
 });
-const pIcon = L.divIcon({
+const vIcon = L.divIcon({
   className: "closed-ikoni",
   html: "<div class='marker-closed'></div><i class='material-icons'></i>",
-  iconSize: [30, 42],
-  iconAnchor: [15, 42],
+  iconSize: [30, 40],
+  iconAnchor: [15, 40],
 });
 
 // Kartan search bar **************************************
@@ -72,7 +73,6 @@ function error(err) {
 
 // Käynnistetään paikkatietojen haku
 navigator.geolocation.getCurrentPosition(success, error, options);
-
 // haetaan reitti lähtöpisteen ja kohteen avulla
 function haeReitti(lahto, kohde) {
   // GraphQL haku
@@ -112,7 +112,6 @@ function haeReitti(lahto, kohde) {
       return vastaus.json();
     })
     .then(function (tulos) {
-      console.log(tulos.data.plan.itineraries[0].legs);
       const googleKoodattuReitti = tulos.data.plan.itineraries[0].legs;
       // valitaan värit reitille ja kulkuvälineet tiedoksi käyttäjälle
       for (let i = 0; i < googleKoodattuReitti.length; i++) {
@@ -144,7 +143,7 @@ function haeReitti(lahto, kohde) {
             kulkumode = "Fillari";
             break;
           case "FERRY":
-            color = "pink";
+            color = "black";
             kulkumode = "Lautta";
             break;
           default:
@@ -155,10 +154,9 @@ function haeReitti(lahto, kohde) {
         const startAika = new Date(googleKoodattuReitti[i].startTime); // aika on epoch muodossa niin muutetaan se
         const endAika = new Date(googleKoodattuReitti[i].endTime); // aika on epoch muodossa niin muutetaan se
         // tiedot reitin popuppiin
-        const reittiData = `<p>Lähtöaika: ${startAika.getHours() + ":" + startAika.getMinutes()}<br/>Päätösaika: ${
-          endAika.getHours() + ":" + endAika.getMinutes()
-        }</p><p>Kulkuväline: ${kulkumode} 
-        <br/>Kesto (min): ${(googleKoodattuReitti[i].duration / 60).toFixed(1)} 
+        const reittiData = `<p>Kello on tällä hetkellä:<br/>${curAika}</p><p>Kulkuväline: ${kulkumode}<br/>Lähtöaika: ${
+          startAika.getHours() + ":" + startAika.getMinutes()
+        }<br/>Päätösaika: ${endAika.getHours() + ":" + endAika.getMinutes()}</p><p>Kesto (min): ${(googleKoodattuReitti[i].duration / 60).toFixed(1)} 
         <br/>Matkan pituus (km): ${(googleKoodattuReitti[i].distance / 1000).toFixed(2)}</p>`;
         const reitti = googleKoodattuReitti[i].legGeometry.points;
         const pisteObjektit = L.Polyline.fromEncoded(reitti).getLatLngs(); // fromEncoded: muutetaan Googlekoodaus Leafletin Polylineksi
@@ -181,7 +179,7 @@ function haeReitti(lahto, kohde) {
 
 async function getPizza(originlat, originlong) {
   const pizzaUrl = "http://open-api.myhelsinki.fi/v1/places/?tags_filter=Pizza";
-  const origin = {latitude: originlat, longitude: originlong};
+  const origin = {latitude: originlat, longitude: originlong}; // origin säästetään jotta se voidaan lähettää reittiopas functiolle
   const response = await fetch(`${proxy}${pizzaUrl}`).catch((e) => {
     console.log("Error");
     console.log(e);
@@ -190,16 +188,7 @@ async function getPizza(originlat, originlong) {
   console.log(jsonData.data);
   Array.from(jsonData.data).forEach(function (objData) {
     // jokasen objectin osalta seuraava forloop ->
-    /*    let aukiolo = new Date(); */
-    /* let [hours, minutes, seconds] =  */
-    /* let [tunti, minuutti, sekuntti] =  */
-    /*   aukiolo.getHours(hours);
-    aukiolo.getMinutes(minutes);
-    aukiolo.getSeconds(seconds); */
-    // tällä varmistetaan kumpi markkeri tulee mapille     /*  objData.opening_hours.hours[vkPaiva].opens */
-    const open = objData.opening_hours.hours[vkPaiva].opens;
-    // verrattuna tämän hetkiseen aikaan     /* objData.opening_hours.hours[vkPaiva].closes */
-    const closed = objData.opening_hours.hours[vkPaiva].closes;
+    // ekaksi infot markkeria varten
     const info = {
       nimi: objData.name.fi,
       osoite: objData.location.address.street_address,
@@ -207,14 +196,37 @@ async function getPizza(originlat, originlong) {
       Longitude: objData.location.lon,
       urli: objData.info_url,
     };
-    const teksti = `<h3 id="Snimi">${info?.nimi || ""}</h3>
-    <h4 id="Sosoite">${info?.osoite || ""}</h4>
-    <p id="Saukioloaika">${open ?? ""}-${closed ?? ""}</p>
-    <a id="Surli" href="${info?.urli || "javascript:void(0)"}">Kotisivu</a>
-    <a id="Sreitti" title="Navigoi itsesi perille" href="#" onclick="haeReitti({latitude: ${origin.latitude}, longitude: ${
+    // seuraavaksi asetetaan aukioloajat Date muotoon. vkPaiva const pitää huolen että tietää onko ma ti ke to pe jne.
+    const open = new Date();
+    const closed = new Date();
+    open.setHours(objData.opening_hours?.hours?.[vkPaiva].opens?.split(":")[0] || "");
+    open.setMinutes(objData.opening_hours?.hours?.[vkPaiva].opens?.split(":")[1] || "");
+    open.setSeconds(objData.opening_hours?.hours?.[vkPaiva].opens?.split(":")[2] || "");
+    closed.setHours(objData.opening_hours?.hours?.[vkPaiva].closes?.split(":")[0] || "");
+    closed.setMinutes(objData.opening_hours?.hours?.[vkPaiva].closes?.split(":")[1] || "");
+    closed.setSeconds(objData.opening_hours?.hours?.[vkPaiva].closes?.split(":")[2] || "");
+    // luodaan lista muuttujia jolla saadaan aika muotoon hh:mm.
+    let aukih = open.getHours() + "";
+    let aukim = open.getMinutes() + "";
+    let kiinnih = closed.getHours() + "";
+    let kiinnim = closed.getMinutes() + "";
+    // aukiolocheck antaa paikalle ajan mikäli semmoinen löytyy, esim. 00:00 - 00:00 ei ole aukioloaika.
+    let aukioloCheck = `<p id="Saukioloaika">${aukih.padStart(2, "0") + ":" + aukim.padStart(2, "0")}-${
+      kiinnih.padStart(2, "0") + ":" + kiinnim.padStart(2, "0")
+    }</p>`;
+    // tässä if lauseke jolla aukiolocheck muuttuu mikäli aukioloaikoja ei ole saatavilla.
+    if (open.getHours() == 0) {
+      aukioloCheck = `<p id="Saukioloaika">Aukioloaika ei saatavilla</p>`;
+    }
+    // popup tekstin sisältö, tässä luodaan myös navigoi linkki sekä kotisivu linkki.
+    const teksti = `<h3 id="Snimi">${info?.nimi || ""}</h3><h4 id="Sosoite">${info?.osoite || ""}</h4>
+    ${aukioloCheck}
+    <a id="Surli" href="${info?.urli || "javascript:void(0)"}">Kotisivulle</a>
+    <a id="Sreitti" title="Katso miten julkiset menevät paikalle.." href="#" onclick="haeReitti({latitude: ${origin.latitude}, longitude: ${
       origin.longitude
-    }},{latitude: ${info.Latitude}, longitude: ${info.Longitude}});return false;">Navigoi</a>`;
-    if (curAika >= open != false && curAika >= closed != true) {
+    }},{latitude: ${info.Latitude}, longitude: ${info.Longitude}});return false;">Reittihaku</a>`;
+
+    if ((tanaan >= open != false && tanaan < closed != false) /* || curAika < "4:00:00"  */ || open.getHours() == 0) {
       L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaLayer).bindPopup(teksti);
     } else {
       L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaLayer).bindPopup(teksti);
@@ -222,19 +234,19 @@ async function getPizza(originlat, originlong) {
   });
 }
 
-/* 
-<details>
-<summary>Lisätiedot</summary>
-</details> */
-//otsikon responsive bari
+// responsive togglebuttoni
 togglenappi.addEventListener("click", () => {
   navbarLinkit.classList.toggle("active");
 });
-
+//otsikon navbar listenerit sekä titleä painamalla pääset scrollaantumaan
 navbarMap.addEventListener("click", () => {
   document.querySelector("#map").scrollIntoView({behavior: "smooth"});
 });
 
 navbarFaq.addEventListener("click", () => {
   document.querySelector("#infovideo").scrollIntoView({behavior: "smooth"});
+});
+
+navTitleHtml.addEventListener("click", () => {
+  document.querySelector("#top").scrollIntoView({behavior: "smooth"});
 });

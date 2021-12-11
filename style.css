@@ -2,6 +2,9 @@
 
 /* CSS HEX */
 * {
+  padding: 0;
+  margin: 0;
+
   --light-cornflower-blue: #8ecae6ff;
   --blue-green: #219ebcff;
   --prussian-blue: #023047ff;
@@ -15,9 +18,6 @@
   --honey-yellowA: hsla(43, 100%, 51%, 0.6);
   --orangeA: hsla(32, 100%, 49%, 0.3);
 
-  /* Marker Size */
-  --mark-size: 30px;
-  /* SCSS Gradient */
   /*   $gradient-top: linear-gradient(0deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
   $gradient-right: linear-gradient(90deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
   $gradient-bottom: linear-gradient(180deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
@@ -27,8 +27,15 @@
   $gradient-top-left: linear-gradient(225deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
   $gradient-bottom-left: linear-gradient(315deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
   $gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff); */
+  /* ************COLORS************* */
+
+  /* ************VARS************ /*
+  /* Marker Size */
+  --mark-size: 30px;
+  /* SCSS Gradient */
 }
-/* ************COLORS************* */
+
+/* ********************************* itse body alkaa ********************************* */
 
 body {
   font-family: "Roboto", sans-serif;
@@ -163,6 +170,8 @@ header {
   flex-wrap: wrap;
 }
 
+/* ********************************* Mapin ympärys yms, sisällys tulee alempana ********************************* */
+
 main {
   padding-top: 5%;
   padding-bottom: 5%;
@@ -171,13 +180,6 @@ main {
   flex-direction: column;
   margin-bottom: 20%;
   background: var(--prussian-blueA);
-}
-
-section {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  padding-bottom: 3%;
 }
 
 #map {
@@ -190,6 +192,15 @@ section {
   z-index: 2;
   border: 5px solid transparent;
   border-radius: 10px;
+}
+
+/* ********************************* Ala sectionin osuus *********************************  */
+
+section {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 3%;
 }
 
 section h1 {
@@ -289,7 +300,7 @@ section h1 {
 }
  */
 
-/* leaflet ikonit marker iconit  */
+/* *********************************  leaflet ikonit marker iconit ********************************* */
 
 .marker-open {
   width: 30px;
@@ -370,7 +381,8 @@ section h1 {
   transform: rotate(-270deg);
 }
 
-/* toggle piilotus kiinnioleville paikoille */
+/* *********************************  toggle piilotus kiinnioleville paikoille *********************************  */
+
 .leaflet-piilotus {
   /*   background-clip: padding-box; */
   border: 1px solid var(--orange);
@@ -445,7 +457,18 @@ section h1 {
   z-index: 11;
 } */
 
-/* Leaftlet popup kontentti */
+/* ********************************  Leaflet zoom & out editointi ********************************* */
+
+.leaflet-control-zoom leaflet-bar leaflet-control {
+}
+
+.leaflet-control-zoom-in {
+}
+
+.leaflet-control-zoom-out {
+}
+
+/* *********************************  Leaftlet popup kontentti ********************************* */
 
 #map .leaflet-popup-content-wrapper {
   background: var(--prussian-blue);

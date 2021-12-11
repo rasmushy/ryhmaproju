@@ -16,23 +16,23 @@
  */
 
 /* ************COLORS************* */
+:root {
+  /* CSS HEX */
+  --light-cornflower-blue: #8ecae6ff;
+  --blue-green: #219ebcff;
+  --prussian-blue: #023047ff;
+  --honey-yellow: #ffb703ff;
+  --orange: #fb8500ff;
 
-/* CSS HEX */
-/* --light-cornflower-blue: #8ecae6ff;
---blue-green: #219ebcff;
---prussian-blue: #023047ff;
---honey-yellow: #ffb703ff;
---orange: #fb8500ff; */
+  /* CSS HSL */
+  --light-cornflower-blue: hsla(199, 64%, 73%, 0.7);
+  --blue-green: hsla(192, 70%, 43%, 1);
+  --prussian-blue: hsla(200, 95%, 14%, 1);
+  --honey-yellow: hsla(43, 100%, 51%, 1);
+  --orange: hsla(32, 100%, 49%, 1);
 
-/* CSS HSL */
-/* --light-cornflower-blue: hsla(199, 64%, 73%, 1);
---blue-green: hsla(192, 70%, 43%, 1);
---prussian-blue: hsla(200, 95%, 14%, 1);
---honey-yellow: hsla(43, 100%, 51%, 1);
---orange: hsla(32, 100%, 49%, 1); */
-
-/* SCSS Gradient */
-/* $gradient-top: linear-gradient(0deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+  /* SCSS Gradient */
+  /* $gradient-top: linear-gradient(0deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
 $gradient-right: linear-gradient(90deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
 $gradient-bottom: linear-gradient(180deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
 $gradient-left: linear-gradient(270deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
@@ -42,11 +42,10 @@ $gradient-top-left: linear-gradient(225deg, #8ecae6ff, #219ebcff, #023047ff, #ff
 $gradient-bottom-left: linear-gradient(315deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
 $gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff); */
 
-/* ************COLORS************* */
-
+  /* ************COLORS************* */
+}
 .leaflet-container .leaflet-control-search {
   position: relative;
-  /*   border: 2px solid rgba(0, 0, 0, 0.2); */
   z-index: 1000;
   margin-left: 10px;
   margin-top: 10px;
@@ -55,45 +54,44 @@ $gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #f
   transition: none;
   font-family: "Roboto", sans-serif;
   transition: 0ms;
-  /*   line-height: var(30px - 1px); */
   transition: width 300ms ease-in-out;
 }
-.leaflet-control-search.search-exp {
-  /*expanded*/
-  /*! border: 0px solid rgba(0, 0, 0, 0.3); */
-}
+
 .leaflet-control-search .search-input {
   display: block;
   background: white;
   font-size: 18px;
   z-index: 1000;
-  height: 30px;
-  border: 1px solid #fb8500ff;
-  color: black;
+  height: 32px;
+  border: 2px solid var(--orange);
 }
+.leaflet-control-search .search-input:focus {
+  outline: 2px solid var(--honey-yellow);
+  border: 2px solid var(--orange);
+}
+
 .leaflet-control-search.search-load .search-input {
   display: block;
-  background: url("../images/loader.gif") no-repeat center right white;
+  position: absolute;
+  background: url("../images/loader.gif") no-repeat center 0 black;
   z-index: 9999;
+  border: 0;
 }
 .leaflet-control-search.search-load .search-cancel {
   visibility: hidden;
 }
 .leaflet-control-search .search-cancel {
-  display: block;
   width: 22px;
-  height: 22px;
+  height: 24px;
   position: absolute;
-  right: -7px;
+  right: 33px;
   margin: 0px;
   margin-top: 0px;
   margin-right: 0px;
   margin-bottom: 0px;
   margin-left: 0px;
-  background: url("../images/search-icon.png") no-repeat 0 -49px;
   text-decoration: none;
-  filter: alpha(opacity=80);
-  top: 23px;
+  top: 5px;
   z-index: 1010;
   transform: rotate3d(-8, 6, 2, 180deg);
 }
@@ -102,19 +100,19 @@ $gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #f
   opacity: 1;
 }
 .leaflet-control-search .search-cancel span {
-  display: none; /* comment for cancel button imageless */
-  font-size: 18px;
-  line-height: 20px;
+  font-size: 22px;
+  line-height: 25px;
   font-weight: bold;
+  background-color: transparent;
+  color: black;
 }
 .leaflet-control-search .search-cancel:hover span {
-  color: #fb8500ff;
+  color: var(--orange);
 }
 .leaflet-control-search .search-button {
   display: block;
   z-index: 1000;
-  border: 1px solid #fb8500ff;
-  /*! padding-left: 0px; */
+  border: 2px solid var(--orange);
   text-decoration: none;
   background: url("../images/search-icon.png") no-repeat 5px 5px white;
   cursor: pointer;
@@ -123,14 +121,12 @@ $gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #f
   height: 32px;
   position: absolute;
   transition: background 150ms ease-in-out;
-  right: -1px;
+  right: 0px;
   top: 0px;
-  /*! padding: 0px; */
 }
 .leaflet-control-search .search-button:hover {
   background: url("../images/search-icon.png") no-repeat 5px 5px #fb8500ff;
-  border: 1px solid white;
-  transition: 0.25s;
+  border: 2px solid white;
   padding: 0;
 }
 
@@ -168,7 +164,7 @@ $gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #f
 
 .leaflet-control-search .search-tip-select,
 .leaflet-control-search .search-tip:hover {
-  background-color: #fb8500ff;
+  background-color: var(--orange);
 }
 .leaflet-control-search .search-alert {
   cursor: pointer;

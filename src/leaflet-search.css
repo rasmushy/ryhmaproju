@@ -59,21 +59,24 @@ $gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #f
 
 .leaflet-control-search .search-input {
   display: block;
+  font-family: "Roboto", sans-serif;
+  color: var(--prussian-blue);
   background: white;
-  font-size: 18px;
+  font-size: 22px;
   z-index: 1000;
   height: 32px;
-  border: 2px solid var(--orange);
+  border: 2px solid var(--honey-yellow);
+  padding-left: 3px;
 }
 .leaflet-control-search .search-input:focus {
-  outline: 2px solid var(--honey-yellow);
+  outline: none;
   border: 2px solid var(--orange);
 }
 
 .leaflet-control-search.search-load .search-input {
   display: block;
   position: absolute;
-  background: url("../images/loader.gif") no-repeat center 0 black;
+  background: url("../images/loader.gif") no-repeat center black;
   z-index: 9999;
   border: 0;
 }
@@ -81,34 +84,48 @@ $gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #f
   visibility: hidden;
 }
 .leaflet-control-search .search-cancel {
-  width: 22px;
-  height: 24px;
   position: absolute;
-  right: 33px;
-  margin: 0px;
-  margin-top: 0px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  margin-left: 0px;
+  right: 39px;
   text-decoration: none;
-  top: 5px;
+  top: 7px;
   z-index: 1010;
-  transform: rotate3d(-8, 6, 2, 180deg);
+  border: 1px solid black;
+  border-radius: 500px;
+  height: 19px;
+  width: 19px;
+  transition: 150ms ease-in-out;
 }
+
+.leaflet-control-search .search-cancel::before,
+.leaflet-control-search .search-cancel::after {
+  content: "";
+  width: calc(var(--mark-size) * 0.1);
+  height: calc(var(--mark-size) * 0.5);
+  margin: 2px 0px 0px 8px;
+  background: black;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+}
+
+.leaflet-control-search .search-cancel::before {
+  transform: rotate(45deg);
+}
+
+.leaflet-control-search .search-cancel::after {
+  transform: rotate(-45deg);
+}
+
 .leaflet-control-search .search-cancel:hover {
-  filter: alpha(opacity=100);
-  opacity: 1;
+  background-color: var(--orange);
+  border: 1px solid var(--prussian-blue);
 }
+
 .leaflet-control-search .search-cancel span {
-  font-size: 22px;
-  line-height: 25px;
-  font-weight: bold;
-  background-color: transparent;
-  color: black;
+  display: none;
 }
-.leaflet-control-search .search-cancel:hover span {
-  color: var(--orange);
-}
+
 .leaflet-control-search .search-button {
   display: block;
   z-index: 1000;
@@ -150,7 +167,7 @@ $gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #f
 }
 .leaflet-control-search .search-tip {
   margin: 2px;
-  padding: 2px 4px;
+  padding: 5px 5px;
   display: block;
   color: black;
   background: white;

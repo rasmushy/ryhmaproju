@@ -5,18 +5,23 @@ const navbarLinkit = document.getElementById("navbar-linkit");
 const navbarMap = document.querySelector(".navbar__map");
 const navbarFaq = document.querySelector(".navbar__faq");
 const navTitleHtml = document.querySelector(".paa-otsikko");
-const tanaan = new Date(); // aika jolla katotaan pizza paikat.
+const leafletDivCancel = document.querySelector(".leaflet-div-wrapper");
+/* const leafletDivTeksti = document.querySelector(".leaflet-div-popup"); */
+// aika jolla katotaan pizza paikat.
+const tanaan = new Date();
 const curDate = tanaan.getFullYear() + "-" + (tanaan.getMonth() + 1) + "-" + tanaan.getDate();
 const curAika = tanaan.getHours() + ":" + tanaan.getMinutes() + ":" + tanaan.getSeconds();
 const vkPaiva = tanaan.getDay() - 1 || 6;
+// reittioppaan apiosoite sekä proxyosoite
 const apiOsoite = "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql";
 const proxy = "https://cors-anywhere.herokuapp.com/";
+// Luodaan kartta nimellä map
 const map = L.map("map").setView([60.21, 24.95], 9);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
-map.doubleClickZoom.disable();
-// kustom markkeritz
+
+// kustom markkerit pizzerioille, pIcon = auki & vIcon = kiinni
 const pIcon = L.divIcon({
   className: "open-ikoni",
   html: "<div class='marker-open'></div>",
@@ -30,14 +35,13 @@ const vIcon = L.divIcon({
   iconAnchor: [15, 40],
 });
 
-// Kartta layeri searchbarille
+// Layerit kartalle: searchbarille ja reitille
 const pizzaLayer = new L.LayerGroup();
-// Luodaan reitille layeri kartalle
 const reittiLayer = new L.LayerGroup();
-// addataan layeri kartalle
-map.addLayer(reittiLayer);
-map.addLayer(pizzaLayer);
-// Kartan search bar **************************************
+// Sublayerit markkereitten näkymistä varten togglenapilla.
+const pizzaAuki = new L.LayerGroup();
+const pizzaKiinni = new L.LayerGroup();
+//  ********************** Kartan searchbar STARTS *********************
 const pizzaSearch = new L.Control.Search({
   textPlaceholder: "Etsi Pizzerian nimellä...",
   position: "topright",
@@ -50,21 +54,23 @@ const pizzaSearch = new L.Control.Search({
 pizzaSearch.on("search:locationfound", (e) => {
   if (e.layer._popup) e.layer.openPopup();
 });
+// ******************** Kartan searchbar ENDS ***********************
 
+// lisätään searhcbar
 map.addControl(pizzaSearch);
-// sublayerit markkereitten näkymistä varten togglenapilla.
-const pizzaAuki = new L.LayerGroup();
-const pizzaKiinni = new L.LayerGroup();
+// addataan layerit kartalle lukuunottamatta kiinniolevia paikkoja.
+map.addLayer(reittiLayer);
+map.addLayer(pizzaLayer);
 pizzaLayer.addLayer(pizzaAuki);
-/* pizzaLayer.addLayer(pizzaKiinni); */
+// doubleclick zoomi disabloitu niin mapin näppäimet toimii paremmin
+map.doubleClickZoom.disable();
+
 // Asetukset paikkatiedon hakua varten (valinnainen)
 const options = {
   enableHighAccuracy: true,
   timeout: 5000,
   maximumAge: 0,
 };
-
-// Kartan search bar *******************************************
 
 function success(pos) {
   const crd = pos.coords;
@@ -73,7 +79,7 @@ function success(pos) {
     console.log(e);
   });
   map.setView([crd.latitude, crd.longitude], 13);
-  L.marker([crd.latitude, crd.longitude], {title: "Olet tässä"}).addTo(pizzaLayer).bindPopup(`<h3 title="Lokaatiosi">Olet Tässä</h3>`); // lisätään markkeri omaan lokaatioon
+  L.marker([crd.latitude, crd.longitude], {title: "Olet tässä"}, {label: "Olet tässä"}).addTo(pizzaLayer); // lisätään markkeri omaan lokaatioon .bindPopup(`<h3 title="Lokaatiosi">Olet Tässä</h3>`)
 }
 
 // Funktio, joka ajetaan, jos paikkatietojen hakemisessa tapahtuu virhe
@@ -104,9 +110,11 @@ function haeReitti(lahto, kohde) {
             distance
             legGeometry {
               points
-              length
             }
           }
+          startTime
+          endTime
+          duration
         }
       }
     }`;
@@ -125,6 +133,7 @@ function haeReitti(lahto, kohde) {
       return vastaus.json();
     })
     .then(function (tulos) {
+      const reittiDivi = tulos.data.plan.itineraries[0];
       const googleKoodattuReitti = tulos.data.plan.itineraries[0].legs;
       // valitaan värit reitille ja kulkuvälineet tiedoksi käyttäjälle
       for (let i = 0; i < googleKoodattuReitti.length; i++) {
@@ -164,13 +173,22 @@ function haeReitti(lahto, kohde) {
             kulkumode = "Muu";
             break;
         }
+
         // aika on epoch muodossa niin muutetaan se
         const startAika = new Date(googleKoodattuReitti[i].startTime);
         const endAika = new Date(googleKoodattuReitti[i].endTime);
+        let lahtoH = tanaan.getHours() + "";
+        let lahtoM = tanaan.getMinutes() + "";
+        let startH = startAika.getHours() + "";
+        let startM = startAika.getMinutes() + "";
+        let endH = endAika.getHours() + "";
+        let endM = endAika.getMinutes() + "";
         // tiedot reitin popuppiin
-        const reittiData = `<p>Kello on tällä hetkellä:<br/>${curAika}</p><p>Kulkuväline: ${kulkumode}<br/>Lähtöaika: ${
-          startAika.getHours() + ":" + startAika.getMinutes()
-        }<br/>Päätösaika: ${endAika.getHours() + ":" + endAika.getMinutes()}</p><p>Kesto (min): ${(googleKoodattuReitti[i].duration / 60).toFixed(1)} 
+        const reittiData = `<p>Kello on tällä hetkellä:<br/>${
+          lahtoH.padStart(2, "0") + ":" + lahtoM.padStart(2, "0")
+        }</p><p>Kulkuväline: ${kulkumode}<br/>Reittiaika: ${startH.padStart(2, "0") + ":" + startM.padStart(2, "0")}-${
+          endH.padStart(2, "0") + ":" + endM.padStart(2, "0")
+        }</p><p>Kesto (min): ${(googleKoodattuReitti[i].duration / 60).toFixed(1)} 
         <br/>Matkan pituus (km): ${(googleKoodattuReitti[i].distance / 1000).toFixed(2)}</p>`;
         // Otetaan graphql:sta googlereitti
         const reitti = googleKoodattuReitti[i].legGeometry.points;
@@ -182,6 +200,24 @@ function haeReitti(lahto, kohde) {
           .addTo(reittiLayer) // addataan se reittilayerille
           .bindPopup(reittiData); // lisätään popuppiin tiedot
       }
+      const reitinAlkuaika = new Date(reittiDivi.startTime);
+      const reitinLoppuaika = new Date(reittiDivi.endTime);
+      let totalH = reitinAlkuaika.getHours() + "";
+      let totalM = reitinAlkuaika.getMinutes() + "";
+      let totalEndH = reitinLoppuaika.getHours() + "";
+      let totalEndM = reitinLoppuaika.getMinutes() + "";
+      const textDivi = `<p>Julkisilla kestää paikalle menoon ${(reittiDivi.duration / 60).toFixed(1)} (min).</p><p>Haettu reitti kartalle lähtee: ${
+        totalH.padStart(2, "0") + ":" + totalM.padStart(2, "0")
+      }</p><p>Olisit perillä kello: ${totalEndH.padStart(2, "0") + ":" + totalEndM.padStart(2, "0")}</p>`;
+      const cancelDivi = `<a class="leaflet-div-sulku" href="#" title="Sulje reittitiedot" onclick="markerToggle(3);return false;"></a>`;
+      console.log(textDivi);
+      leafletDivCancel.innerHTML = cancelDivi;
+      leafletDivCancel.setAttribute("style", "visibility: visible");
+      const divi = document.createElement("div");
+      divi.className = "leaflet-div-popup";
+      divi.innerHTML = textDivi;
+      leafletDivCancel.append(divi);
+      /* leafletDivTeksti.innerHTML = textDivi; */
       map.fitBounds([
         [lahto.latitude, lahto.longitude],
         [kohde.latitude, kohde.longitude],
@@ -199,10 +235,9 @@ async function getPizza(originlat, originlong) {
     console.log("Error");
     console.log(e);
   });
-  const jsonData = await response.json();
-  // käydään läpi apista saadut tiedot.
+  const jsonData = await response.json(); // käydään läpi apista saadut tiedot.
+  // jokasen objectin osalta seuraava forloop ->
   Array.from(jsonData.data).forEach(function (objData) {
-    // jokasen objectin osalta seuraava forloop ->
     // ekaksi infot markkeria varten
     const info = {
       nimi: objData.name.fi,
@@ -233,7 +268,7 @@ async function getPizza(originlat, originlong) {
     let kiinnih = closed.getHours() + "";
     let kiinnim = closed.getMinutes() + "";
     // aukiolocheck antaa paikalle ajan mikäli semmoinen löytyy, esim. 00:00 - 00:00 ei ole aukioloaika.
-    let aukioloCheck = `<p id="Saukioloaika">${aukih.padStart(2, "0") + ":" + aukim.padStart(2, "0")}-${
+    let aukioloCheck = `<p id="Saukioloaika">Pizzerian aukioloajat: ${aukih.padStart(2, "0") + ":" + aukim.padStart(2, "0")}-${
       kiinnih.padStart(2, "0") + ":" + kiinnim.padStart(2, "0")
     }</p>`;
     // tässä if lauseke jolla aukiolocheck muuttuu mikäli aukioloaikoja ei ole saatavilla.
@@ -241,15 +276,15 @@ async function getPizza(originlat, originlong) {
       aukioloCheck = `<p id="Saukioloaika">Aukioloaika ei saatavilla</p>`;
     }
     // popup tekstin sisältö, tässä luodaan myös navigoi linkki sekä kotisivu linkki.
-    const teksti = `<h3 id="Snimi">${info?.nimi || ""}</h3><h4 id="Sosoite" title="Siirry pizzerian kotisivuille">${info?.osoite || ""}</h4>
-    ${aukioloCheck}
-    <a id="Surli" href="${info?.urli || "javascript:void(0)"}">Kotisivulle</a><br/>
+    const teksti = `<div class="pizzatop__bar"><h3 id="Snimi">${info?.nimi || ""}</h3><h4 id="Sosoite">${info?.osoite || ""}</h4>
+    ${aukioloCheck}</div><div class="pizzabot__bar">
+    <a id="Surli" title="Siirry pizzerian kotisivuille" href="${info?.urli || "javascript:void(0)"}">Kotisivulle</a><br/>
     <a id="Sreitti" title="Katso miten julkiset menevät paikalle.." href="#" onclick="haeReitti({latitude: ${origin.latitude}, longitude: ${
       origin.longitude
-    }},{latitude: ${info.Latitude}, longitude: ${info.Longitude}});return false;">Reittihaku</a>`;
-    /*     console.log(open + "<------- ohessa aika open constilla");
-    console.log(closed + "<------- ohessa aika closed constilla"); */
-
+    }},{latitude: ${info.Latitude}, longitude: ${info.Longitude}});return false;">Reittihaku</a></div>`;
+    /* console.log(open + "<------- ohessa aika open constilla");
+       console.log(closed + "<------- ohessa aika closed constilla"); */
+    // Lisätään markkerit kartalle riippuen siitä onko ne kiinni vai ei.. Mikäli aikaa ei löydy lisätään ne aukiolevian erikoismaininnalla
     if ((tanaan >= open != false && tanaan < closed != false) || open.getHours() == 0) {
       L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaAuki).bindPopup(teksti);
     } else {
@@ -258,13 +293,16 @@ async function getPizza(originlat, originlong) {
   });
 }
 
+// Toggle functio eri napeille.
 function markerToggle(x) {
   if (x == 1) {
     map.removeLayer(pizzaKiinni);
     document.querySelector("#leaflet-toggle-nappi").setAttribute("onclick", "markerToggle(0);return false;");
-  } else {
+  } else if (x == 0) {
     map.addLayer(pizzaKiinni);
     document.querySelector("#leaflet-toggle-nappi").setAttribute("onclick", "markerToggle(1);return false;");
+  } else if (x == 3) {
+    leafletDivCancel.setAttribute("style", "visibility: hidden");
   }
 }
 
@@ -276,11 +314,11 @@ togglenappi.addEventListener("click", () => {
 navbarMap.addEventListener("click", () => {
   document.querySelector("#map").scrollIntoView({behavior: "smooth"});
 });
-
+//otsikon navbar listenerit sekä titleä painamalla pääset scrollaantumaan
 navbarFaq.addEventListener("click", () => {
   document.querySelector("#infovideo").scrollIntoView({behavior: "smooth"});
 });
-
+//otsikon navbar listenerit sekä titleä painamalla pääset scrollaantumaan
 navTitleHtml.addEventListener("click", () => {
   document.querySelector("#top").scrollIntoView({behavior: "smooth"});
 });

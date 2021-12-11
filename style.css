@@ -1,10 +1,11 @@
-/* ************COLORS************* */
-
-/* CSS HEX */
 * {
+  /* Lisätään padding ja margin 0:llaksi koko html jotta fullscreen ominaisuus toimii moitteetomasti */
   padding: 0;
   margin: 0;
 
+  /* ************COLORS************* */
+
+  /* CSS HEX */
   --light-cornflower-blue: #8ecae6ff;
   --blue-green: #219ebcff;
   --prussian-blue: #023047ff;
@@ -18,6 +19,7 @@
   --honey-yellowA: hsla(43, 100%, 51%, 0.6);
   --orangeA: hsla(32, 100%, 49%, 0.3);
 
+  /* SCSS Gradient */
   /*   $gradient-top: linear-gradient(0deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
   $gradient-right: linear-gradient(90deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
   $gradient-bottom: linear-gradient(180deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
@@ -30,15 +32,16 @@
   /* ************COLORS************* */
 
   /* ************VARS************ /*
+
   /* Marker Size */
   --mark-size: 30px;
-  /* SCSS Gradient */
+  --main-font: "Roboto", sans-serif;
 }
 
 /* ********************************* itse body alkaa ********************************* */
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: var(--main-font);
   margin: 0;
   padding: 0;
   display: flex;
@@ -48,7 +51,7 @@ body {
   background-color: var(--prussian-blue);
   color: var(--honey-yellow);
 }
-
+/* background image taustalle */
 .bg-image {
   background-image: url("images/bg_img1.png");
   background-repeat: no-repeat;
@@ -68,18 +71,18 @@ header {
   color: white;
   /*   font-size: 2rem; */
   margin: 0.5rem;
-  font-family: "Roboto Slab", serif;
+  font-family: var(--main-font);
 }
 
 .paa-otsikko {
   font-size: 24px;
-  font-family: "Roboto Slab", serif;
+  font-family: var(--main-font);
 }
 
 .paa-otsikko:focus,
 .paa-otsikko:hover {
   color: var(--orange);
-  font-family: "Roboto Slab", serif;
+  font-family: var(--main-font);
 }
 
 .navbar {
@@ -90,7 +93,7 @@ header {
   align-items: center;
   background-color: var(--prussian-blueA);
   color: white;
-  font-family: "Roboto Slab", serif;
+  font-family: var(--main-font);
   font-size: 1rem;
 }
 
@@ -220,7 +223,6 @@ section h1 {
   width: 100%;
   margin: auto;
   text-align: center;
-  /*! border-bottom: 5px dotted; */
   padding-bottom: 20%;
   border-bottom: 1px solid var(--honey-yellowA);
   background-color: var(--prussian-blueA);
@@ -229,7 +231,6 @@ section h1 {
 .pizzavideo {
   width: 90%;
   height: 100%;
-  /*   border: 2px solid var(--honey-yellowA); */
   border-radius: 5px;
 }
 
@@ -244,7 +245,6 @@ section h1 {
 .content #turhamainos {
   width: 100%;
   display: flex;
-  /*! flex-grow: 100; */
   margin-top: 10%;
   justify-content: center;
   flex-wrap: wrap;
@@ -253,7 +253,6 @@ section h1 {
 
 .content article {
   width: 45%;
-  /*   border: 2px solid var(--honey-yellowA); */
   height: 100%;
   text-align: center;
   line-height: 1.8em;
@@ -315,7 +314,7 @@ section h1 {
   padding: 1px;
   z-index: 11;
 }
-
+/* Markkerin sisälle lisätään pizza iconi  */
 .marker-open::after {
   content: "";
   width: 5px;
@@ -346,23 +345,9 @@ section h1 {
   left: -2.3%;
   visibility: visible;
 }
-/*  tähän edittiä?
-.marker-closed {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: var(--mark-size);
-  height: var(--mark-size);
-  border-radius: 50% 50% 50% 0;
-  background-color: var(--prussian-blue);
-  position: absolute;
-  transform: rotate(-45deg);
-  padding: 2px;
-  top: 110%;
-  visibility: hidden;
-  left: -9999px;
-}
- */
+
+/*  Tehdään ruksi .css:llä markkerin sisälle before & after elementeillä */
+
 .marker-closed::before,
 .marker-closed::after {
   content: "";
@@ -425,6 +410,7 @@ section h1 {
   border-color: var(--orange);
 }
 
+/*  Tehdään ruksi .css:llä togglenapin sisälle before & after elementeillä */
 .leaflet-toggle-nappi::before,
 .leaflet-toggle-nappi::after {
   content: "";
@@ -446,36 +432,12 @@ section h1 {
   transform: rotate(-45deg);
 }
 
-.closed-ikoni {
-  visibility: hidden;
-}
-
-.closed-ikoni.active {
-  visibility: visible;
-}
-
-/* .marker-closed::after {
-  content: "";
-  width: 5px;
-  height: 12px;
-  margin: -8px 0px 0px -2px;
-  background: url("images/zzz-ikoni-trans.png") no-repeat center 0px transparent;
-  position: absolute;
-  border-radius: 50%;
-  padding-left: 10px;
-  padding-top: 21px;
-  padding-right: 24px;
-  padding-bottom: 6px;
-  z-index: 11;
-} */
-
 /* ********************************  Leaflet zoom & out editointi ********************************* */
 
 .leaflet-touch .leaflet-control-layers,
 .leaflet-touch .leaflet-bar {
   border: 0;
   box-shadow: 0;
-  background: white;
 }
 
 .leaflet-touch .leaflet-bar a:last-child {
@@ -512,99 +474,156 @@ section h1 {
   transition: background 150ms ease-in-out;
 }
 
-/* .leaflet-control-zoom-in:hover {
-  background-color: var(--orange);
-  border: 1px solid white;
-}
-
-.leaflet-control-zoom-out:hover {
-  background-color: var(--orange);
-  border: 1px solid white;
-} */
-
-/* background-color: var(--orange); */
-
 /* *********************************  Leaftlet popup kontentti ********************************* */
 
-#map .leaflet-popup-content-wrapper {
+#map .leaflet-div-wrapper {
+  border-radius: 4px;
+  z-index: 1010;
+  position: absolute;
+  bottom: 5px;
   background: var(--prussian-blue);
-  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.4);
-  max-height: 240px;
-  min-width: 100px;
-  display: inline-block;
+  padding: 5px;
+}
+
+#map .leaflet-div-popup {
+  position: relative;
+  font-size: 15px;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--prussian-blue);
   color: var(--honey-yellow);
+  padding: 10px;
+  font-family: var(--main-font);
+}
+#map .leaflet-div-wrapper .leaflet-div-sulku {
+  position: relative;
+  text-decoration: none;
+  z-index: 1010;
+  padding: 0px;
+  display: flex;
+  justify-content: flex-end;
+  margin: -2px 2px 0px 0px;
+  background: white;
+}
+
+#map .leaflet-div-wrapper .leaflet-div-sulku::before,
+#map .leaflet-div-wrapper .leaflet-div-sulku::after {
+  content: "";
+  width: calc(var(--mark-size) * 0.082);
+  height: calc(var(--mark-size) * 0.395);
+  margin: 0px 0px 0px 0px;
+  position: absolute;
+  display: block;
+  background: white;
+}
+
+#map .leaflet-div-wrapper .leaflet-div-sulku::before {
+  transform: rotate(45deg);
+}
+
+#map .leaflet-div-wrapper .leaflet-div-sulku::after {
+  transform: rotate(-45deg);
+}
+
+#map .leaflet-div-wrapper .leaflet-div-sulku:active {
+  background: var(--honey-yellow);
+}
+
+#map .leaflet-popup-content-wrapper {
+  border-radius: 4px;
+  background: var(--prussian-blue);
+  display: flex;
+  flex-direction: column;
+  color: var(--honey-yellow);
+  overflow-x: hidden;
+  font-size: 15px;
+  padding: 0px;
+}
+
+/* pizzeria popup yläosa, ylhäälle tulee teksti */
+#map .pizzatop__bar {
+  line-height: 1.2em;
+  text-align: left;
+}
+/*  pizzeria popup alaosa, tänne tulee navigointi ja kotisivu */
+#map .pizzabot__bar {
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  font-size: 21px;
+  line-height: 1.2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 5px;
+  background: var(--prussian-blue);
+  border-top: 1px solid white;
+  width: 100%;
+  padding-top: 8px;
+  min-width: 180px;
+}
+
+.leaflet-popup-content-wrapper h3 {
+  font-size: 0.99em;
+  color: var(--honey-yellow);
+}
+
+.leaflet-popup-content-wrapper h4 {
+  margin-top: 4px;
+  font-size: 0.89em;
+  display: flex;
+  flex-direction: row;
+  color: var(--honey-yellow);
+}
+
+.leaflet-popup-content-wrapper p {
+  line-height: 1.4em;
+  color: var(--honey-yellow);
+  font-size: 0.89em;
+  margin: 5px 0;
+}
+
+#map .leaflet-popup-content-wrapper a {
+  color: var(--honey-yellow);
+  height: 21px;
+  display: flex;
+  font-size: 0.8125em;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  text-align: center;
+  text-decoration: none;
+  transition: 100ms ease-in-out;
 }
 
 #map .leaflet-popup-content-wrapper #Surli {
-  line-height: 2.5rem;
-  text-align: center;
-  color: var(--honey-yellow);
-  background-color: transparent;
-  transition: 0.2s ease-in-out;
-  box-sizing: border-box;
-  padding: 0.1rem;
-  padding-bottom: 0.1rem;
-  padding-bottom: 0.1rem;
-  font-size: 17px;
-  text-decoration: none;
-  border-bottom: 3px dotted var(--honey-yellow);
-  padding-bottom: 5px;
+  border-right: 1px solid var(--orange);
 }
 
 #map .leaflet-popup-content-wrapper #Sreitti {
-  line-height: 1.7rem;
-  text-align: center;
-  color: var(--honey-yellow);
-  background-color: transparent;
-  transition: 0.2s ease-in-out;
-  box-sizing: border-box;
-  padding: 0.1rem;
-  font-size: 17px;
-  text-decoration: none;
+  border-left: 1px solid var(--orange);
 }
 
-#map .leaflet-popup-content {
-  text-align: center;
-}
-
-#map .leaflet-popup-content-wrapper #Surli:hover {
-  /*   background-color: var(--orange); */
-  color: white;
-  transition: 0.2s ease-in-out;
-}
-
+#map .leaflet-popup-content-wrapper #Surli:hover,
 #map .leaflet-popup-content-wrapper #Sreitti:hover {
-  /*   background-color: var(--orange); */
   color: white;
-  transition: 0.2s ease-in-out;
 }
 
-.leaflet-popup-content-wrapper h4,
-.leaflet-popup-content-wrapper h3,
-.leaflet-popup-content-wrapper p {
-  margin: auto;
-  line-height: 1.5em;
-  text-align: center;
-  width: 100%;
-  color: var(--honey-yellow);
-  padding-bottom: 10px;
-}
-
-#map .leaflet-popup-content-wrapper #Saukioloaika {
+/* #map .leaflet-popup-content-wrapper #Saukioloaika {
   line-height: 1.5em;
   width: fit-content;
-  text-align: center;
   border: 1px solid var(--honey-yellowA);
   border-radius: 3px;
   color: var(--honey-yellow);
   background: var(--prussian-blueA);
   font-size: 14px;
   padding: 2px;
-}
-
+  transition: 0.2s ease-in-out;
+} */
+/* 
 #map .leaflet-popup-content-wrapper #Saukioloaika:hover {
-  background-color: black;
-}
+  background-color: white;
+} */
 
 .leaflet-container a.leaflet-popup-close-button {
   position: absolute;
@@ -614,39 +633,12 @@ section h1 {
   border: none;
   text-align: center;
   width: 16px;
-  font: 20px/13px Tahoma, Verdana, sans-serif;
+  font: 20px/13px roboto;
   text-decoration: none;
   font-weight: bold;
   background: transparent;
   color: white;
 }
-
-/* #map .leaflet-popup-content details[closed] {
-  transition: all 0.4s ease-in-out;
-  max-height: 100px;
-  overflow: hidden;
-  padding-bottom: 20px;
-  padding-top: 10px;
-  transition: all 0.4s ease-in-out;
-}
-
-#map .leaflet-popup-content details[open] {
-  transition: all 0.4s ease-in-out;
-  max-height: 168px;
-  overflow: hidden;
-  padding-bottom: 20px;
-  padding-top: 10px;
-} */
-
-/* #map .leaflet-popup-content-wrapper summary {
-  margin: auto;
-  line-height: 1.5em;
-  text-align: center;
-  width: 90%;
-  color: white;
-  margin-top: 10px;
-  margin-left: -0.4em;
-} */
 
 @media screen and (max-width: 800px) {
   .content {
@@ -911,3 +903,31 @@ div.galleria ul li img:hover {
     margin: 0;
   }
 }
+
+/* Luultavasti ei käytetä detailsia tai summaryita */
+/* #map .leaflet-popup-content details[closed] {
+  transition: all 0.4s ease-in-out;
+  max-height: 100px;
+  overflow: hidden;
+  padding-bottom: 20px;
+  padding-top: 10px;
+  transition: all 0.4s ease-in-out;
+}
+
+#map .leaflet-popup-content details[open] {
+  transition: all 0.4s ease-in-out;
+  max-height: 168px;
+  overflow: hidden;
+  padding-bottom: 20px;
+  padding-top: 10px;
+} */
+
+/* #map .leaflet-popup-content-wrapper summary {
+  margin: auto;
+  line-height: 1.5em;
+  text-align: center;
+  width: 90%;
+  color: white;
+  margin-top: 10px;
+  margin-left: -0.4em;
+} */

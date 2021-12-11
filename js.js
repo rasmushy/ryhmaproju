@@ -1,6 +1,9 @@
 "use strict";
+
 const togglenappi = document.getElementById("togglenappi");
 const navbarLinkit = document.getElementById("navbar-linkit");
+const leafletToggleNappi = document.getElementById("leaflet-toggle-nappi");
+const sulkuToggle = document.getElementsByClassName("closed-ikoni");
 const navbarMap = document.querySelector(".navbar__map");
 const navbarFaq = document.querySelector(".navbar__faq");
 const navTitleHtml = document.querySelector(".brand-title");
@@ -29,10 +32,14 @@ const vIcon = L.divIcon({
   iconAnchor: [15, 40],
 });
 
-// Kartan search bar **************************************
-const pizzaLayer = new L.LayerGroup(); // layeri searchbarilla löytyville elementeille
+// Kartta layeri searchbarille
+const pizzaLayer = new L.LayerGroup();
+// Luodaan reitille layeri kartalle
+const reittiLayer = new L.LayerGroup();
+// addataan layeri kartalle
+map.addLayer(reittiLayer);
 map.addLayer(pizzaLayer);
-
+// Kartan search bar **************************************
 const pizzaSearch = new L.Control.Search({
   textPlaceholder: "Etsi Pizzerian nimellä...",
   position: "topright",
@@ -47,6 +54,11 @@ pizzaSearch.on("search:locationfound", (e) => {
 });
 
 map.addControl(pizzaSearch);
+// sublayerit markkereitten näkymistä varten togglenapilla.
+const pizzaAuki = new L.LayerGroup();
+const pizzaKiinni = new L.LayerGroup();
+pizzaLayer.addLayer(pizzaAuki);
+pizzaLayer.addLayer(pizzaKiinni);
 // Asetukset paikkatiedon hakua varten (valinnainen)
 const options = {
   enableHighAccuracy: true,
@@ -62,8 +74,8 @@ function success(pos) {
     console.log("Error");
     console.log(e);
   });
-  map.setView([crd.latitude, crd.longitude], 15);
-  L.marker([crd.latitude, crd.longitude], {title: "Olet tässä"}).addTo(map).bindPopup(`<p title="Lokaatiosi">Olet Tässä</p>`); // lisätään markkeri omaan lokaatioon
+  map.setView([crd.latitude, crd.longitude], 13);
+  L.marker([crd.latitude, crd.longitude], {title: "Olet tässä"}).addTo(pizzaLayer).bindPopup(`<h3 title="Lokaatiosi">Olet Tässä</h3>`); // lisätään markkeri omaan lokaatioon
 }
 
 // Funktio, joka ajetaan, jos paikkatietojen hakemisessa tapahtuu virhe
@@ -73,8 +85,11 @@ function error(err) {
 
 // Käynnistetään paikkatietojen haku
 navigator.geolocation.getCurrentPosition(success, error, options);
-// haetaan reitti lähtöpisteen ja kohteen avulla
+
+// haetaan reitti lähtö- ja kohde kordinaattien avulla
 function haeReitti(lahto, kohde) {
+  // poistetaan kartalta reitti mikäli semmoinen siellä on jo.
+  reittiLayer.clearLayers();
   // GraphQL haku
   const haku = `{
     plan(
@@ -151,21 +166,23 @@ function haeReitti(lahto, kohde) {
             kulkumode = "Muu";
             break;
         }
-        const startAika = new Date(googleKoodattuReitti[i].startTime); // aika on epoch muodossa niin muutetaan se
-        const endAika = new Date(googleKoodattuReitti[i].endTime); // aika on epoch muodossa niin muutetaan se
+        // aika on epoch muodossa niin muutetaan se
+        const startAika = new Date(googleKoodattuReitti[i].startTime);
+        const endAika = new Date(googleKoodattuReitti[i].endTime);
         // tiedot reitin popuppiin
         const reittiData = `<p>Kello on tällä hetkellä:<br/>${curAika}</p><p>Kulkuväline: ${kulkumode}<br/>Lähtöaika: ${
           startAika.getHours() + ":" + startAika.getMinutes()
         }<br/>Päätösaika: ${endAika.getHours() + ":" + endAika.getMinutes()}</p><p>Kesto (min): ${(googleKoodattuReitti[i].duration / 60).toFixed(1)} 
         <br/>Matkan pituus (km): ${(googleKoodattuReitti[i].distance / 1000).toFixed(2)}</p>`;
+        // Otetaan graphql:sta googlereitti
         const reitti = googleKoodattuReitti[i].legGeometry.points;
         const pisteObjektit = L.Polyline.fromEncoded(reitti).getLatLngs(); // fromEncoded: muutetaan Googlekoodaus Leafletin Polylineksi
         L.polyline(pisteObjektit)
           .setStyle({
             color,
           })
-          .addTo(map)
-          .bindPopup(reittiData);
+          .addTo(reittiLayer) // addataan se reittilayerille
+          .bindPopup(reittiData); // lisätään popuppiin tiedot
       }
       map.fitBounds([
         [lahto.latitude, lahto.longitude],
@@ -185,7 +202,7 @@ async function getPizza(originlat, originlong) {
     console.log(e);
   });
   const jsonData = await response.json();
-  console.log(jsonData.data);
+  // käydään läpi apista saadut tiedot.
   Array.from(jsonData.data).forEach(function (objData) {
     // jokasen objectin osalta seuraava forloop ->
     // ekaksi infot markkeria varten
@@ -210,7 +227,6 @@ async function getPizza(originlat, originlong) {
       closed.setHours(objData.opening_hours?.hours?.[vkPaiva].closes?.split(":")[0] || "");
     }
     // lisätään loput aukioloajat open & closed consteihin
-
     closed.setMinutes(objData.opening_hours?.hours?.[vkPaiva].closes?.split(":")[1] || "");
     closed.setSeconds(objData.opening_hours?.hours?.[vkPaiva].closes?.split(":")[2] || "");
     // luodaan lista muuttujia jolla saadaan aika muotoon hh:mm.
@@ -235,10 +251,11 @@ async function getPizza(originlat, originlong) {
     }},{latitude: ${info.Latitude}, longitude: ${info.Longitude}});return false;">Reittihaku</a>`;
     /*     console.log(open + "<------- ohessa aika open constilla");
     console.log(closed + "<------- ohessa aika closed constilla"); */
-    if ((tanaan >= open != false && tanaan < closed != false) /* || curAika < "4:00:00"  */ || open.getHours() == 0) {
-      L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaLayer).bindPopup(teksti);
+
+    if ((tanaan >= open != false && tanaan < closed != false) || open.getHours() == 0) {
+      L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaAuki).bindPopup(teksti);
     } else {
-      L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaLayer).bindPopup(teksti);
+      L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaKiinni).bindPopup(teksti);
     }
   });
 }
@@ -259,3 +276,9 @@ navbarFaq.addEventListener("click", () => {
 navTitleHtml.addEventListener("click", () => {
   document.querySelector("#top").scrollIntoView({behavior: "smooth"});
 });
+
+L.DomUtil.get("leaflet-toggle-nappi").onclick = markerToggle;
+
+function markerToggle() {
+  sulkuToggle.classList.toggle("active");
+}

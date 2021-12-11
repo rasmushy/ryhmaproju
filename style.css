@@ -418,6 +418,13 @@ section h1 {
   background-color: var(--orange);
 }
 
+.leaflet-toggle-nappi:active,
+.leaflet-piilotus:active {
+  background-color: white;
+  transition: 0s;
+  border-color: var(--orange);
+}
+
 .leaflet-toggle-nappi::before,
 .leaflet-toggle-nappi::after {
   content: "";
@@ -437,6 +444,14 @@ section h1 {
 
 .leaflet-toggle-nappi::after {
   transform: rotate(-45deg);
+}
+
+.closed-ikoni {
+  visibility: hidden;
+}
+
+.closed-ikoni.active {
+  visibility: visible;
 }
 
 /* .marker-closed::after {

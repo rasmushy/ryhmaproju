@@ -2,11 +2,9 @@
 
 const togglenappi = document.getElementById("togglenappi");
 const navbarLinkit = document.getElementById("navbar-linkit");
-const leafletToggleNappi = document.getElementById("leaflet-toggle-nappi");
-const sulkuToggle = document.querySelectorAll(".marker-closed");
 const navbarMap = document.querySelector(".navbar__map");
 const navbarFaq = document.querySelector(".navbar__faq");
-const navTitleHtml = document.querySelector(".brand-title");
+const navTitleHtml = document.querySelector(".paa-otsikko");
 const tanaan = new Date(); // aika jolla katotaan pizza paikat.
 const curDate = tanaan.getFullYear() + "-" + (tanaan.getMonth() + 1) + "-" + tanaan.getDate();
 const curAika = tanaan.getHours() + ":" + tanaan.getMinutes() + ":" + tanaan.getSeconds();
@@ -17,7 +15,7 @@ const map = L.map("map").setView([60.21, 24.95], 9);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
-
+map.doubleClickZoom.disable();
 // kustom markkeritz
 const pIcon = L.divIcon({
   className: "open-ikoni",
@@ -58,7 +56,7 @@ map.addControl(pizzaSearch);
 const pizzaAuki = new L.LayerGroup();
 const pizzaKiinni = new L.LayerGroup();
 pizzaLayer.addLayer(pizzaAuki);
-pizzaLayer.addLayer(pizzaKiinni);
+/* pizzaLayer.addLayer(pizzaKiinni); */
 // Asetukset paikkatiedon hakua varten (valinnainen)
 const options = {
   enableHighAccuracy: true,
@@ -260,6 +258,16 @@ async function getPizza(originlat, originlong) {
   });
 }
 
+function markerToggle(x) {
+  if (x == 1) {
+    map.removeLayer(pizzaKiinni);
+    document.querySelector("#leaflet-toggle-nappi").setAttribute("onclick", "markerToggle(0);return false;");
+  } else {
+    map.addLayer(pizzaKiinni);
+    document.querySelector("#leaflet-toggle-nappi").setAttribute("onclick", "markerToggle(1);return false;");
+  }
+}
+
 // responsive togglebuttoni
 togglenappi.addEventListener("click", () => {
   navbarLinkit.classList.toggle("active");
@@ -276,9 +284,3 @@ navbarFaq.addEventListener("click", () => {
 navTitleHtml.addEventListener("click", () => {
   document.querySelector("#top").scrollIntoView({behavior: "smooth"});
 });
-
-L.DomUtil.get("leaflet-toggle-nappi").onclick = markerToggle;
-
-function markerToggle() {
-  sulkuToggle.style.visibility = "hidden";
-}

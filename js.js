@@ -3,7 +3,7 @@
 const togglenappi = document.getElementById("togglenappi");
 const navbarLinkit = document.getElementById("navbar-linkit");
 const leafletToggleNappi = document.getElementById("leaflet-toggle-nappi");
-const sulkuToggle = document.getElementsByClassName("closed-ikoni");
+const sulkuToggle = document.querySelectorAll(".marker-closed");
 const navbarMap = document.querySelector(".navbar__map");
 const navbarFaq = document.querySelector(".navbar__faq");
 const navTitleHtml = document.querySelector(".brand-title");
@@ -280,5 +280,5 @@ navTitleHtml.addEventListener("click", () => {
 L.DomUtil.get("leaflet-toggle-nappi").onclick = markerToggle;
 
 function markerToggle() {
-  sulkuToggle.classList.toggle("active");
+  sulkuToggle.style.visibility = "hidden";
 }

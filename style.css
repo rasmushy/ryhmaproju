@@ -320,7 +320,7 @@ section h1 {
   z-index: 11;
 }
 
-.marker-closed.active {
+.marker-closed {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -336,7 +336,7 @@ section h1 {
   left: -2.3%;
   visibility: visible;
 }
-
+/*  tähän edittiä?
 .marker-closed {
   display: flex;
   justify-content: center;
@@ -350,11 +350,10 @@ section h1 {
   margin: 20px 0 0 -15px;
   padding: 2px;
   top: 110%;
-  /*   left: -2.3%; */
   visibility: hidden;
   left: -9999px;
 }
-
+ */
 .marker-closed::before,
 .marker-closed::after {
   content: "";

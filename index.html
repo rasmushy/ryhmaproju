@@ -6,16 +6,16 @@
     <link rel="icon" href="data:," />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&amp;subset=latin-ext" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="src/leaflet-search.css" />
     <link href="style.css" rel="stylesheet" />
-    <title>Ryhmäproju</title>
+    <title>Pizzeria aukioloajat</title>
   </head>
 
   <body>
-    <header>
+    <header class="navheader">
       <nav class="navbar">
-        <h1 class="paa-otsikko">Pizzanyt?</h1>
+        <h1 class="nav-otsikko">Pizzanyt?</h1>
         <div>
           <a id="togglenappi" href="javascript:void(0)" class="togglenappi">
             <span class="bar"></span>
@@ -25,9 +25,8 @@
         </div>
         <div id="navbar-linkit" class="navbar-linkit">
           <ul>
-            <li class="navbar__map"><a href="javascript:void(0)">Kartta</a></li>
-            <li class="navbar__faq"><a href="javascript:void(0)">Lisätiedot</a></li>
-            <li class="navbar__secret"><a href="javascript:void(0)">Secret link</a></li>
+            <li class="navbar__map"><a href="javascript:void(0)">Pizzakartta</a></li>
+            <li class="navbar__faq"><a href="javascript:void(0)">FAQ</a></li>
           </ul>
         </div>
       </nav>
@@ -35,7 +34,11 @@
     <div class="bg-image">
       <div class="content">
         <main>
-          <div id="map">
+          <header class="mainheader">
+            <h2>Pizzeria aukioloajat</h2>
+            <h3>Löydät kartalta lähimmät avoinna olevat pizzeriasi Helsingistä</h3>
+          </header>
+          <div id="map" aria-label="Pizzakartta">
             <div class="leaflet-piilotus">
               <a
                 id="leaflet-toggle-nappi"
@@ -48,7 +51,7 @@
           </div>
         </main>
         <section>
-          <header class="infoheader"><h1>Aukioloajat</h1></header>
+          <header class="infoheader"><h2>Ryhmätyön pakolliset :D</h2></header>
           <figure id="infovideo">
             <video class="pizzavideo" controls>
               <source src="" type="video/mp4" />
@@ -59,14 +62,14 @@
           </figure>
           <div id="turhamainos">
             <article class="vasenpuoli">
-              <h2>Höpön löpö</h2>
+              <h3>Höpön löpö</h3>
               <p>
                 Aikataulujen lisäksi voit myös navigoida itsesi paikalle mm. menemällä paikalle. Lue nämä ja 10 muuta vinkkiä pizzalle menemiseen
                 vaikka Seiskasta lmao.
               </p>
             </article>
             <article class="oikeapuoli">
-              <h2>Loremia hipsusti</h2>
+              <h3>Loremia hipsusti</h3>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit debitis reiciendis voluptate. Ullam voluptatibus qui facilis
                 perspiciatis? Saepe est expedita minima optio architecto quasi officia numquam laborum maxime. Nostrum placeat eveniet molestias.

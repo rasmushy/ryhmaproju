@@ -43,6 +43,13 @@ $gradient-bottom-left: linear-gradient(315deg, #8ecae6ff, #219ebcff, #023047ff, 
 $gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff); */
 
   /* ************COLORS************* */
+
+  /* ************VARS************ /*
+
+  /* Marker Size */
+  --mark-size: 30px;
+  /* Main Font */
+  --main-font: "DM Sans", sans-serif;
 }
 .leaflet-container .leaflet-control-search {
   position: relative;
@@ -52,21 +59,23 @@ $gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #f
   padding: 0;
   border-radius: 5px;
   transition: none;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--main-font);
   transition: 0ms;
   transition: width 300ms ease-in-out;
 }
 
 .leaflet-control-search .search-input {
   display: block;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--main-font);
   color: var(--prussian-blue);
   background: white;
-  font-size: 22px;
+  font-size: 16px;
   z-index: 1000;
   height: 32px;
   border: 2px solid var(--honey-yellow);
   padding-left: 3px;
+  margin-right: 34px;
+  padding-right: 3px;
 }
 .leaflet-control-search .search-input:focus {
   outline: none;
@@ -162,8 +171,9 @@ $gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #f
   overflow-x: hidden;
   cursor: pointer;
   margin: 0;
-  font-size: 16px;
+  font-size: 14px;
   width: 101%;
+  color: var(--prussian-blue);
 }
 .leaflet-control-search .search-tip {
   margin: 2px;

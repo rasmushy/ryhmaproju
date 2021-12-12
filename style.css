@@ -562,8 +562,7 @@ section h1 {
   transition: background 150ms ease-in-out;
 }
 
-/* *********************************  Leaftlet popup kontentti ********************************* */
-
+/* ********************************* LEAFLET OMA POP UP REITTIHAKUUN ************************** */
 #map .leaflet-div-wrapper {
   border-radius: 4px;
   z-index: 1010;
@@ -618,6 +617,8 @@ section h1 {
   background: var(--honey-yellow);
 }
 
+/* *********************************  Leaftlet popup kontentti ********************************* */
+
 #map .leaflet-popup-content-wrapper {
   border-radius: 4px;
   background: var(--prussian-blue);
@@ -633,13 +634,14 @@ section h1 {
 #map .pizzatop__bar {
   line-height: 1.2em;
   text-align: left;
+  margin-top: -9%;
 }
 /*  pizzeria popup alaosa, tänne tulee navigointi ja kotisivu */
 #map .pizzabot__bar {
   font-weight: 500;
   letter-spacing: -0.025em;
   font-size: 21px;
-  line-height: 1.2;
+  line-height: 1.2em;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -653,7 +655,8 @@ section h1 {
 
 .leaflet-popup-content-wrapper h3 {
   font-size: 0.99em;
-  color: var(--honey-yellow);
+  color: var(--orange);
+  margin-bottom: 0px;
 }
 
 .leaflet-popup-content-wrapper h4 {
@@ -662,13 +665,14 @@ section h1 {
   display: flex;
   flex-direction: row;
   color: var(--honey-yellow);
+  margin-bottom: 0px;
 }
 
 .leaflet-popup-content-wrapper p {
   line-height: 1.4em;
   color: var(--honey-yellow);
   font-size: 0.89em;
-  margin: 5px 0;
+  margin: 5px 0px;
 }
 
 #map .leaflet-popup-content-wrapper a {
@@ -905,31 +909,3 @@ div.galleria ul li img:hover {
     margin: 0;
   }
 }
-
-/* Luultavasti ei käytetä detailsia tai summaryita */
-/* #map .leaflet-popup-content details[closed] {
-  transition: all 0.4s ease-in-out;
-  max-height: 100px;
-  overflow: hidden;
-  padding-bottom: 20px;
-  padding-top: 10px;
-  transition: all 0.4s ease-in-out;
-}
-
-#map .leaflet-popup-content details[open] {
-  transition: all 0.4s ease-in-out;
-  max-height: 168px;
-  overflow: hidden;
-  padding-bottom: 20px;
-  padding-top: 10px;
-} */
-
-/* #map .leaflet-popup-content-wrapper summary {
-  margin: auto;
-  line-height: 1.5em;
-  text-align: center;
-  width: 90%;
-  color: white;
-  margin-top: 10px;
-  margin-left: -0.4em;
-} */

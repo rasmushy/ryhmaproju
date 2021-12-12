@@ -81,17 +81,22 @@
 
 /* ********************************* itse body alkaa ********************************* */
 
-body {
+.pageWrapper {
+  margin: auto;
+  min-height: 100%;
+  max-width: 1200px;
+  width: 100%;
   font-family: var(--main-font);
   font-weight: 400;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  height: 2160px;
-  background-color: var(--prussian-blue);
+  /*  background-color: var(--orangeA); */
   color: var(--honey-yellow);
+}
+
+body {
+  margin: auto;
 }
 /* background image taustalle */
 .bg-image {
@@ -100,12 +105,9 @@ body {
   background-attachment: scroll;
   background-position: center;
   background-size: cover;
-  padding-bottom: 30%;
-  padding-top: 7.5%;
 }
 
 .navheader {
-  width: 100%;
   z-index: 10;
   font-weight: 700;
   font-family: var(--main-font);
@@ -128,6 +130,7 @@ body {
 }
 
 .navbar {
+  max-width: 1200px;
   width: 100%;
   display: flex;
   position: fixed;
@@ -724,6 +727,9 @@ section h1 {
 }
 
 @media screen and (max-width: 800px) {
+  .pageWrapper {
+    width: 100%;
+  }
   .content {
     display: flex;
     align-items: center;
@@ -780,6 +786,7 @@ section h1 {
     border-bottom: 1px solid var(--honey-yellowA);
     line-height: 2em;
     padding-bottom: 5%;
+    height: fit-content;
   }
 
   .content .vasenpuoli p {

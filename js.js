@@ -262,10 +262,9 @@ async function getPizza(originlat, originlong) {
       closed.setHours(objData.opening_hours?.hours?.[matiketopelasu]?.closes?.split(":")[0] ?? "");
     }
     closed.setMinutes(objData.opening_hours?.hours?.[matiketopelasu]?.closes?.split(":")[1] ?? "");
-    /*     closed.setSeconds(objData.opening_hours?.hours?.[matiketopelasu]?.closes?.split(":")[2] ?? ""); */
     open.setHours(objData.opening_hours?.hours?.[matiketopelasu]?.opens?.split(":")[0] ?? "");
     open.setMinutes(objData.opening_hours?.hours?.[matiketopelasu]?.opens?.split(":")[1] ?? "");
-    /*     open.setSeconds(objData.opening_hours?.hours?.[matiketopelasu]?.opens?.split(":")[2] ?? ""); */
+
     // luodaan auki ja kiinni ololle omat ajat ja isketään ne functioon joka muuttaa aikamuotoon hh:mm
     const auki = ajanMuuttaja(open);
     const kiinni = ajanMuuttaja(closed);

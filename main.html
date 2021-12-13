@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" id="top">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" href="data:," />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="src/leaflet-search.css" />
+    <link href="style.css" rel="stylesheet" />
+    <title>Pizzeria aukioloajat</title>
+  </head>
+
+  <body class="bg-image">
+    <div class="pageWrapper">
+      <header class="navheader">
+        <nav class="navbar">
+          <h1 class="nav-otsikko">Pizzanyt?</h1>
+          <div>
+            <a id="togglenappi" href="javascript:void(0)" class="togglenappi">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </a>
+          </div>
+          <div id="navbar-linkit" class="navbar-linkit">
+            <ul>
+              <li class="navbar__map"><a href="javascript:void(0)">Pizzakartta</a></li>
+              <li class="navbar__faq"><a href="javascript:void(0)">FAQ</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <div class="content">
+        <main>
+          <header class="mainheader">
+            <h2>Pizzeria aukioloajat</h2>
+            <h3>Löydät kartalta lähimmät avoinna olevat pizzeriasi Helsingistä</h3>
+          </header>
+          <div id="map" aria-label="Pizzakartta">
+            <div class="leaflet-piilotus">
+              <a
+                id="leaflet-toggle-nappi"
+                class="leaflet-toggle-nappi"
+                title="Näytä myös kiinni olevat pizzeriat.."
+                onclick="markerToggle(0);return false;"
+              ></a>
+            </div>
+            <div class="leaflet-div-wrapper" style="visibility: hidden"></div>
+          </div>
+        </main>
+        <section>
+          <header class="infoheader"><h2>Ryhmätyön pakolliset :D</h2></header>
+          <figure id="infovideo">
+            <video class="pizzavideo" controls>
+              <source src="" type="video/mp4" />
+              <source src="" type="video/ogg" />
+              Your browser does not support the video tag.
+            </video>
+            <figcaption>Pizzan syönti aikeissa?</figcaption>
+          </figure>
+          <div id="turhamainos">
+            <article class="vasenpuoli">
+              <h3>Höpön löpö</h3>
+              <p>
+                Aikataulujen lisäksi voit myös navigoida itsesi paikalle mm. menemällä paikalle. Lue nämä ja 10 muuta vinkkiä pizzalle menemiseen
+                vaikka Seiskasta lmao.
+              </p>
+            </article>
+            <article class="oikeapuoli">
+              <h3>Loremia hipsusti</h3>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit debitis reiciendis voluptate. Ullam voluptatibus qui facilis
+                perspiciatis? Saepe est expedita minima optio architecto quasi officia numquam laborum maxime. Nostrum placeat eveniet molestias.
+                Vitae, molestiae! Alias porro, nulla, iure ducimus dicta sequi veritatis soluta, ipsa vero accusamus cum consequatur dolores
+                recusandae voluptatibus doloremque. Delectus, sapiente nam! Natus voluptate dicta architecto velit! Temporibus necessitatibus soluta,
+                dicta debitis commodi ipsum nam voluptatem ex, ipsam nobis impedit, consequuntur sed accusantium exercitationem id laboriosam quidem
+                quos laborum incidunt dolore et voluptatibus enim nulla magnam? Illum asperiores doloribus soluta culpa quas pariatur voluptate
+                dolorum harum, molestias dolorem neque nostrum magnam omnis voluptas. Qui deleniti similique, fuga quis exercitationem voluptas
+                aliquam natus incidunt veniam tenetur temporibus rerum accusantium possimus. Dolor ipsa nesciunt unde, animi voluptas doloribus ipsum
+                molestias voluptatem error.
+              </p>
+            </article>
+            <div class="wrappi">
+              <div class="galleria">
+                <ul>
+                  <li><img src="images/pizza1.png" /></li>
+                  <li><img src="images/pizza2.png" /></li>
+                  <li><img src="images/pizza3.png" /></li>
+                  <li><img src="images/pizza4.png" /></li>
+                  <li><img src="images/pizza5.png" /></li>
+                  <li><img src="images/pizza6.png" /></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="src/leaflet-search.js"></script>
+    <script src="js/Polyline.encoded.js"></script>
+    <script src="js.js"></script>
+  </body>
+</html>
+<!--       <div class="bg-image">v      </div> -->

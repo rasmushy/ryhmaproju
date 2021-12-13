@@ -31,37 +31,70 @@
         </nav>
       </header>
       <div class="content">
-        <main>
-          <header class="mainheader">
-            <h2>Etusivu esittelylle</h2>
-            <h3>Jee jee ja joojoo ?? okei :ddd</h3>
-          </header>
-          <section>
-            <header class="infoheader"><h2>Jotain tekstiä :D</h2></header>
-            <div id="turhamainos">
-              <article class="vasenpuoli">
-                <h3>Ipsum Lorem</h3>
+        <main class="esittelymain">
+          <section id="Esittely">
+            <header class="esittelyheader">
+              <h2>Etusivu esittelylle</h2>
+              <h3>Pizzanyt tekijät:</h3>
+            </header>
+            <figure id="rasmus">
+              <img src="images/rasmuskoodaamassa.jpg" alt="Kuva Rasmuksesta" />
+              <figcaption>Rasmus</figcaption>
+            </figure>
+            <figure id="oliver">
+              <img src="images/" alt="Kuva Oliverista" />
+              <figcaption>Oliver</figcaption>
+            </figure>
+            <figure id="otto">
+              <img src="images/" alt="Kuva Otosta" />
+              <figcaption>Otto</figcaption>
+            </figure>
+          </section>
+          <section id="Koodi">
+            <header class="koodiheader"></header>
+            <section class="javascript">
+              <h2>Javascript</h2>
+              <figure>
+                <h3>getPizza();</h3>
+                <img src="images/getPizza.JPG" alt="getPizza function callista kuva" />
+                <figcaption>getPizza() functio kutsutaan kun oma lokaatio on löytynyt</figcaption>
+                <p>Sivumme markkerit kartalle laittaa paikoilleen getPizza function, joka hakee datan myhelsinki apista ja litteroi sen.</p>
                 <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem suscipit reiciendis qui. Sequi culpa corporis, reprehenderit magni
-                  quaerat consequatur quo iure voluptatum eligendi mollitia. Repellat qui modi optio molestiae vero, minus dolores vel voluptatem
-                  adipisci tempora sed! Animi facere minus dolorem nemo consequatur inventore ipsa sequi nam repellat, voluptate molestiae.
+                  Jos pizzapaikka on auki litteroidun tiedon perusteella niin se asetetaan layerille pizzaAuki, muulloin se asetetaan pizzaKiinni
+                  layerille
                 </p>
-              </article>
-              <article class="oikeapuoli">
-                <h3>Loremia hipsusti</h3>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit debitis reiciendis voluptate. Ullam voluptatibus qui facilis
-                  perspiciatis? Saepe est expedita minima optio architecto quasi officia numquam laborum maxime. Nostrum placeat eveniet molestias.
-                  Vitae, molestiae! Alias porro, nulla, iure ducimus dicta sequi veritatis soluta, ipsa vero accusamus cum consequatur dolores
-                  recusandae voluptatibus doloremque. Delectus, sapiente nam! Natus voluptate dicta architecto velit! Temporibus necessitatibus
-                  soluta, dicta debitis commodi ipsum nam voluptatem ex, ipsam nobis impedit, consequuntur sed accusantium exercitationem id
-                  laboriosam quidem quos laborum incidunt dolore et voluptatibus enim nulla magnam? Illum asperiores doloribus soluta culpa quas
-                  pariatur voluptate dolorum harum, molestias dolorem neque nostrum magnam omnis voluptas. Qui deleniti similique, fuga quis
-                  exercitationem voluptas aliquam natus incidunt veniam tenetur temporibus rerum accusantium possimus. Dolor ipsa nesciunt unde, animi
-                  voluptas doloribus ipsum molestias voluptatem error.
-                </p>
-              </article>
-            </div>
+              </figure>
+
+              <section class="navigointi">
+                <h3>Markkerin popupin ominaisuudet</h3>
+                <figure>
+                  <figcaption>Kuva markkerista ja sen popup sisällöstä</figcaption>
+                  <img src="images/markkeri.JPG" alt="Kuva markkerista" />
+                  <p>
+                    Reittihaku toteuttaa function haeReitti joka hakee hsl apin avulla reitin.<br />Tämän jälkeen se muuttaa reitin polylineiksi ja
+                    luo markkerit reitille.
+                  </p>
+                </figure>
+                <figure>
+                  <figcaption>Kuva reittihaun popup divistä lisätietoneinsa</figcaption>
+                  <img src="images/popupdivi.JPG" alt="kuva popup divistä" />
+                  <p>Kartan alakulmaan tulee oma ikkuna josta näkee lisätietoja matkasta.</p>
+                </figure>
+                <figure>
+                  <figcaption>Kuva searchbarista</figcaption>
+                  <img src="images/searchbar.JPG" alt="kuva searchbarista" />
+                  <p>Searchbarilla voi etsiä oman suosikki pizzeeriasi nimen</p>
+                </figure>
+              </section>
+            </section>
+            <section class="css">
+              <h2>Css</h2>
+              <figure>
+                <h3>Css ruksi</h3>
+                <figcaption>::after & ::before</figcaption>
+                <img src="images/cssRuxikoodi.JPG" alt="css koodista kuva" />
+              </figure>
+            </section>
           </section>
         </main>
       </div>

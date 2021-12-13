@@ -940,3 +940,133 @@ div.galleria ul li img:hover {
     margin: 0;
   }
 }
+
+/* ******************** ESITTELY SIVUN LIIBA LAABAT **************************** */
+
+#Esittely {
+  padding-bottom: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20%;
+  background: var(--prussian-blueA);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#Esittely img {
+  width: 100%;
+  height: auto;
+  max-width: max-content;
+  object-fit: cover;
+  object-position: bottom;
+  margin: 0;
+  padding: 0;
+}
+
+#Koodi img {
+  width: 100%;
+  height: auto;
+  max-width: max-content;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+#Koodi {
+  width: 100%;
+  display: flex;
+  margin-top: 10%;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-bottom: 20%;
+  background: var(--prussian-blueA);
+  padding-bottom: 5%;
+  width: 100%;
+}
+
+.content .javascript {
+  padding: 2%;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.content .javascript h2 {
+  width: 100%;
+  font-size: 16x;
+  line-height: 1.5em;
+  text-align: center;
+}
+
+.content .javascript h3 {
+  width: 100%;
+  font-size: 16x;
+  line-height: 1.5em;
+  text-align: center;
+}
+
+.content .javascript h4 {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5em;
+}
+
+.content .javascript p {
+  width: fit-content;
+  font-size: 14px;
+  line-height: 1.5em;
+  width: 80%;
+}
+
+.content .javascript figcaption {
+  width: 100%;
+}
+
+.content .javascript figure {
+  margin: 0;
+}
+
+.content .javascript .navigointi {
+  display: flex;
+  flex-wrap: flex;
+  width: 100%;
+  margin: auto;
+  justify-content: center;
+}
+
+.esittelymain {
+  padding-top: 10%;
+}
+
+/* .content .javascript img {
+  width: 100%;
+  max-width: max-content;
+  height: auto;
+} */
+
+.content #Koodi .javascript figure img {
+  width: 100%;
+  height: auto;
+  max-width: max-content;
+  margin-bottom: 15px;
+  border: 1px solid white;
+}
+
+.content #Koodi .css {
+  padding: 2%;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.content #Koodi .css img {
+  width: 90%;
+  max-width: max-content;
+  max-height: max-content;
+}
+
+/* ******************** ESITTELY SIVUN LIIBA LAABAT **************************** */

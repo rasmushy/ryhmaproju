@@ -457,7 +457,7 @@ section h1 {
 /* *********************************  toggle piilotus kiinnioleville paikoille *********************************  */
 
 .leaflet-piilotus {
-  border: 2px solid var(--orange);
+  border: 2px solid var(--prussian-blue);
   display: block;
   width: 32px;
   height: 33px;
@@ -539,7 +539,7 @@ section h1 {
   line-height: 32px;
   background-color: white;
   margin-bottom: 1px;
-  border: 2px solid var(--orange);
+  border: 2px solid var(--prussian-blue);
 }
 
 .leaflet-touch .leaflet-bar a:hover {
@@ -583,6 +583,11 @@ section h1 {
   color: var(--honey-yellow);
   padding: 10px;
   font-family: var(--main-font);
+}
+
+#map .leaflet-div-popup p {
+  margin: 0;
+  height: auto;
 }
 
 #map .leaflet-div-wrapper .leaflet-div-sulku {

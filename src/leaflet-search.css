@@ -71,15 +71,15 @@ $gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #f
   background: white;
   font-size: 16px;
   z-index: 1000;
-  height: 32px;
-  border: 2px solid var(--honey-yellow);
+  height: 30px;
+  border: 2px solid var(--prussian-blue);
   padding-left: 3px;
   margin-right: 34px;
   padding-right: 3px;
 }
 .leaflet-control-search .search-input:focus {
   outline: none;
-  border: 2px solid var(--orange);
+  border: 2px solid var(--prussian-blue);
 }
 
 .leaflet-control-search.search-load .search-input {
@@ -96,21 +96,21 @@ $gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #f
   position: absolute;
   right: 39px;
   text-decoration: none;
-  top: 7px;
+  top: 11px;
   z-index: 1010;
   border: 1px solid black;
   border-radius: 500px;
-  height: 19px;
-  width: 19px;
+  height: 14px;
+  width: 14px;
   transition: 150ms ease-in-out;
 }
 
 .leaflet-control-search .search-cancel::before,
 .leaflet-control-search .search-cancel::after {
   content: "";
-  width: calc(var(--mark-size) * 0.1);
-  height: calc(var(--mark-size) * 0.5);
-  margin: 2px 0px 0px 8px;
+  width: calc(var(--mark-size) * 0.07);
+  height: calc(var(--mark-size) * 0.33);
+  margin: 2px 0px 0px 6px;
   background: black;
   position: absolute;
   left: 0;
@@ -138,7 +138,7 @@ $gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #f
 .leaflet-control-search .search-button {
   display: block;
   z-index: 1000;
-  border: 2px solid var(--orange);
+  border: 2px solid var(--prussian-blue);
   text-decoration: none;
   background: url("../images/search-icon.png") no-repeat 5px 5px white;
   cursor: pointer;
@@ -184,7 +184,6 @@ $gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #f
   border-radius: 0.25em;
   text-decoration: none;
   white-space: nowrap;
-  vertical-align: center;
   top: 0px;
   right: 0px;
 }
@@ -196,11 +195,15 @@ $gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #f
 .leaflet-control-search .search-alert {
   cursor: pointer;
   clear: both;
-  font-size: 0.85em;
+  font-size: 1.2em;
+  padding: 5.4px 4.4px;
+  padding-bottom: 5px;
+  color: red;
+  background: var(--prussian-blue);
+  transition: 150ms ease-out;
+  border: 2px solid var(--honey-yellow);
+  width: 82%;
+  padding-bottom: 5px;
   margin-bottom: 5px;
-  padding: 0 0.25em;
-  color: #e00;
-  font-weight: bold;
-  border-radius: 0.25em;
-  margin-top: 5px;
+  margin-top: 1px;
 }

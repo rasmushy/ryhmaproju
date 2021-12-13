@@ -41,12 +41,14 @@ const pizzaAuki = new L.LayerGroup();
 const pizzaKiinni = new L.LayerGroup();
 //  ********************** Kartan searchbar STARTS *********************
 const pizzaSearch = new L.Control.Search({
-  textPlaceholder: "Etsi Pizzerian nimellä...",
-  position: "topright",
   layer: L.featureGroup([pizzaAuki, pizzaKiinni]),
   initial: false,
-  zoom: 15,
   marker: false,
+  zoom: 15,
+  position: "topright",
+  propertyName: "title",
+  textPlaceholder: "Etsi Pizzerian nimellä...",
+  textErr: "Hakusi ei tuottanut tulosta..",
 });
 
 pizzaSearch.on("search:locationfound", (e) => {
@@ -174,22 +176,16 @@ function haeReitti(lahto, kohde) {
             kulkumode = "Muu";
             break;
         }
-
         // aika on epoch muodossa niin muutetaan se
         const startAika = new Date(googleKoodattuReitti[i].startTime);
         const endAika = new Date(googleKoodattuReitti[i].endTime);
-        let lahtoH = tanaan.getHours() + "";
-        let lahtoM = tanaan.getMinutes() + "";
-        let startH = startAika.getHours() + "";
-        let startM = startAika.getMinutes() + "";
-        let endH = endAika.getHours() + "";
-        let endM = endAika.getMinutes() + "";
+        const lahto = ajanMuuttaja(tanaan);
+        const start = ajanMuuttaja(startAika);
+        const end = ajanMuuttaja(endAika);
         // tiedot reitin popuppiin
-        const reittiData = `<p>Kello on tällä hetkellä:<br/>${
-          lahtoH.padStart(2, "0") + ":" + lahtoM.padStart(2, "0")
-        }</p><p>Kulkuväline: ${kulkumode}<br/>Reittiaika: ${startH.padStart(2, "0") + ":" + startM.padStart(2, "0")}-${
-          endH.padStart(2, "0") + ":" + endM.padStart(2, "0")
-        }</p><p>Kesto (min): ${(googleKoodattuReitti[i].duration / 60).toFixed(1)} 
+        const reittiData = `<p>Kello on tällä hetkellä:<br/>${lahto}</p><p>Kulkuväline: ${kulkumode}<br/>Reittiaika: ${start}-${end}</p><p>Kesto (min): ${(
+          googleKoodattuReitti[i].duration / 60
+        ).toFixed(1)} 
         <br/>Matkan pituus (km): ${(googleKoodattuReitti[i].distance / 1000).toFixed(2)}</p>`;
         // Otetaan graphql:sta googlereitti
         const reitti = googleKoodattuReitti[i].legGeometry.points;
@@ -205,15 +201,11 @@ function haeReitti(lahto, kohde) {
       // Lisätään erillinen divi reittitiedoilla navigoinnin yhteydessä.
       const reitinAlkuaika = new Date(reittiDivi.startTime);
       const reitinLoppuaika = new Date(reittiDivi.endTime);
-      let totalH = reitinAlkuaika.getHours() + "";
-      let totalM = reitinAlkuaika.getMinutes() + "";
-      let totalEndH = reitinLoppuaika.getHours() + "";
-      let totalEndM = reitinLoppuaika.getMinutes() + "";
+      const totalStart = ajanMuuttaja(reitinAlkuaika);
+      const totalEnd = ajanMuuttaja(reitinLoppuaika);
       const textDivi = `<p>Matkustusaika julkisilla pizzeriaan: ${(reittiDivi.duration / 60).toFixed(
         1
-      )} (min).</p><p>Haettu reitti kartalle lähtee: ${totalH.padStart(2, "0") + ":" + totalM.padStart(2, "0")}</p><p>Olisit perillä kello: ${
-        totalEndH.padStart(2, "0") + ":" + totalEndM.padStart(2, "0")
-      }</p>`;
+      )} (min).</p><p>Haettu reitti kartalle lähtee: ${totalStart}</p><p>Olisit perillä kello: ${totalEnd}</p>`;
       // divi omaa onclick ominaisuuden jossa se kutsuu markerToggle function antamalla vaihtoehdon 3..
       const cancelDivi = `<a class="leaflet-div-sulku" href="#" title="Sulje reittitiedot" onclick="markerToggle(3);return false;"></a>`;
       leafletDivCancel.innerHTML = cancelDivi;
@@ -252,6 +244,7 @@ async function getPizza(originlat, originlong) {
       Latitude: objData.location.lat,
       Longitude: objData.location.lon,
       urli: objData.info_url,
+      postinumero: objData.location.address.postal_code,
     };
     // seuraavaksi asetetaan aukioloajat Date muotoon. vkPaiva const pitää huolen että tietää onko ma ti ke to pe jne.
     const open = new Date();
@@ -261,9 +254,6 @@ async function getPizza(originlat, originlong) {
     if (matiketopelasu < 0) {
       matiketopelasu = 0;
     }
-    open.setHours(objData.opening_hours?.hours?.[matiketopelasu]?.opens?.split(":")[0] ?? "");
-    open.setMinutes(objData.opening_hours?.hours?.[matiketopelasu]?.opens?.split(":")[1] ?? "");
-    open.setSeconds(objData.opening_hours?.hours?.[matiketopelasu]?.opens?.split(":")[2] ?? "");
     // katsotaan onko sulkeutumisaika pienempi kuin alkamisaika (keskiyö)
     if ((objData.opening_hours?.hours?.[matiketopelasu].closes?.split(":")[0] ?? "") < open.getHours()) {
       closed.setDate(tanaan.getDate() + 1); //mikäli on niin lisätään closed dayhin yksi päivä lisää.
@@ -271,18 +261,16 @@ async function getPizza(originlat, originlong) {
     } else {
       closed.setHours(objData.opening_hours?.hours?.[matiketopelasu]?.closes?.split(":")[0] ?? "");
     }
-    // lisätään loput aukioloajat open & closed consteihin
     closed.setMinutes(objData.opening_hours?.hours?.[matiketopelasu]?.closes?.split(":")[1] ?? "");
-    closed.setSeconds(objData.opening_hours?.hours?.[matiketopelasu]?.closes?.split(":")[2] ?? "");
-    // luodaan lista muuttujia jolla saadaan aika muotoon hh:mm.
-    let aukih = open.getHours() + "";
-    let aukim = open.getMinutes() + "";
-    let kiinnih = closed.getHours() + "";
-    let kiinnim = closed.getMinutes() + "";
+    /*     closed.setSeconds(objData.opening_hours?.hours?.[matiketopelasu]?.closes?.split(":")[2] ?? ""); */
+    open.setHours(objData.opening_hours?.hours?.[matiketopelasu]?.opens?.split(":")[0] ?? "");
+    open.setMinutes(objData.opening_hours?.hours?.[matiketopelasu]?.opens?.split(":")[1] ?? "");
+    /*     open.setSeconds(objData.opening_hours?.hours?.[matiketopelasu]?.opens?.split(":")[2] ?? ""); */
+    // luodaan auki ja kiinni ololle omat ajat ja isketään ne functioon joka muuttaa aikamuotoon hh:mm
+    const auki = ajanMuuttaja(open);
+    const kiinni = ajanMuuttaja(closed);
     // aukiolocheck antaa paikalle ajan mikäli semmoinen löytyy, esim. 00:00 - 00:00 ei ole aukioloaika.
-    let aukioloCheck = `<p id="Saukioloaika">Aukioloaika tänään: ${aukih.padStart(2, "0") + ":" + aukim.padStart(2, "0")}-${
-      kiinnih.padStart(2, "0") + ":" + kiinnim.padStart(2, "0")
-    }</p>`;
+    let aukioloCheck = `<p id="Saukioloaika">Aukioloaika tänään: ${auki}-${kiinni}</p>`;
     // tässä if lauseke jolla aukiolocheck muuttuu mikäli aukioloaikoja ei ole saatavilla.
     if (open.getHours() == 0) {
       aukioloCheck = `<p id="Saukioloaika">Aukioloaika ei saatavilla</p>`;
@@ -298,14 +286,14 @@ async function getPizza(originlat, originlong) {
     if (tanaan >= open != false && tanaan < closed != false /* || open.getHours() == 0 */) {
       L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaAuki).bindPopup(teksti);
     } else {
-      L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaKiinni).bindPopup(teksti);
+      L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi, posti: info.postinumero}).addTo(pizzaKiinni).bindPopup(teksti);
     }
   });
-  // poistetaan kiinni olevat pizzeriat kartalta
+  // poistetaan kiinni olevat pizzeriat kartalta oletuksena functiolla.
   markerToggle(1);
 }
 
-// Toggle functio eri napeille.
+// Functio eri napeille.
 function markerToggle(x) {
   if (x == 1) {
     pizzaLayer.removeLayer(pizzaKiinni);
@@ -316,6 +304,14 @@ function markerToggle(x) {
   } else if (x == 3) {
     leafletDivCancel.setAttribute("style", "visibility: hidden");
   }
+}
+
+// functio joka muuttaa ajan hh:mm muotoon.
+function ajanMuuttaja(time) {
+  let h = time.getHours() + "";
+  let m = time.getMinutes() + "";
+  let trimIt = h.padStart(2, "0") + ":" + m.padStart(2, "0");
+  return trimIt;
 }
 
 // responsive togglebuttoni

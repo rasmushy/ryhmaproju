@@ -1,142 +1,144 @@
 <!DOCTYPE html>
 <html lang="en" id="top">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <link rel="icon" href="data:," />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="src/leaflet-search.css" />
-  <link href="style.css" rel="stylesheet" />
-  <title>PizzaNyt?</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" href="data:," />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="src/leaflet-search.css" />
+    <link href="style.css" rel="stylesheet" />
+    <title>PizzaNyt?</title>
+  </head>
 
-<body class="bg-image">
-<div class="pageWrapper">
-  <header class="navheader">
-    <nav class="navbar">
-      <div class="nav-otsikko">
-        <img id="otsikko" src="images/kello2.png" />
-      </div>
-      <div>
-        <a id="togglenappi" href="javascript:void(0)" class="togglenappi">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </a>
-      </div>
-      <div id="navbar-linkit" class="navbar-linkit">
-        <ul>
-          <li class="navbar__map"><a href="javascript:void(0)">Pizzakartta</a></li>
-          <li class="navbar__faq"><a href="javascript:void(0)">FAQ</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <div class="content">
-    <main>
-      <header class="mainheader">
-        <h2>Pizzeria aukioloajat</h2>
-        <h3>Löydät kartalta lähimmät avoinna olevat pizzeriasi Helsingistä</h3>
-      </header>
-      <div id="map" aria-label="Pizzakartta">
-        <div class="leaflet-piilotus">
-          <a
-                  id="leaflet-toggle-nappi"
-                  class="leaflet-toggle-nappi"
-                  title="Näytä myös kiinni olevat pizzeriat.."
-                  onclick="markerToggle(0);return false;"
-          ></a>
-        </div>
-        <div class="leaflet-div-wrapper" style="visibility: hidden"></div>
-      </div>
-    </main>
-    <section>
-      <header class="infoheader"><h2>Ryhmätyön pakolliset :D</h2></header>
-      <figure id="infovideo">
-        <iframe class="iframe-container" frameborder="0" allowfullscreen="" src="https:www.youtube.com/embed/_UVEVVi7KCA"> </iframe>
-        <figcaption>Pizzan syönti aikeissa?</figcaption>
-      </figure>
-      <div id="turhamainos">
-        <article class="vasenpuoli">
-          <h3>Pizzeria</h3>
-          <p>
-            Pizzeria eli pitseria on ravintola, joka keskittyy lähinnä pizzoihin.Pizzojen lisäksi tuotevalikoimaan voi kuulua myös esimerkiksi
-            kebabia, salaattia sekä pastaa.
-          </p>
-          <br />
-          <p>
-            Pizzeria ja henkilökuntaa Via Depretisin varrella Napolissa noin vuonna 1910. Maailman ensimmäisen pizzerian avasi Raffaele Esposito
-            Napoliin vuonna 1830. Se on nimeltään Pizzeria Brandi ja toimii yhä.
-          </p>
-          <br />
-          <p>Ensimmäinen Pizza Margherita valmistettiin 1889 siellä vierailleen kuningatar Margheritan kunniaksi Italian lipun väreihin.</p>
-          <p>
-            Yhdysvalloissa pizzojen myynti alkoi 1905, kun Gennaro Lombardi asensi myymälä-kahvilaansa pizzauunin ja aloitti pizzanpalojen (slice)
-            myynnin.
-          </p>
-          <br />
-          <p>
-            Pizzeria Roma Kemissä Suomen ensimmäinen pizzeria oli Giovanni Tedeschin vuonna 1961 Haminaan perustama Ravintola Giovanni, joka toimi
-            1980-luvun alkuun saakka.
-          </p>
-          <br />
-          <p>Seuraava tulija Suomeen oli Adriano Vinciguerran Lappeenrantaan 1964 perustama Adriano Bar.</p>
-          <br />
-          <p>Tunnettuja pizzeriaketjuja ovat muun muassa Pizza Hut, Pizza Express, Pizzataxi, Suomessa Rax Buffet, Kotipizza sekä Rosso.</p>
-          &copy; wikipedia
-        </article>
-        <article class="oikeapuoli">
-          <h3>Loremia hipsusti</h3>
-          <p></p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit debitis reiciendis voluptate. Ullam voluptatibus qui facilis
-            perspiciatis?
-          </p>
-          <br />
-          <p>
-            Saepe est expedita minima optio architecto quasi officia numquam laborum maxime. Nostrum placeat eveniet molestias. Vitae, molestiae!
-            Alias porro, nulla, iure ducimus dicta sequi veritatis soluta, ipsa vero accusamus cum consequatur dolores recusandae voluptatibus
-            doloremque.
-          </p>
-          <br />
-          <p>
-            Delectus, sapiente nam! Natus voluptate dicta architecto velit! Temporibus necessitatibus soluta, dicta debitis commodi ipsum nam
-            voluptatem ex, ipsam nobis impedit, consequuntur sed accusantium exercitationem id laboriosam quidem quos laborum incidunt dolore et
-            voluptatibus enim nulla magnam?
-          </p>
-          <br />
-          <p>
-            Illum asperiores doloribus soluta culpa quas pariatur voluptate dolorum harum, molestias dolorem neque nostrum magnam omnis voluptas.
-          </p>
-          <br />
-          <p>
-            Qui deleniti similique, fuga quis exercitationem voluptas aliquam natus incidunt veniam tenetur temporibus rerum accusantium possimus.
-          </p>
-          <br />
-          <p>Dolor ipsa nesciunt unde, animi voluptas doloribus ipsum molestias voluptatem error.</p>
-        </article>
-        <div class="wrappi">
-          <div class="galleria">
+  <body class="bg-image">
+    <div class="pageWrapper">
+      <header class="navheader">
+        <nav class="navbar">
+          <div class="nav-otsikko">
+            <img id="otsikko" src="images/kello2.png" />
+          </div>
+          <div>
+            <a id="togglenappi" href="javascript:void(0)" class="togglenappi">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </a>
+          </div>
+          <div id="navbar-linkit" class="navbar-linkit">
             <ul>
-              <li><img src="images/sivu5.png" /></li>
-              <li><img src="images/sivu2.png" /></li>
-              <li><img src="images/sivu3.png" /></li>
-              <li><img src="images/sivu4.png" /></li>
-              <li><img src="images/sivu1.png" /></li>
-              <li><img src="images/sivu6.png" /></li>
+              <li class="navbar__map"><a href="javascript:void(0)">Pizzakartta</a></li>
+              <li class="navbar__faq"><a href="javascript:void(0)">FAQ</a></li>
             </ul>
           </div>
-        </div>
+        </nav>
+      </header>
+      <div class="content">
+        <main>
+          <header class="mainheader">
+            <h2>Pizzeria aukioloajat</h2>
+            <h3>Löydät kartalta lähimmät avoinna olevat pizzeriasi Helsingistä</h3>
+          </header>
+          <div id="map" aria-label="Pizzakartta">
+            <div class="leaflet-piilotus">
+              <a
+                id="leaflet-toggle-nappi"
+                class="leaflet-toggle-nappi"
+                title="Näytä myös kiinni olevat pizzeriat.."
+                onclick="markerToggle(0);return false;"
+              ></a>
+            </div>
+            <div class="leaflet-div-wrapper" style="visibility: hidden"></div>
+          </div>
+        </main>
+        <section>
+          <header class="infoheader"><h2>Ryhmätyön pakolliset :D</h2></header>
+          <figure id="infovideo">
+            <figcaption>Pizzan syönti aikeissa?</figcaption>
+            <div class=".iframe-container">
+              <iframe width="1300" height="600" frameborder="0" allowfullscreen="" src="https:www.youtube.com/embed/_UVEVVi7KCA"> </iframe>
+            </div>
+          </figure>
+          <div id="turhamainos">
+            <article class="vasenpuoli">
+              <h3>Pizzeria</h3>
+              <p>
+                Pizzeria eli pitseria on ravintola, joka keskittyy lähinnä pizzoihin.Pizzojen lisäksi tuotevalikoimaan voi kuulua myös esimerkiksi
+                kebabia, salaattia sekä pastaa.
+              </p>
+              <br />
+              <p>
+                Pizzeria ja henkilökuntaa Via Depretisin varrella Napolissa noin vuonna 1910. Maailman ensimmäisen pizzerian avasi Raffaele Esposito
+                Napoliin vuonna 1830. Se on nimeltään Pizzeria Brandi ja toimii yhä.
+              </p>
+              <br />
+              <p>Ensimmäinen Pizza Margherita valmistettiin 1889 siellä vierailleen kuningatar Margheritan kunniaksi Italian lipun väreihin.</p>
+              <p>
+                Yhdysvalloissa pizzojen myynti alkoi 1905, kun Gennaro Lombardi asensi myymälä-kahvilaansa pizzauunin ja aloitti pizzanpalojen (slice)
+                myynnin.
+              </p>
+              <br />
+              <p>
+                Pizzeria Roma Kemissä Suomen ensimmäinen pizzeria oli Giovanni Tedeschin vuonna 1961 Haminaan perustama Ravintola Giovanni, joka toimi
+                1980-luvun alkuun saakka.
+              </p>
+              <br />
+              <p>Seuraava tulija Suomeen oli Adriano Vinciguerran Lappeenrantaan 1964 perustama Adriano Bar.</p>
+              <br />
+              <p>Tunnettuja pizzeriaketjuja ovat muun muassa Pizza Hut, Pizza Express, Pizzataxi, Suomessa Rax Buffet, Kotipizza sekä Rosso.</p>
+              &copy; wikipedia
+            </article>
+            <article class="oikeapuoli">
+              <h3>Loremia hipsusti</h3>
+              <p></p>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit debitis reiciendis voluptate. Ullam voluptatibus qui facilis
+                perspiciatis?
+              </p>
+              <br />
+              <p>
+                Saepe est expedita minima optio architecto quasi officia numquam laborum maxime. Nostrum placeat eveniet molestias. Vitae, molestiae!
+                Alias porro, nulla, iure ducimus dicta sequi veritatis soluta, ipsa vero accusamus cum consequatur dolores recusandae voluptatibus
+                doloremque.
+              </p>
+              <br />
+              <p>
+                Delectus, sapiente nam! Natus voluptate dicta architecto velit! Temporibus necessitatibus soluta, dicta debitis commodi ipsum nam
+                voluptatem ex, ipsam nobis impedit, consequuntur sed accusantium exercitationem id laboriosam quidem quos laborum incidunt dolore et
+                voluptatibus enim nulla magnam?
+              </p>
+              <br />
+              <p>
+                Illum asperiores doloribus soluta culpa quas pariatur voluptate dolorum harum, molestias dolorem neque nostrum magnam omnis voluptas.
+              </p>
+              <br />
+              <p>
+                Qui deleniti similique, fuga quis exercitationem voluptas aliquam natus incidunt veniam tenetur temporibus rerum accusantium possimus.
+              </p>
+              <br />
+              <p>Dolor ipsa nesciunt unde, animi voluptas doloribus ipsum molestias voluptatem error.</p>
+            </article>
+            <div class="wrappi">
+              <div class="galleria">
+                <ul>
+                  <li><img src="images/sivu5.png" /></li>
+                  <li><img src="images/sivu2.png" /></li>
+                  <li><img src="images/sivu3.png" /></li>
+                  <li><img src="images/sivu4.png" /></li>
+                  <li><img src="images/sivu1.png" /></li>
+                  <li><img src="images/sivu6.png" /></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-    </section>
-  </div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-<script src="src/leaflet-search.js"></script>
-<script src="js/Polyline.encoded.js"></script>
-<script src="js.js"></script>
-</body>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="src/leaflet-search.js"></script>
+    <script src="js/Polyline.encoded.js"></script>
+    <script src="js.js"></script>
+  </body>
 </html>
 <!--       <div class="bg-image">v      </div> -->

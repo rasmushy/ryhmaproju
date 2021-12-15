@@ -269,7 +269,7 @@ async function getPizza(originlat, originlong) {
     const auki = ajanMuuttaja(open);
     const kiinni = ajanMuuttaja(closed);
     // aukiolocheck antaa paikalle ajan mikäli semmoinen löytyy, esim. 00:00 - 00:00 ei ole aukioloaika.
-    let aukioloCheck = `<p id="Saukioloaika">Aukioloaikaz tänään: ${auki}-${kiinni}</p>`;
+    let aukioloCheck = `<p id="Saukioloaika">Aukioloaika tänään: ${auki}-${kiinni}</p>`;
     // tässä if lauseke jolla aukiolocheck muuttuu mikäli aukioloaikoja ei ole saatavilla.
     if (open.getHours() == 0) {
       aukioloCheck = `<p id="Saukioloaika">Aukioloaika ei saatavilla</p>`;
@@ -287,7 +287,7 @@ async function getPizza(originlat, originlong) {
       if (tanaan > closed == true) {
         L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaKiinni).bindPopup(teksti);
       } else {
-        if (curAika > kiinni && tanaan.getDay() === closed.getDay()) {
+        if (curAika > kiinni && (tanaan.getDay() === closed.getDay()) != false) {
           L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaKiinni).bindPopup(teksti);
         } else {
           L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaAuki).bindPopup(teksti);

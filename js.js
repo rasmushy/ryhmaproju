@@ -282,10 +282,7 @@ async function getPizza(originlat, originlong) {
       origin.longitude
     }},{latitude: ${info.Latitude}, longitude: ${info.Longitude}});return false;">Reittihaku</a></div>`;
     console.log(closed + " <---- closed aika" + info?.nimi);
-    /*     console.log(curAika >= auki != false && curAika < kiinni != false); */
     // Lisätään markkerit kartalle riippuen siitä onko ne kiinni vai ei.. Mikäli aikaa ei löydy lisätään ne aukiolevian erikoismaininnalla
-    console.log("tanaan > closed -> " + tanaan > closed == true);
-    console.log("tanaan > auki -> " + tanaan > auki != true);
     if (tanaan > open == true) {
       if (tanaan > closed == true) {
         L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaKiinni).bindPopup(teksti);
@@ -299,7 +296,6 @@ async function getPizza(originlat, originlong) {
     }
   });
   // poistetaan kiinni olevat pizzeriat kartalta oletuksena functiolla.
-  /* || open.getHours() == 0 */
   markerToggle(1);
 }
 

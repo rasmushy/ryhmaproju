@@ -1,106 +1,105 @@
 * {
-    /* Lisätään padding ja margin 0:llaksi koko html jotta fullscreen ominaisuus toimii moitteetomasti */
-    /* NÄITÄ EI KÄYTETÄÄKKÄÄN ei aikaa tehdä fullscreeniä. */
-    /* padding: 0;
+  /* Lisätään padding ja margin 0:llaksi koko html jotta fullscreen ominaisuus toimii moitteetomasti */
+  /* NÄITÄ EI KÄYTETÄÄKKÄÄN ei aikaa tehdä fullscreeniä. */
+  /* padding: 0;
     margin: 0; */
 
-    /* ************COLORS************* */
+  /* ************COLORS************* */
 
-    /* CSS HEX */
-    --light-cornflower-blue: #8ecae6ff;
-    --blue-green: #219ebcff;
-    --prussian-blue: #023047ff;
-    --honey-yellow: #ffb703ff;
-    --orange: #fb8500ff;
+  /* CSS HEX */
+  --light-cornflower-blue: #8ecae6ff;
+  --blue-green: #219ebcff;
+  --prussian-blue: #023047ff;
+  --honey-yellow: #ffb703ff;
+  --orange: #fb8500ff;
 
-    /* CSS HSL */
-    --light-cornflower-blueA: hsla(199, 64%, 73%, 0.6);
-    --blue-greenA: hsla(192, 70%, 43%, 0.1);
-    --prussian-blueA: hsla(200, 95%, 14%, 0.7);
-    --honey-yellowA: hsla(43, 100%, 51%, 0.5);
-    --orangeA: hsla(32, 100%, 49%, 0.4);
+  /* CSS HSL */
+  --light-cornflower-blueA: hsla(199, 64%, 73%, 0.6);
+  --blue-greenA: hsla(192, 70%, 43%, 0.1);
+  --prussian-blueA: hsla(200, 95%, 14%, 0.7);
+  --honey-yellowA: hsla(43, 100%, 51%, 0.5);
+  --orangeA: hsla(32, 100%, 49%, 0.4);
 
-    /* SCSS Gradient */
-    --gradient-right: linear-gradient(
-            90deg,
-            var(--light-cornflower-blueA),
-            var(--blue-greenA),
-            var(--prussian-blueA),
-            var(--honey-yellowA),
-            var(--orangeA)
-    );
-    --gradient-left: linear-gradient(
-            270deg,
-            var(--light-cornflower-blueA),
-            var(--blue-greenA),
-            var(--prussian-blueA),
-            var(--honey-yellowA),
-            var(--orangeA)
-    );
-    --gradient-top-right: linear-gradient(
-            45deg,
-            var(--light-cornflower-blueA),
-            var(--blue-greenA),
-            var(--prussian-blueA),
-            var(--honey-yellowA),
-            var(--orangeA)
-    );
-    --gradient-bottom-right: linear-gradient(
-            135deg,
-            var(--light-cornflower-blueA),
-            var(--blue-greenA),
-            var(--prussian-blueA),
-            var(--honey-yellowA),
-            var(--orangeA)
-    );
-    --gradient-top-left: linear-gradient(
-            225deg,
-            var(--light-cornflower-blueA),
-            var(--blue-greenA),
-            var(--prussian-blueA),
-            var(--honey-yellowA),
-            var(--orangeA)
-    );
-    --gradient-bottom-left: linear-gradient(
-            315deg,
-            var(--light-cornflower-blueA),
-            var(--blue-greenA),
-            var(--prussian-blueA),
-            var(--honey-yellowA),
-            var(--orangeA)
-    );
-    --gradient-radial: radial-gradient(var(--light-cornflower-blueA), var(--blue-greenA), var(--prussian-blueA), var(--honey-yellowA), var(--orangeA));
-    /* ************COLORS************* */
+  /* SCSS Gradient */
+  --gradient-right: linear-gradient(
+    90deg,
+    var(--light-cornflower-blueA),
+    var(--blue-greenA),
+    var(--prussian-blueA),
+    var(--honey-yellowA),
+    var(--orangeA)
+  );
+  --gradient-left: linear-gradient(
+    270deg,
+    var(--light-cornflower-blueA),
+    var(--blue-greenA),
+    var(--prussian-blueA),
+    var(--honey-yellowA),
+    var(--orangeA)
+  );
+  --gradient-top-right: linear-gradient(
+    45deg,
+    var(--light-cornflower-blueA),
+    var(--blue-greenA),
+    var(--prussian-blueA),
+    var(--honey-yellowA),
+    var(--orangeA)
+  );
+  --gradient-bottom-right: linear-gradient(
+    135deg,
+    var(--light-cornflower-blueA),
+    var(--blue-greenA),
+    var(--prussian-blueA),
+    var(--honey-yellowA),
+    var(--orangeA)
+  );
+  --gradient-top-left: linear-gradient(
+    225deg,
+    var(--light-cornflower-blueA),
+    var(--blue-greenA),
+    var(--prussian-blueA),
+    var(--honey-yellowA),
+    var(--orangeA)
+  );
+  --gradient-bottom-left: linear-gradient(
+    315deg,
+    var(--light-cornflower-blueA),
+    var(--blue-greenA),
+    var(--prussian-blueA),
+    var(--honey-yellowA),
+    var(--orangeA)
+  );
+  --gradient-radial: radial-gradient(var(--light-cornflower-blueA), var(--blue-greenA), var(--prussian-blueA), var(--honey-yellowA), var(--orangeA));
+  /* ************COLORS************* */
 
-    /* ************VARS************ /*
+  /* ************VARS************ /*
     /* Marker Size */
-    --mark-size: 30px;
-    /* Main Font */
-    --main-font: "DM Sans", sans-serif;
+  --mark-size: 30px;
+  /* Main Font */
+  --main-font: "DM Sans", sans-serif;
 }
 
 /* ********************************* itse body alkaa ********************************* */
 
 .pageWrapper {
-    margin: auto;
-    min-height: 100%;
-    max-width: 1400px;
-    width: 100%;
-    font-family: var(--main-font);
-    font-weight: 400;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    /*  background-color: var(--orangeA); */
-    color: var(--honey-yellow);
+  margin: auto;
+  min-height: 100%;
+  max-width: 1400px;
+  width: 100%;
+  font-family: var(--main-font);
+  font-weight: 400;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /*  background-color: var(--orangeA); */
+  color: var(--honey-yellow);
 }
 
 body {
-    margin: auto;
+  margin: auto;
 }
 /* background image taustalle */
 .bg-image {
-<<<<<<< HEAD
   background: rgb(255, 255, 255);
   background: linear-gradient(
     97deg,
@@ -123,217 +122,190 @@ body {
   #otsikko {
     display: none;
   }
-=======
-    background-image: url("https://thumbs2.imgbox.com/b4/92/lUKN5BKp_t.png");
-    background-repeat: repeat;
-    background-attachment: scroll;
-    background-position: center;
-    background-size: fill;
-}
-#otsikko{
-
-    height: 5em;
-    margin-right: auto;
-}
-@media (max-width: 400px){
-    #otsikko{
-        display: none;
-    }
->>>>>>> d80f63160f13a1d9bda4604c0ea3301549ab485d
 }
 
 .navheader {
-    z-index: 10;
-    font-weight: 700;
-    font-family: var(--main-font);
+  z-index: 10;
+  font-weight: 700;
+  font-family: var(--main-font);
 }
 
 .nav-otsikko {
-    color: white;
-    margin-right: auto;
-    padding-left: 0.5rem;
-    cursor: pointer;
+  color: white;
+  margin-right: auto;
+  padding-left: 0.5rem;
+  cursor: pointer;
 }
 
 .nav-otsikko:focus,
 .nav-otsikko:hover {
-    color: var(--honey-yellow);
+  color: var(--honey-yellow);
 }
 
 .nav-otsikko:active {
-    color: var(--prussian-blue);
+  color: var(--prussian-blue);
 }
 
 .navbar {
-    max-width: 1400px;
-    width: 100%;
-    height: 100px;
-    display: flex;
-    position: fixed;
-    justify-content: flex-end;
-    align-items: center;
-    background: var(--gradient-top-right);
-    font-family: var(--main-font);
-    font-size: 1.5rem;
+  max-width: 1400px;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  position: fixed;
+  justify-content: flex-end;
+  align-items: center;
+  background: var(--gradient-top-right);
+  font-family: var(--main-font);
+  font-size: 1.5rem;
 }
 
 .navbar-linkit ul {
-    display: flex;
-    margin: 0;
-    padding: 0;
+  display: flex;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-linkit li {
-    list-style: none;
-    margin-right: 10px;
+  list-style: none;
+  margin-right: 10px;
 }
 
 .navbar-linkit a {
-    font-style: italic;
-    transition: 100ms ease-in-out;
-    display: block;
-    text-decoration: none;
-    color: white;
-    padding: 1rem;
-    font-weight: 700;
-    border-bottom: 1px solid transparent;
-    padding-bottom: 0.5rem;
+  font-style: italic;
+  transition: 100ms ease-in-out;
+  display: block;
+  text-decoration: none;
+  color: white;
+  padding: 1rem;
+  font-weight: 700;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.5rem;
 }
 
 .navbar-linkit li :hover {
-    color: var(--honey-yellow);
-    border-bottom: 1px solid white;
+  color: var(--honey-yellow);
+  border-bottom: 1px solid white;
 }
 
 .navbar-linkit li a:active {
-    color: var(--prussian-blue);
+  color: var(--prussian-blue);
 }
 
 .togglenappi {
-    position: absolute;
-    top: 2.5rem;
-    right: 1rem;
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 36px;
-    height: 24px;
+  position: absolute;
+  top: 2.5rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 36px;
+  height: 24px;
 }
 .togglenappi .bar {
-    height: 3px;
-    width: 100%;
-    background-color: white;
-    border-radius: 5px;
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 5px;
 }
 @media (max-width: 800px) {
-    .togglenappi {
-        display: flex;
-    }
+  .togglenappi {
+    display: flex;
+  }
 
-    .nav-otsikko {
-        /*  margin-left: 0.5rem; */
-        margin-bottom: 13px;
-    }
+  .nav-otsikko {
+    /*  margin-left: 0.5rem; */
+    margin-bottom: 13px;
+  }
 
-    .navbar-linkit {
-        display: none;
-        width: 100%;
-    }
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        min-height: 60px;
-    }
-    .navbar-linkit ul {
-        flex-direction: column;
-        width: 100%;
-    }
-    .navbar-linkit li {
-        text-align: center;
-    }
-    .navbar-linkit li a {
-        padding: 0.5rem 1rem;
-    }
+  .navbar-linkit {
+    display: none;
+    width: 100%;
+  }
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 60px;
+  }
+  .navbar-linkit ul {
+    flex-direction: column;
+    width: 100%;
+  }
+  .navbar-linkit li {
+    text-align: center;
+  }
+  .navbar-linkit li a {
+    padding: 0.5rem 1rem;
+  }
 
-    .navbar-linkit li a:hover {
-        border-bottom: 1px solid transparent;
-    }
-    .navbar-linkit.active {
-        display: flex;
-        transition: 300ms ease-in-out;
-    }
+  .navbar-linkit li a:hover {
+    border-bottom: 1px solid transparent;
+  }
+  .navbar-linkit.active {
+    display: flex;
+    transition: 300ms ease-in-out;
+  }
 }
 
 .content {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 /* ********************************* Mapin ympärys yms, sisällys tulee alempana ********************************* */
 
 main {
-<<<<<<< HEAD
   padding-bottom: 5%;
   width: 100%;
   display: flex;
   flex-direction: column;
   margin-bottom: 20%;
   background: var(--prussian-blue);
-=======
-    padding-bottom: 5%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20%;
-    background: var(--prussian-blueA);
->>>>>>> d80f63160f13a1d9bda4604c0ea3301549ab485d
 }
 
 .mainheader {
-    margin-top: 5%;
-    padding-top: 2%;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 2%;
-    line-height: 1.8em;
+  margin-top: 5%;
+  padding-top: 2%;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2%;
+  line-height: 1.8em;
 }
 
 .mainheader h3 {
-    font-weight: 700;
-    font-size: 18px;
+  font-weight: 700;
+  font-size: 18px;
 }
 
 .mainheader h2 {
-    font-weight: 500;
-    font-size: 24px;
+  font-weight: 500;
+  font-size: 24px;
 }
 
 #map {
-    margin: auto;
-    width: 80%;
-    position: relative;
-    height: 500px;
-    display: flex;
-    flex-wrap: wrap;
-    z-index: 2;
-    border: 5px solid transparent;
-    border-radius: 10px;
-    font-family: var(--main-font);
+  margin: auto;
+  width: 80%;
+  position: relative;
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 2;
+  border: 5px solid transparent;
+  border-radius: 10px;
+  font-family: var(--main-font);
 }
 
 /* ********************************* Ala sectionin osuus *********************************  */
 
 section {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    padding-bottom: 3%;
-    font-family: var(--main-font);
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 3%;
+  font-family: var(--main-font);
 }
 
 section h1 {
-<<<<<<< HEAD
   text-align: center;
   margin: auto;
   margin-top: 25px;
@@ -357,69 +329,43 @@ section h1 {
   padding-bottom: 20%;
   border-bottom: 1px solid var(--honey-yellowA);
   background-color: var(--prussian-blue);
-=======
-    text-align: center;
-    margin: auto;
-    margin-top: 25px;
-    padding-bottom: 50px;
-    padding-top: 25px;
-    background-color: var(--prussian-blueA);
-}
-
-.infoheader {
-    padding-top: 2.5%;
-    width: 100%;
-    text-align: center;
-    background-color: var(--prussian-blueA);
-    line-height: 1.8em;
-}
-
-.content #infovideo {
-    width: 100%;
-    margin: auto;
-    text-align: center;
-    padding-bottom: 20%;
-    border-bottom: 1px solid var(--honey-yellowA);
-    background-color: var(--prussian-blueA);
->>>>>>> d80f63160f13a1d9bda4604c0ea3301549ab485d
 }
 
 .pizzavideo {
-    width: 90%;
-    height: 100%;
-    border-radius: 5px;
+  width: 90%;
+  height: 100%;
+  border-radius: 5px;
 }
 
 .content #infovideo figcaption {
-    width: fit-content;
-    position: relative;
-    margin: auto;
-    padding-bottom: 50px;
-    margin-top: 15px;
+  width: fit-content;
+  position: relative;
+  margin: auto;
+  padding-bottom: 50px;
+  margin-top: 15px;
 }
 
 .content #turhamainos {
-    width: 100%;
-    display: flex;
-    margin-top: 10%;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: row;
+  width: 100%;
+  display: flex;
+  margin-top: 10%;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 .content article {
-    width: 45%;
-    height: 100%;
-    text-align: center;
-    line-height: 1.8em;
-    margin: 15px;
-    border: 1px dotted var(--light-cornflower-blue);
-    background-color: var(--prussian-blueA);
-    border-radius: 5px;
+  width: 45%;
+  height: 100%;
+  text-align: center;
+  line-height: 1.8em;
+  margin: 15px;
+  border: 1px dotted var(--light-cornflower-blue);
+  background-color: var(--prussian-blueA);
+  border-radius: 5px;
 }
 
 .content .vasenpuoli {
-<<<<<<< HEAD
   height: 400px;
   overflow: auto;
   width: 100%;
@@ -429,15 +375,11 @@ section h1 {
   border: 1px dotted var(--light-cornflower-blue);
   background-color: var(--prussian-blue);
   border-radius: 5px;
-=======
-    height: 400px;
-    overflow: auto;
->>>>>>> d80f63160f13a1d9bda4604c0ea3301549ab485d
 }
 
 .content .vasenpuoli p {
-    width: 80%;
-    margin: auto;
+  width: 80%;
+  margin: auto;
 }
 
 /* .content .vasenpuoli h2 {
@@ -448,7 +390,6 @@ section h1 {
 } */
 
 .content .oikeapuoli {
-<<<<<<< HEAD
   height: 400px;
   overflow: auto;
   width: 100%;
@@ -458,15 +399,11 @@ section h1 {
   border: 1px dotted var(--light-cornflower-blue);
   background-color: var(--prussian-blue);
   border-radius: 5px;
-=======
-    height: 400px;
-    overflow: auto;
->>>>>>> d80f63160f13a1d9bda4604c0ea3301549ab485d
 }
 
 .content .oikeapuoli p {
-    width: 80%;
-    margin: auto;
+  width: 80%;
+  margin: auto;
 }
 
 /* .content .oikeapuoli h2 {
@@ -480,322 +417,322 @@ section h1 {
 /* *********************************  leaflet ikonit marker iconit ********************************* */
 
 .marker-open {
-    width: 30px;
-    height: 30px;
-    border-radius: 50% 50% 50% 0;
-    background-color: var(--orange);
-    position: absolute;
-    transform: rotate(-45deg);
-    left: 50%;
-    top: 50%;
-    margin: 20px 0 0 -15px;
-    padding: 1px;
-    z-index: 11;
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 50% 0;
+  background-color: var(--orange);
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 50%;
+  top: 50%;
+  margin: 20px 0 0 -15px;
+  padding: 1px;
+  z-index: 11;
 }
 /* Markkerin sisälle lisätään pizza iconi  */
 .marker-open::after {
-    content: "";
-    width: 5px;
-    height: 12px;
-    margin: -8px 0px 0px -2px;
-    background: url("images/pizza-icon.png") no-repeat center 0px transparent;
-    position: absolute;
-    border-radius: 50%;
-    padding-left: 10px;
-    padding-top: 21px;
-    padding-right: 24px;
-    padding-bottom: 6px;
-    z-index: 11;
+  content: "";
+  width: 5px;
+  height: 12px;
+  margin: -8px 0px 0px -2px;
+  background: url("images/pizza-icon.png") no-repeat center 0px transparent;
+  position: absolute;
+  border-radius: 50%;
+  padding-left: 10px;
+  padding-top: 21px;
+  padding-right: 24px;
+  padding-bottom: 6px;
+  z-index: 11;
 }
 
 .marker-closed {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: var(--mark-size);
-    height: var(--mark-size);
-    border-radius: 50% 50% 50% 0;
-    background-color: var(--prussian-blue);
-    position: absolute;
-    transform: rotate(-45deg);
-    padding: 2px;
-    top: 110%;
-    left: -2.3%;
-    visibility: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--mark-size);
+  height: var(--mark-size);
+  border-radius: 50% 50% 50% 0;
+  background-color: var(--prussian-blue);
+  position: absolute;
+  transform: rotate(-45deg);
+  padding: 2px;
+  top: 110%;
+  left: -2.3%;
+  visibility: visible;
 }
 
 /*  Tehdään ruksi .css:llä markkerin sisälle before & after elementeillä */
 
 .marker-closed::before,
 .marker-closed::after {
-    content: "";
-    width: calc(var(--mark-size) * 0.2);
-    height: calc(var(--mark-size) * 0.8);
-    margin: 0px 0px 0px 0px;
-    background: var(--honey-yellow);
-    position: absolute;
+  content: "";
+  width: calc(var(--mark-size) * 0.2);
+  height: calc(var(--mark-size) * 0.8);
+  margin: 0px 0px 0px 0px;
+  background: var(--honey-yellow);
+  position: absolute;
 }
 
 .marker-closed::before {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .marker-closed::after {
-    transform: rotate(-270deg);
+  transform: rotate(-270deg);
 }
 
 /* *********************************  toggle piilotus kiinnioleville paikoille *********************************  */
 
 .leaflet-piilotus {
-    border: 2px solid var(--prussian-blue);
-    display: block;
-    width: 32px;
-    height: 33px;
-    z-index: 1000;
-    margin-left: auto;
-    position: relative;
-    left: -10px;
-    top: 47px;
+  border: 2px solid var(--prussian-blue);
+  display: block;
+  width: 32px;
+  height: 33px;
+  z-index: 1000;
+  margin-left: auto;
+  position: relative;
+  left: -10px;
+  top: 47px;
 }
 
 .leaflet-piilotus:hover {
-    border: 2px solid white;
-    padding: 0;
+  border: 2px solid white;
+  padding: 0;
 }
 
 .leaflet-toggle-nappi {
-    display: flex;
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    background-color: white;
-    text-align: center;
-    text-decoration: none;
-    color: var(--honey-yellow);
-    position: absolute;
-    transition: background 150ms ease-in-out;
-    cursor: pointer;
+  display: flex;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  background-color: white;
+  text-align: center;
+  text-decoration: none;
+  color: var(--honey-yellow);
+  position: absolute;
+  transition: background 150ms ease-in-out;
+  cursor: pointer;
 }
 
 .leaflet-toggle-nappi:hover {
-    background-color: var(--orange);
+  background-color: var(--orange);
 }
 
 .leaflet-toggle-nappi:active,
 .leaflet-piilotus:active {
-    background-color: white;
-    transition: 0s;
-    border-color: var(--orange);
+  background-color: white;
+  transition: 0s;
+  border-color: var(--orange);
 }
 
 /*  Tehdään ruksi .css:llä togglenapin sisälle before & after elementeillä */
 .leaflet-toggle-nappi::before,
 .leaflet-toggle-nappi::after {
-    content: "";
-    width: calc(var(--mark-size) * 0.1);
-    height: calc(var(--mark-size) * 0.8);
-    margin: 0px 0px 0px 0px;
-    background: black;
-    position: absolute;
-    margin-left: auto;
-    left: 15px;
-    top: 4px;
+  content: "";
+  width: calc(var(--mark-size) * 0.1);
+  height: calc(var(--mark-size) * 0.8);
+  margin: 0px 0px 0px 0px;
+  background: black;
+  position: absolute;
+  margin-left: auto;
+  left: 15px;
+  top: 4px;
 }
 
 .leaflet-toggle-nappi::before {
-    transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .leaflet-toggle-nappi::after {
-    transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 /* ********************************  Leaflet zoom & out editointi ********************************* */
 
 .leaflet-touch .leaflet-control-layers,
 .leaflet-touch .leaflet-bar {
-    border: 0;
-    box-shadow: 0;
+  border: 0;
+  box-shadow: 0;
 }
 
 .leaflet-touch .leaflet-bar a:last-child {
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .leaflet-touch .leaflet-bar a {
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    background-color: white;
-    margin-bottom: 1px;
-    border: 2px solid var(--prussian-blue);
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  background-color: white;
+  margin-bottom: 1px;
+  border: 2px solid var(--prussian-blue);
 }
 
 .leaflet-touch .leaflet-bar a:hover {
-    box-shadow: 0;
-    background-color: var(--orange);
-    border: 2px solid white;
+  box-shadow: 0;
+  background-color: var(--orange);
+  border: 2px solid white;
 }
 
 .leaflet-control-zoom-in {
-    display: flex;
-    text-align: center;
-    text-decoration: none;
-    transition: background 150ms ease-in-out;
+  display: flex;
+  text-align: center;
+  text-decoration: none;
+  transition: background 150ms ease-in-out;
 }
 
 .leaflet-control-zoom-out {
-    display: flex;
-    text-align: center;
-    text-decoration: none;
-    transition: background 150ms ease-in-out;
+  display: flex;
+  text-align: center;
+  text-decoration: none;
+  transition: background 150ms ease-in-out;
 }
 
 /* ********************************* LEAFLET OMA POP UP REITTIHAKUUN ************************** */
 #map .leaflet-div-wrapper {
-    border-radius: 4px;
-    z-index: 1010;
-    position: absolute;
-    bottom: 3px;
-    left: 3px;
-    background: var(--prussian-blue);
-    padding: 5px;
+  border-radius: 4px;
+  z-index: 1010;
+  position: absolute;
+  bottom: 3px;
+  left: 3px;
+  background: var(--prussian-blue);
+  padding: 5px;
 }
 
 #map .leaflet-div-popup {
-    position: relative;
-    font-size: 15px;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    background: var(--prussian-blue);
-    color: var(--honey-yellow);
-    padding: 10px;
-    font-family: var(--main-font);
+  position: relative;
+  font-size: 15px;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--prussian-blue);
+  color: var(--honey-yellow);
+  padding: 10px;
+  font-family: var(--main-font);
 }
 
 #map .leaflet-div-popup p {
-    margin: 0;
-    height: auto;
+  margin: 0;
+  height: auto;
 }
 
 #map .leaflet-div-wrapper .leaflet-div-sulku {
-    position: relative;
-    text-decoration: none;
-    z-index: 1010;
-    padding: 0px;
-    display: flex;
-    justify-content: flex-end;
-    margin: -2px 2px 0px 0px;
-    background: white;
+  position: relative;
+  text-decoration: none;
+  z-index: 1010;
+  padding: 0px;
+  display: flex;
+  justify-content: flex-end;
+  margin: -2px 2px 0px 0px;
+  background: white;
 }
 
 #map .leaflet-div-wrapper .leaflet-div-sulku::before,
 #map .leaflet-div-wrapper .leaflet-div-sulku::after {
-    content: "";
-    width: calc(var(--mark-size) * 0.082);
-    height: calc(var(--mark-size) * 0.395);
-    margin: 0px 0px 0px 0px;
-    position: absolute;
-    display: block;
-    background: white;
+  content: "";
+  width: calc(var(--mark-size) * 0.082);
+  height: calc(var(--mark-size) * 0.395);
+  margin: 0px 0px 0px 0px;
+  position: absolute;
+  display: block;
+  background: white;
 }
 
 #map .leaflet-div-wrapper .leaflet-div-sulku::before {
-    transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 #map .leaflet-div-wrapper .leaflet-div-sulku::after {
-    transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 #map .leaflet-div-wrapper .leaflet-div-sulku:active {
-    background: var(--honey-yellow);
+  background: var(--honey-yellow);
 }
 
 /* *********************************  Leaftlet popup kontentti ********************************* */
 
 #map .leaflet-popup-content-wrapper {
-    border-radius: 4px;
-    background: var(--prussian-blue);
-    display: flex;
-    flex-direction: column;
-    color: var(--honey-yellow);
-    overflow-x: hidden;
-    font-size: 15px;
-    padding: 0px;
+  border-radius: 4px;
+  background: var(--prussian-blue);
+  display: flex;
+  flex-direction: column;
+  color: var(--honey-yellow);
+  overflow-x: hidden;
+  font-size: 15px;
+  padding: 0px;
 }
 
 /* pizzeria popup yläosa, ylhäälle tulee teksti */
 #map .pizzatop__bar {
-    line-height: 1.2em;
-    text-align: left;
-    margin-top: -9%;
+  line-height: 1.2em;
+  text-align: left;
+  margin-top: -9%;
 }
 /*  pizzeria popup alaosa, tänne tulee navigointi ja kotisivu */
 #map .pizzabot__bar {
-    font-weight: 500;
-    letter-spacing: -0.025em;
-    font-size: 21px;
-    line-height: 1.2em;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    border-radius: 5px;
-    background: var(--prussian-blue);
-    border-top: 1px solid white;
-    width: 100%;
-    padding-top: 8px;
-    min-width: 180px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  font-size: 21px;
+  line-height: 1.2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 5px;
+  background: var(--prussian-blue);
+  border-top: 1px solid white;
+  width: 100%;
+  padding-top: 8px;
+  min-width: 180px;
 }
 
 .leaflet-popup-content-wrapper h3 {
-    font-size: 0.99em;
-    color: var(--orange);
-    margin-bottom: 0px;
+  font-size: 0.99em;
+  color: var(--orange);
+  margin-bottom: 0px;
 }
 
 .leaflet-popup-content-wrapper h4 {
-    margin-top: 4px;
-    font-size: 0.89em;
-    display: flex;
-    flex-direction: row;
-    color: var(--honey-yellow);
-    margin-bottom: 0px;
+  margin-top: 4px;
+  font-size: 0.89em;
+  display: flex;
+  flex-direction: row;
+  color: var(--honey-yellow);
+  margin-bottom: 0px;
 }
 
 .leaflet-popup-content-wrapper p {
-    line-height: 1.4em;
-    color: var(--honey-yellow);
-    font-size: 0.89em;
-    margin: 5px 0px;
+  line-height: 1.4em;
+  color: var(--honey-yellow);
+  font-size: 0.89em;
+  margin: 5px 0px;
 }
 
 #map .leaflet-popup-content-wrapper a {
-    color: var(--honey-yellow);
-    height: 21px;
-    display: flex;
-    font-size: 0.8125em;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-    text-align: center;
-    text-decoration: none;
-    transition: 100ms ease-in-out;
+  color: var(--honey-yellow);
+  height: 21px;
+  display: flex;
+  font-size: 0.8125em;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  text-align: center;
+  text-decoration: none;
+  transition: 100ms ease-in-out;
 }
 
 #map .leaflet-popup-content-wrapper #Surli {
-    border-right: 1px solid var(--orange);
+  border-right: 1px solid var(--orange);
 }
 
 #map .leaflet-popup-content-wrapper #Sreitti {
-    border-left: 1px solid var(--orange);
+  border-left: 1px solid var(--orange);
 }
 
 #map .leaflet-popup-content-wrapper #Surli:hover,
 #map .leaflet-popup-content-wrapper #Sreitti:hover {
-    color: white;
+  color: white;
 }
 
 /* #map .leaflet-popup-content-wrapper #Saukioloaika {
@@ -815,321 +752,321 @@ section h1 {
 } */
 
 .leaflet-container a.leaflet-popup-close-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 4px 3px 0 0;
-    border: none;
-    text-align: center;
-    width: 16px;
-    font: 20px/13px roboto;
-    text-decoration: none;
-    font-weight: bold;
-    background: transparent;
-    color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 4px 3px 0 0;
+  border: none;
+  text-align: center;
+  width: 16px;
+  font: 20px/13px roboto;
+  text-decoration: none;
+  font-weight: bold;
+  background: transparent;
+  color: white;
 }
 
 @media screen and (max-width: 800px) {
-    #map .leaflet-div-wrapper {
-        bottom: 17px;
-        padding: 5px;
-        margin-left: 5px;
-        left: 0px;
-    }
-    #map .leaflet-div-popup {
-        position: relative;
-        font-size: 12px;
-        overflow-x: hidden;
-        display: flex;
-        flex-direction: column;
-        background: var(--prussian-blue);
-        color: var(--honey-yellow);
-        padding: 0px;
-        font-family: var(--main-font);
-        width: 100%;
-        height: 55px;
-        line-height: 1.5em;
-    }
-    #map .leaflet-div-popup p {
-        margin: 0;
-        padding-right: 10px;
-    }
+  #map .leaflet-div-wrapper {
+    bottom: 17px;
+    padding: 5px;
+    margin-left: 5px;
+    left: 0px;
+  }
+  #map .leaflet-div-popup {
+    position: relative;
+    font-size: 12px;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--prussian-blue);
+    color: var(--honey-yellow);
+    padding: 0px;
+    font-family: var(--main-font);
+    width: 100%;
+    height: 55px;
+    line-height: 1.5em;
+  }
+  #map .leaflet-div-popup p {
+    margin: 0;
+    padding-right: 10px;
+  }
 
-    .pageWrapper {
-        width: 100%;
-    }
-    .content {
-        display: flex;
-        align-items: center;
-        flex-flow: column nowrap;
-    }
-    .bg-image {
-        padding-top: 0;
-    }
+  .pageWrapper {
+    width: 100%;
+  }
+  .content {
+    display: flex;
+    align-items: center;
+    flex-flow: column nowrap;
+  }
+  .bg-image {
+    padding-top: 0;
+  }
 
-    main {
-        margin-top: 30%;
-        width: 90%;
-        height: 500px;
-        margin-bottom: 400px;
-        padding: 5%;
-        border-radius: 10px;
-    }
+  main {
+    margin-top: 30%;
+    width: 90%;
+    height: 500px;
+    margin-bottom: 400px;
+    padding: 5%;
+    border-radius: 10px;
+  }
 
-    #map {
-        border: 0;
-        width: 100%;
-        transition: 0.2s;
-    }
+  #map {
+    border: 0;
+    width: 100%;
+    transition: 0.2s;
+  }
 
-    .content #infovideo {
-        width: 100%;
-        height: 600px;
-        justify-content: center;
-    }
+  .content #infovideo {
+    width: 100%;
+    height: 600px;
+    justify-content: center;
+  }
 
-    .pizzavideo {
-        width: 90%;
-    }
+  .pizzavideo {
+    width: 90%;
+  }
 
-    .content #infovideo figcaption {
-        margin-bottom: 10%;
-        margin-top: 15px;
-        position: relative;
-        width: 100%;
-    }
+  .content #infovideo figcaption {
+    margin-bottom: 10%;
+    margin-top: 15px;
+    position: relative;
+    width: 100%;
+  }
 
-    .content #turhamainos {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        margin: auto;
-    }
+  .content #turhamainos {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: auto;
+  }
 
-    .content .vasenpuoli {
-        border: 0;
-        width: 75%;
-        text-align: center;
-        margin-top: 5%;
-        border-bottom: 1px solid var(--honey-yellowA);
-        line-height: 2em;
-        padding-bottom: 5%;
-        height: fit-content;
-    }
+  .content .vasenpuoli {
+    border: 0;
+    width: 75%;
+    text-align: center;
+    margin-top: 5%;
+    border-bottom: 1px solid var(--honey-yellowA);
+    line-height: 2em;
+    padding-bottom: 5%;
+    height: fit-content;
+  }
 
-    .content .vasenpuoli p {
-        margin: auto;
-        line-height: 2em;
-    }
+  .content .vasenpuoli p {
+    margin: auto;
+    line-height: 2em;
+  }
 
-    .content .vasenpuoli h2 {
-        margin-top: 12px;
-    }
+  .content .vasenpuoli h2 {
+    margin-top: 12px;
+  }
 
-    .content .vasenpuoli h3 {
-        margin: auto;
-    }
+  .content .vasenpuoli h3 {
+    margin: auto;
+  }
 
-    .content .oikeapuoli {
-        border: 0;
-        width: 75%;
-        text-align: center;
-        margin-top: 5%;
-        border-bottom: 1px solid var(--honey-yellowA);
-        line-height: 2em;
-        padding-bottom: 5%;
-    }
+  .content .oikeapuoli {
+    border: 0;
+    width: 75%;
+    text-align: center;
+    margin-top: 5%;
+    border-bottom: 1px solid var(--honey-yellowA);
+    line-height: 2em;
+    padding-bottom: 5%;
+  }
 
-    .content .oikeapuoli p {
-        margin: auto;
-        line-height: 2em;
-    }
+  .content .oikeapuoli p {
+    margin: auto;
+    line-height: 2em;
+  }
 
-    .content .oikeapuoli h2 {
-        margin-top: 12px;
-    }
+  .content .oikeapuoli h2 {
+    margin-top: 12px;
+  }
 
-    .content .oikeapuoli h3 {
-        margin: auto;
-    }
+  .content .oikeapuoli h3 {
+    margin: auto;
+  }
 }
 
 /*Kuvagalleria*/
 
 .wrappi {
-    width: 100%;
-    border-radius: 10px;
-    margin-top: 10%;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10%;
 }
 
 div.galleria {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 div.galleria ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 /*animaatio*/
 div.galleria ul li,
 div.galleria li img {
-    -webkit-transition: all 0.25s ease-in-out;
-    -moz-transition: all 0.25s ease-in-out;
-    -o-transition: all 0.25s ease-in-out;
-    transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 
 div.galleria ul li {
-    position: relative;
-    float: left;
-    width: 200px;
-    height: 200px;
-    margin: 30px;
-    padding: 5px;
-    z-index: 0;
-    margin-left: 7%;
-    margin-right: 7%;
+  position: relative;
+  float: left;
+  width: 200px;
+  height: 200px;
+  margin: 30px;
+  padding: 5px;
+  z-index: 0;
+  margin-left: 7%;
+  margin-right: 7%;
 }
 
 div.galleria ul li:hover {
-    z-index: 5;
+  z-index: 5;
 }
 
 /* Image is position nicely under li */
 div.galleria ul li img {
-    position: absolute;
-    left: 0;
-    top: 0;
-    border: 0.75px solid var(--prussian-blueA);
-    padding: 5px;
-    width: 300px;
-    height: 200px;
-    background: var(--prussian-blueA);
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 0.75px solid var(--prussian-blueA);
+  padding: 5px;
+  width: 300px;
+  height: 200px;
+  background: var(--prussian-blueA);
 }
 div.galleria ul li img:hover {
-    width: 400px;
-    height: 300px;
-    margin-top: -130px;
-    margin-left: -130px;
-    top: 65%;
-    left: 65%;
-    border: 0.75px solid white;
-    background: var(--honey-yellowA);
+  width: 400px;
+  height: 300px;
+  margin-top: -130px;
+  margin-left: -130px;
+  top: 65%;
+  left: 65%;
+  border: 0.75px solid white;
+  background: var(--honey-yellowA);
 }
 @media only screen and (min-width: 499px) and (max-width: 1000px) {
-    .wrappi {
-        width: 500px;
-    }
+  .wrappi {
+    width: 500px;
+  }
 }
 @media only screen and (max-width: 800px) {
-    .wrappi {
-        width: 400px;
-    }
+  .wrappi {
+    width: 400px;
+  }
 
-    div.galleria ul {
-        list-style-type: none;
-        margin: 0;
-    }
+  div.galleria ul {
+    list-style-type: none;
+    margin: 0;
+  }
 }
 
 /* ******************** ESITTELY SIVUN LIIBA LAABAT **************************** */
 
 #Esittely {
-    padding-bottom: 5%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20%;
-    background: var(--prussian-blueA);
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  padding-bottom: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20%;
+  background: var(--prussian-blueA);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 #Esittely img {
-    width: 100%;
-    height: auto;
-    max-width: max-content;
-    object-fit: cover;
-    object-position: bottom;
-    margin: 0;
-    padding: 0;
+  width: 100%;
+  height: auto;
+  max-width: max-content;
+  object-fit: cover;
+  object-position: bottom;
+  margin: 0;
+  padding: 0;
 }
 
 #Koodi img {
-    width: 100%;
-    height: auto;
-    max-width: max-content;
-    object-fit: cover;
-    object-position: bottom;
+  width: 100%;
+  height: auto;
+  max-width: max-content;
+  object-fit: cover;
+  object-position: bottom;
 }
 
 #Koodi {
-    width: 100%;
-    display: flex;
-    margin-top: 10%;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: row;
-    margin-bottom: 20%;
-    background: var(--prussian-blueA);
-    padding-bottom: 5%;
-    width: 100%;
+  width: 100%;
+  display: flex;
+  margin-top: 10%;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-bottom: 20%;
+  background: var(--prussian-blueA);
+  padding-bottom: 5%;
+  width: 100%;
 }
 
 .content .javascript {
-    padding: 2%;
-    width: 100%;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
+  padding: 2%;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .content .javascript h2 {
-    width: 100%;
-    font-size: 16x;
-    line-height: 1.5em;
-    text-align: center;
+  width: 100%;
+  font-size: 16x;
+  line-height: 1.5em;
+  text-align: center;
 }
 
 .content .javascript h3 {
-    width: 100%;
-    font-size: 16x;
-    line-height: 1.5em;
-    text-align: center;
+  width: 100%;
+  font-size: 16x;
+  line-height: 1.5em;
+  text-align: center;
 }
 
 .content .javascript h4 {
-    margin: 0;
-    font-size: 15px;
-    line-height: 1.5em;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5em;
 }
 
 .content .javascript p {
-    width: fit-content;
-    font-size: 14px;
-    line-height: 1.5em;
-    width: 80%;
+  width: fit-content;
+  font-size: 14px;
+  line-height: 1.5em;
+  width: 80%;
 }
 
 .content .javascript figcaption {
-    width: 100%;
+  width: 100%;
 }
 
 .content .javascript figure {
-    margin: 0;
+  margin: 0;
 }
 
 .content .javascript .navigointi {
-    display: flex;
-    flex-wrap: flex;
-    width: 100%;
-    margin: auto;
-    justify-content: center;
+  display: flex;
+  flex-wrap: flex;
+  width: 100%;
+  margin: auto;
+  justify-content: center;
 }
 
 .esittelymain {
-    padding-top: 10%;
+  padding-top: 10%;
 }
 
 /* .content .javascript img {
@@ -1139,43 +1076,43 @@ div.galleria ul li img:hover {
 } */
 
 .content #Koodi .javascript figure img {
-    width: 100%;
-    height: auto;
-    max-width: max-content;
-    margin-bottom: 15px;
-    border: 1px solid white;
+  width: 100%;
+  height: auto;
+  max-width: max-content;
+  margin-bottom: 15px;
+  border: 1px solid white;
 }
 
 .content #Koodi .css {
-    padding: 2%;
-    width: 100%;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
+  padding: 2%;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .content #Koodi .css img {
-    width: 90%;
-    max-width: max-content;
-    max-height: max-content;
+  width: 90%;
+  max-width: max-content;
+  max-height: max-content;
 }
 .auto-resizable-iframe {
-    max-width: 420px;
-    margin: 0px auto;
+  max-width: 420px;
+  margin: 0px auto;
 }
 
 .auto-resizable-iframe > div {
-    position: relative;
-    padding-bottom: 75%;
-    height: 0px;
+  position: relative;
+  padding-bottom: 75%;
+  height: 0px;
 }
 
 .auto-resizable-iframe iframe {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
 }
 
 /* ******************** ESITTELY SIVUN LIIBA LAABAT **************************** */

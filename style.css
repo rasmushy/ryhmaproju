@@ -1139,7 +1139,7 @@ div.galleria ul li img:hover {
 .content #Koodi .css {
   padding: 2%;
   width: 100%;
-  text-align: left;
+  text-align: center;
   display: flex;
   flex-direction: column;
 }
@@ -1198,5 +1198,3 @@ div.galleria ul li img:hover {
 ::-webkit-scrollbar-thumb:window-inactive {
   background: var(--orange);
 }
-
-

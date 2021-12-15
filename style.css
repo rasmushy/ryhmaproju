@@ -966,8 +966,8 @@ div.galleria ul li img:hover {
   height: 300px;
   margin-top: -130px;
   margin-left: -130px;
-  top: 65%;
-  left: 65%;
+  top: 80%;
+  left: 50%;
   border: 0.75px solid white;
   background: var(--honey-yellow);
 }

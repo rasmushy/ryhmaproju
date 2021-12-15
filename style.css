@@ -92,7 +92,7 @@
     flex-wrap: wrap;
     justify-content: center;
     /*  background-color: var(--orangeA); */
-    color: white;
+    color: var(--honey-yellow);
 }
 
 body {
@@ -104,10 +104,10 @@ body {
     background: linear-gradient(136deg, #11e1ab, #00307f, #00631a);
     background-size: 600% 600%;
 
-    -webkit-animation: AnimationName 59s ease infinite;
-    -moz-animation: AnimationName 59s ease infinite;
-    -o-animation: AnimationName 59s ease infinite;
-    animation: AnimationName 59s ease infinite;
+    -webkit-animation: AnimationName 29s ease infinite;
+    -moz-animation: AnimationName 29s ease infinite;
+    -o-animation: AnimationName 29s ease infinite;
+    animation: AnimationName 29s ease infinite;
 }
 
 }

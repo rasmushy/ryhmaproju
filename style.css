@@ -100,11 +100,19 @@ body {
 }
 /* background image taustalle */
 .bg-image {
-  background-image: url("https://thumbs2.imgbox.com/b4/92/lUKN5BKp_t.png");
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    97deg,
+    rgba(255, 255, 255, 0.437395026369923) 11%,
+    rgba(142, 202, 230, 0.3393558106836485) 34%,
+    rgba(255, 255, 255, 0.5606443260898109) 62%,
+    rgba(33, 158, 188, 0.1516807406556373) 88%
+  );
+  /*   background-image: url("https://thumbs2.imgbox.com/b4/92/lUKN5BKp_t.png");
   background-repeat: repeat;
   background-attachment: scroll;
   background-position: center;
-  background-size: fill;
+  background-size: fill; */
 }
 #otsikko {
   height: 5em;
@@ -252,7 +260,7 @@ main {
   display: flex;
   flex-direction: column;
   margin-bottom: 20%;
-  background: var(--prussian-blueA);
+  background: var(--prussian-blue);
 }
 
 .mainheader {
@@ -303,14 +311,14 @@ section h1 {
   margin-top: 25px;
   padding-bottom: 50px;
   padding-top: 25px;
-  background-color: var(--prussian-blueA);
+  background-color: var(--prussian-blue);
 }
 
 .infoheader {
   padding-top: 2.5%;
   width: 100%;
   text-align: center;
-  background-color: var(--prussian-blueA);
+  background-color: var(--prussian-blue);
   line-height: 1.8em;
 }
 
@@ -320,7 +328,7 @@ section h1 {
   text-align: center;
   padding-bottom: 20%;
   border-bottom: 1px solid var(--honey-yellowA);
-  background-color: var(--prussian-blueA);
+  background-color: var(--prussian-blue);
 }
 
 .pizzavideo {
@@ -365,7 +373,7 @@ section h1 {
   line-height: 1.5em;
   margin: 15px;
   border: 1px dotted var(--light-cornflower-blue);
-  background-color: var(--prussian-blueA);
+  background-color: var(--prussian-blue);
   border-radius: 5px;
 }
 
@@ -389,7 +397,7 @@ section h1 {
   line-height: 1.5em;
   margin: 15px;
   border: 1px dotted var(--light-cornflower-blue);
-  background-color: var(--prussian-blueA);
+  background-color: var(--prussian-blue);
   border-radius: 5px;
 }
 

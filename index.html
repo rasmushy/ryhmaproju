@@ -4,15 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="icon" href="data:," />
-
-    <link rel="stylesheet" href="src/leaflet-search.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
     <title>Esittely sivu</title>
 </head>
 <body class="bg-image">
 <div class="pageWrapper">
-    <nav class="navbar">
     <header class="navheader">
+    <nav class="navbar">
+
         <div class="nav-otsikko">
             <img id="otsikko" src="images/kello2.png" />
         </div>
@@ -33,8 +34,6 @@
     <div class="content">
         <main class="esittelymain">
             <section id="Esittely">
-
-
                 <header class="esittelyheader">
                     <h2>Etusivu esittelylle</h2>
                     <h3>Ryhmä 10 ja Pizzanyt </h3>
@@ -43,20 +42,7 @@
                        ja sovelluksen kautta saat reittiohjeet kyseiseen ravintolaan.</p>
                     <p>Sivu sisältää responsiivisen kartan sekä hakukentän josta voit hakea lempiravintolaasi.
                         Data tulee sivulle Myhelsinki.apin kautta ja kartta tulee Openstreetmaps:ilta </p>
-                    <h3>Pizzanyt tekijät:</h3>
                 </header>
-                <figure id="rasmus">
-                    <img src="images/rasmuskoodaamassa.jpg" alt="Kuva Rasmuksesta" />
-                    <figcaption>Rasmus</figcaption>
-                </figure>
-                <figure id="oliver">
-                    <img src="images/oliver1.jpg" alt="Kuva Oliverista" />
-                    <figcaption>Oliver</figcaption>
-                </figure>
-                <figure id="otto">
-                    <img src="images/otto.jpg" alt="Kuva Otosta" />
-                    <figcaption>Otto</figcaption>
-                </figure>
             </section>
             <section id="Koodi">
                 <header class="koodiheader"></header>
@@ -107,13 +93,25 @@
                  <a href="https://docs.google.com/document/d/12pFynDG2pOvfe20ttSKMUNMMCAUdOAJzsWJmnStvc00/edit">Linkki suunnitelmaan</a>
             </section>
         </main>
+        <section id="esittelykuvat">
+            <h2>Pizzanyt tekijät:</h2>
+            <figure id="rasmus">
+                <img src="images/rasmuskoodaamassa.jpg" alt="Kuva Rasmuksesta" />
+                <figcaption>Rasmus</figcaption>
+            </figure>
+            <figure id="oliver">
+                <img src="images/oliver1.jpg" alt="Kuva Oliverista" />
+                <figcaption>Oliver</figcaption>
+            </figure>
+            <figure id="otto">
+                <img src="images/otto.jpg" alt="Kuva Otosta" />
+                <figcaption>Otto</figcaption>
+            </figure>
+        </section>
     </div>
 </div>
 </body>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-<script src="src/leaflet-search.js"></script>
-<script src="js/Polyline.encoded.js"></script>
-<script src="js.js"></script>
+
 </body>
 </html>

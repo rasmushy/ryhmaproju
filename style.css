@@ -1148,8 +1148,16 @@ div.galleria ul li img:hover {
   width: 90%;
   max-width: max-content;
   max-height: max-content;
-}
+}#Koodi a:link,
 
+ #Koodi a:visited {
+   text-decoration: none;
+   color: inherit;
+
+ }
+ #Koodi a:hover {
+   color: var(--orange);
+ }
 /* ******************** ESITTELY SIVUN LIIBA LAABAT **************************** */
 
 /* Perus video jutut  */

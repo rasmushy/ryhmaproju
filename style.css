@@ -99,22 +99,13 @@ body {
   margin: auto;
 }
 /* background image taustalle */
-/*.bg-image {
-    background-image: url("https://thumbs2.imgbox.com/b4/92/lUKN5BKp_t.png");
-    background-repeat: repeat;
-    background-attachment: scroll;
-    background-position: center;
-    background-size: fill;
-}*/
-body {
-  background-color: cadetblue;
+.bg-image {
+  background-color: white;
 }
-
 #otsikko {
   position: absolute;
   top: 0px;
   left: 0px;
-
   min-width: none;
   max-width: max-content;
   max-height: max-content;
@@ -265,7 +256,8 @@ main {
   display: flex;
   flex-direction: column;
   margin-bottom: 20%;
-  background: var(--prussian-blueA);
+  background: var(--prussian-blue);
+  border-radius: 15px;
 }
 
 .mainheader {
@@ -308,6 +300,7 @@ section {
   flex-wrap: wrap;
   padding-bottom: 3%;
   font-family: var(--main-font);
+  border-radius: 15px;
 }
 
 section h1 {
@@ -316,14 +309,14 @@ section h1 {
   margin-top: 25px;
   padding-bottom: 50px;
   padding-top: 25px;
-  background-color: var(--prussian-blueA);
+  background-color: var(--prussian-blue);
 }
 
 .infoheader {
   padding-top: 2.5%;
   width: 100%;
   text-align: center;
-  background-color: var(--prussian-blueA);
+  background-color: var(--prussian-blue);
   line-height: 1.8em;
 }
 
@@ -332,8 +325,8 @@ section h1 {
   margin: auto;
   text-align: center;
   padding-bottom: 20%;
-  border-bottom: 1px solid var(--honey-yellowA);
-  background-color: var(--prussian-blueA);
+  border-bottom: 1px solid var(--honey-yellow);
+  background-color: var(--prussian-blue);
 }
 
 .pizzavideo {
@@ -367,7 +360,7 @@ section h1 {
   line-height: 1.8em;
   margin: 15px;
   border: 1px dotted var(--light-cornflower-blue);
-  background-color: var(--prussian-blueA);
+  background-color: var(--prussian-blue);
   border-radius: 5px;
 }
 
@@ -840,7 +833,7 @@ section h1 {
     width: 75%;
     text-align: center;
     margin-top: 5%;
-    border-bottom: 1px solid var(--honey-yellowA);
+    border-bottom: 1px solid var(--honey-yellow);
     line-height: 2em;
     padding-bottom: 5%;
     height: fit-content;
@@ -864,7 +857,7 @@ section h1 {
     width: 75%;
     text-align: center;
     margin-top: 5%;
-    border-bottom: 1px solid var(--honey-yellowA);
+    border-bottom: 1px solid var(--honey-yellow);
     line-height: 2em;
     padding-bottom: 5%;
   }
@@ -929,11 +922,11 @@ div.galleria ul li img {
   position: absolute;
   left: 0;
   top: 0;
-  border: 0.75px solid var(--prussian-blueA);
+  border: 0.75px solid var(--prussian-blue);
   padding: 5px;
   width: 300px;
   height: 200px;
-  background: var(--prussian-blueA);
+  background: var(--prussian-blue);
 }
 div.galleria ul li img:hover {
   width: 400px;
@@ -943,7 +936,7 @@ div.galleria ul li img:hover {
   top: 65%;
   left: 65%;
   border: 0.75px solid white;
-  background: var(--honey-yellowA);
+  background: var(--honey-yellow);
 }
 @media only screen and (min-width: 499px) and (max-width: 1000px) {
   .wrappi {
@@ -969,7 +962,7 @@ div.galleria ul li img:hover {
   display: flex;
   flex-direction: column;
   margin-bottom: 20%;
-  background: var(--prussian-blueA);
+  background: var(--prussian-blue);
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -1001,7 +994,7 @@ div.galleria ul li img:hover {
   flex-wrap: wrap;
   flex-direction: row;
   margin-bottom: 20%;
-  background: var(--prussian-blueA);
+  background: var(--prussian-blue);
   padding-bottom: 5%;
   width: 100%;
 }

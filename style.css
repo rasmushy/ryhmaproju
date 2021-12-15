@@ -92,7 +92,7 @@
     flex-wrap: wrap;
     justify-content: center;
     /*  background-color: var(--orangeA); */
-    color: white;
+    color: var(--honey-yellow);
 }
 
 body {
@@ -101,12 +101,15 @@ body {
 /* background image taustalle */
 .bg-image {
 
-    background: linear-gradient(270deg, #11e1ab, #04070d, #2a6cf0, #ffffff);
-    background-size: 800% 800%;
+    background: linear-gradient(136deg, #11e1ab, #00307f, #00631a);
+    background-size: 600% 600%;
+
     -webkit-animation: AnimationName 59s ease infinite;
     -moz-animation: AnimationName 59s ease infinite;
     -o-animation: AnimationName 59s ease infinite;
     animation: AnimationName 59s ease infinite;
+}
+
 }
 
 @-webkit-keyframes AnimationName {

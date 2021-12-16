@@ -10,9 +10,11 @@ const tanaan = new Date();
 const curDate = tanaan.getFullYear() + "-" + (tanaan.getMonth() + 1) + "-" + tanaan.getDate();
 const curAika = ajanMuuttaja(tanaan);
 const vkPaiva = tanaan.getDay() - 1;
-// reittioppaan apiosoite sekä proxyosoite
+// myhelsinki- ja digitransitin apiosoite sekä proxyosoiteet
+const pizzaUrl = "https://open-api.myhelsinki.fi/v1/places/?tags_filter=Pizza";
 const apiOsoite = "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql";
 const proxy = "https://cors-anywhere.herokuapp.com/";
+const proxyko = "https://api.allorigins.win/get?url=";
 // Luodaan kartta nimellä map
 const map = L.map("map").setView([60.21, 24.95], 9);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -102,7 +104,7 @@ function haeReitti(lahto, kohde) {
     plan(
       fromPlace: "Lokaatiosi::${lahto.latitude},${lahto.longitude}",
       toPlace: "Pizzeriasi::${kohde.latitude},${kohde.longitude}",
-      numItineraries: 1, date: "${curDate}", time: "${curAika}")
+      numItineraries: 1, date: "${curDate}", time: "${curAika + ":" + tanaan.getSeconds()}")
       {
         itineraries {
           legs {
@@ -132,8 +134,9 @@ function haeReitti(lahto, kohde) {
 
   // lähetetään haku
   fetch(proxy + apiOsoite, fetchOptions)
-    .then(function (vastaus) {
-      return vastaus.json();
+    .then(function (response) {
+      if (response.ok) return response.json();
+      throw new Error("Network response was not ok.");
     })
     .then(function (tulos) {
       const reittiDivi = tulos.data.plan.itineraries[0];
@@ -228,9 +231,8 @@ function haeReitti(lahto, kohde) {
 }
 
 async function getPizza(originlat, originlong) {
-  const pizzaUrl = "https://open-api.myhelsinki.fi/v1/places/?tags_filter=Pizza";
   const origin = {latitude: originlat, longitude: originlong}; // origin säästetään jotta se voidaan lähettää reittiopas functiolle
-  const response = await fetch(`${proxy}${pizzaUrl}`).catch((e) => {
+  const response = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(pizzaUrl)}`).catch((e) => {
     console.log("Error");
     console.log(e);
   });
@@ -255,6 +257,8 @@ async function getPizza(originlat, originlong) {
     if (matiketopelasu < 0) {
       matiketopelasu = 0;
     }
+    open.setHours(objData.opening_hours?.hours?.[matiketopelasu]?.opens?.split(":")[0] ?? "");
+    open.setMinutes(objData.opening_hours?.hours?.[matiketopelasu]?.opens?.split(":")[1] ?? "");
     // katsotaan onko sulkeutumisaika pienempi kuin alkamisaika (keskiyö)
     if ((objData.opening_hours?.hours?.[matiketopelasu].closes?.split(":")[0] ?? "") < open.getHours()) {
       closed.setDate(tanaan.getDate() + 1); //mikäli on niin lisätään closed dayhin yksi päivä lisää.
@@ -263,8 +267,6 @@ async function getPizza(originlat, originlong) {
       closed.setHours(objData.opening_hours?.hours?.[matiketopelasu]?.closes?.split(":")[0] ?? "");
     }
     closed.setMinutes(objData.opening_hours?.hours?.[matiketopelasu]?.closes?.split(":")[1] ?? "");
-    open.setHours(objData.opening_hours?.hours?.[matiketopelasu]?.opens?.split(":")[0] ?? "");
-    open.setMinutes(objData.opening_hours?.hours?.[matiketopelasu]?.opens?.split(":")[1] ?? "");
 
     // luodaan auki ja kiinni ololle omat ajat ja isketään ne functioon joka muuttaa aikamuotoon hh:mm
     const auki = ajanMuuttaja(open);
@@ -283,6 +285,7 @@ async function getPizza(originlat, originlong) {
     <a id="Sreitti" title="Katso miten julkiset menevät paikalle.." href="#" onclick="haeReitti({latitude: ${origin.latitude}, longitude: ${
       origin.longitude
     }},{latitude: ${info.Latitude}, longitude: ${info.Longitude}});return false;">Reittihaku</a></div>`;
+    // Lopuksi if helvetti jossa määritellään onko se paikka aukinainen vai ei ja laitetaan markkeri sen mukaan.
     if (curDate < check === true) {
       if (curAika < kiinni === true || curAika > auki) {
         L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaAuki).bindPopup(teksti);
@@ -338,3 +341,6 @@ navbarFaq.addEventListener("click", () => {
 navTitleHtml.addEventListener("click", () => {
   document.querySelector("#top").scrollIntoView({behavior: "smooth"});
 });
+
+// FETCHAUS https://allorigins.win/ SIVUNKAUTTA EI ONNISTUNUT REITTI HAUSSA
+/* fetch(`${proxyko}${encodeURIComponent(apiOsoite)}`,fetchoptions) */

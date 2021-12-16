@@ -268,6 +268,7 @@ async function getPizza(originlat, originlong) {
     // luodaan auki ja kiinni ololle omat ajat ja isketään ne functioon joka muuttaa aikamuotoon hh:mm
     const auki = ajanMuuttaja(open);
     const kiinni = ajanMuuttaja(closed);
+    const check = closed.getFullYear() + "-" + (closed.getMonth() + 1) + "-" + closed.getDate();
     // aukiolocheck antaa paikalle ajan mikäli semmoinen löytyy, esim. 00:00 - 00:00 ei ole aukioloaika.
     let aukioloCheck = `<p id="Saukioloaika">Aukioloaika tänään: ${auki}-${kiinni}</p>`;
     // tässä if lauseke jolla aukiolocheck muuttuu mikäli aukioloaikoja ei ole saatavilla.
@@ -281,24 +282,24 @@ async function getPizza(originlat, originlong) {
     <a id="Sreitti" title="Katso miten julkiset menevät paikalle.." href="#" onclick="haeReitti({latitude: ${origin.latitude}, longitude: ${
       origin.longitude
     }},{latitude: ${info.Latitude}, longitude: ${info.Longitude}});return false;">Reittihaku</a></div>`;
-    console.log(closed + " <---- closed aika" + info?.nimi);
-    // Lisätään markkerit kartalle riippuen siitä onko ne kiinni vai ei.. Mikäli aikaa ei löydy lisätään ne aukiolevian erikoismaininnalla
-    if (tanaan > open == true) {
-      if (tanaan > closed == true) {
-        L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaKiinni).bindPopup(teksti);
+    if (curDate < check == true) {
+      if (curAika < kiinni == true) {
+        L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaAuki).bindPopup(teksti);
       } else {
-        if (curAika > kiinni && (tanaan.getDay() === closed.getDay()) != false) {
-          L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaKiinni).bindPopup(teksti);
-        } else {
-          L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaAuki).bindPopup(teksti);
-        }
+        L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaKiinni).bindPopup(teksti);
+      }
+    } else {
+      if (curAika > auki && curAika < kiinni && curAika < "23:59") {
+        L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaAuki).bindPopup(teksti);
+      } else {
+        L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaKiinni).bindPopup(teksti);
       }
     }
   });
   // poistetaan kiinni olevat pizzeriat kartalta oletuksena functiolla.
   markerToggle(1);
 }
-
+/* if (aikalol > aukilol == true && aikalol > kiinni) */
 // Functio eri napeille.
 function markerToggle(x) {
   if (x == 1) {
@@ -336,3 +337,13 @@ navbarFaq.addEventListener("click", () => {
 navTitleHtml.addEventListener("click", () => {
   document.querySelector("#top").scrollIntoView({behavior: "smooth"});
 });
+
+/* 
+if (tanaan.getTime() >= open.getTime() && tanaan.getTime() < closed.getTime()) {
+  L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaAuki).bindPopup(teksti);
+} else {
+  L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaKiinni).bindPopup(teksti);
+}
+} else if (closed.getHours() < open.getHours() && tanaan.getTime() > closed.getTime()) {
+L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaKiinni).bindPopup(teksti);
+} */

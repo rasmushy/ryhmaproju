@@ -234,7 +234,8 @@ async function getPizza(originlat, originlong) {
     console.log("Error");
     console.log(e);
   });
-  const jsonData = await response.json(); // käydään läpi apista saadut tiedot.
+  const jsonData = await response.json();
+  // käydään läpi apista saadut tiedot.
   // jokasen objectin osalta seuraava forloop ->
   Array.from(jsonData.data).forEach(function (objData) {
     // ekaksi infot markkeria varten
@@ -282,9 +283,8 @@ async function getPizza(originlat, originlong) {
     <a id="Sreitti" title="Katso miten julkiset menevät paikalle.." href="#" onclick="haeReitti({latitude: ${origin.latitude}, longitude: ${
       origin.longitude
     }},{latitude: ${info.Latitude}, longitude: ${info.Longitude}});return false;">Reittihaku</a></div>`;
-
     if (curDate < check === true) {
-      if (curAika < kiinni === true) {
+      if (curAika < kiinni === true || curAika > auki) {
         L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaAuki).bindPopup(teksti);
       } else {
         L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaKiinni).bindPopup(teksti);

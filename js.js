@@ -228,7 +228,7 @@ function haeReitti(lahto, kohde) {
 }
 
 async function getPizza(originlat, originlong) {
-  const pizzaUrl = "http://open-api.myhelsinki.fi/v1/places/?tags_filter=Pizza";
+  const pizzaUrl = "https://open-api.myhelsinki.fi/v1/places/?tags_filter=Pizza";
   const origin = {latitude: originlat, longitude: originlong}; // origin säästetään jotta se voidaan lähettää reittiopas functiolle
   const response = await fetch(`${proxy}${pizzaUrl}`).catch((e) => {
     console.log("Error");
@@ -282,14 +282,15 @@ async function getPizza(originlat, originlong) {
     <a id="Sreitti" title="Katso miten julkiset menevät paikalle.." href="#" onclick="haeReitti({latitude: ${origin.latitude}, longitude: ${
       origin.longitude
     }},{latitude: ${info.Latitude}, longitude: ${info.Longitude}});return false;">Reittihaku</a></div>`;
-    if (curDate < check == true) {
-      if (curAika < kiinni == true) {
+
+    if (curDate < check === true) {
+      if (curAika < kiinni === true) {
         L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaAuki).bindPopup(teksti);
       } else {
         L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaKiinni).bindPopup(teksti);
       }
     } else {
-      if (curAika > auki && curAika < kiinni && curAika < "23:59") {
+      if (curAika >= auki === true && curAika < kiinni === true) {
         L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaAuki).bindPopup(teksti);
       } else {
         L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaKiinni).bindPopup(teksti);
@@ -299,7 +300,7 @@ async function getPizza(originlat, originlong) {
   // poistetaan kiinni olevat pizzeriat kartalta oletuksena functiolla.
   markerToggle(1);
 }
-/* if (aikalol > aukilol == true && aikalol > kiinni) */
+
 // Functio eri napeille.
 function markerToggle(x) {
   if (x == 1) {
@@ -331,19 +332,9 @@ navbarMap.addEventListener("click", () => {
 });
 //otsikon navbar listenerit sekä titleä painamalla pääset scrollaantumaan
 navbarFaq.addEventListener("click", () => {
-  document.querySelector(".infoheader").scrollIntoView({behavior: "smooth"});
+  document.querySelector("#infot").scrollIntoView({behavior: "smooth"});
 });
 //otsikon navbar listenerit sekä titleä painamalla pääset scrollaantumaan
 navTitleHtml.addEventListener("click", () => {
   document.querySelector("#top").scrollIntoView({behavior: "smooth"});
 });
-
-/* 
-if (tanaan.getTime() >= open.getTime() && tanaan.getTime() < closed.getTime()) {
-  L.marker([info.Latitude, info.Longitude], {icon: pIcon, title: info.nimi}).addTo(pizzaAuki).bindPopup(teksti);
-} else {
-  L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaKiinni).bindPopup(teksti);
-}
-} else if (closed.getHours() < open.getHours() && tanaan.getTime() > closed.getTime()) {
-L.marker([info.Latitude, info.Longitude], {icon: vIcon, title: info.nimi}).addTo(pizzaKiinni).bindPopup(teksti);
-} */

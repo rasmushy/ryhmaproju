@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" id="top">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" href="data:," />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+    <title>Esittelysivu</title>
+</head>
+<body class="bg-image">
+<div class="pageWrapper">
+    <header class="navheader">
+        <nav class="navbar">
+
+            <div class="nav-otsikko">
+                <img id="otsikko" src="images/kello2.png" />
+            </div>
+            <div>
+                <a id="togglenappi" href="javascript:void(0)" class="togglenappi">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </a>
+            </div>
+            <div id="navbar-linkit" class="navbar-linkit">
+                <ul>
+                    <li class="navbar__map"><a href="main.html">Mainpage</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="content">
+        <main class="esittelymain">
+            <section id="Esittely">
+                <header class="esittelyheader">
+                    <h2>Etusivu esittelylle</h2>
+                    <h3>Ryhmä 10 ja Pizzanyt </h3>
+                    <p>Pizzanyt on sovellus joka vastaa kaikkien epätavalliseen aikaan syövien tarpeisiin.<br> Sovellus näyttää kätevästi mitkä pizzeriat ovat auki alueellasi
+                        ja sovelluksen kautta saat reittiohjeet kyseiseen ravintolaan.</p>
+                    <p>Sivu sisältää responsiivisen kartan sekä hakukentän josta voit hakea lempiravintolaasi.
+                        Data tulee sivulle Myhelsinki.apin kautta ja kartta tulee Openstreetmaps:ilta </p>
+                </header>
+            </section>
+            <section id="Koodi">
+                <header class="koodiheader"></header>
+                <section class="javascript">
+                    <h2>Javascript</h2>
+                    <figure>
+                        <h3>getPizza();</h3>
+                        <img src="images/getPizza.JPG" alt="getPizza function callista kuva" />
+                        <figcaption>getPizza() functio kutsutaan kun oma lokaatio on löytynyt</figcaption>
+                        <p>Sivumme markkerit kartalle laittaa paikoilleen getPizza function, joka hakee datan myhelsinki apista ja litteroi sen.</p>
+                        <p>
+                            Jos pizzapaikka on auki litteroidun tiedon perusteella niin se asetetaan layerille pizzaAuki, muulloin se asetetaan pizzaKiinni
+                            layerille
+                        </p>
+                    </figure>
+                    <section class="navigointi">
+                        <h3>Markkerin popupin ominaisuudet</h3>
+                        <figure>
+                            <figcaption>Kuva markkerista ja sen popup sisällöstä</figcaption>
+                            <img src="images/markkeri.JPG" alt="Kuva markkerista" />
+                            <p>
+                                Reittihaku toteuttaa function haeReitti joka hakee hsl apin avulla reitin.<br />Tämän jälkeen se muuttaa reitin polylineiksi ja
+                                luo markkerit reitille.
+                            </p>
+                        </figure>
+                        <figure>
+                            <figcaption>Kuva reittihaun popup divistä lisätietoneinsa</figcaption>
+                            <img src="images/popupdivi.JPG" alt="kuva popup divistä" />
+                            <p>Kartan alakulmaan tulee oma ikkuna josta näkee lisätietoja matkasta.</p>
+                        </figure>
+                        <figure>
+                            <figcaption>Kuva searchbarista</figcaption>
+                            <img src="images/searchbar.JPG" alt="kuva searchbarista" />
+                            <p>Searchbarilla voi etsiä oman suosikki pizzeeriasi nimen</p>
+                        </figure>
+                    </section>
+                </section>
+                <section class="css">
+                    <h2>Css</h2>
+                    <figure>
+                        <h3>Css ruksi</h3>
+                        <figcaption>::after & ::before</figcaption>
+                        <img src="images/cssRuxikoodi.JPG" alt="css koodista kuva" />
+                    </figure>
+                </section>
+
+
+                <h2><a href="https://docs.google.com/document/d/12pFynDG2pOvfe20ttSKMUNMMCAUdOAJzsWJmnStvc00/edit">Videosuunnitelma</a></h2>
+            </section>
+        <section id="esittelykuvat">
+            <h2>Pizzanyt tekijät:</h2>
+                <div class="galleria">
+                <ul>
+                <li><img src="images/rasmuskoodaamassa.jpg" /></li>
+                <li><img src="images/oliver1.jpg" /></li>
+                <li><img src="images/otto.jpg" /></li>
+            </ul>
+          </div>
+        </section>
+        </main>
+    </div>
+</div>
+</body>
+</div>
+
+</body>
+</html>
